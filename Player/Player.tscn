@@ -9,6 +9,7 @@ radius = 10.0
 
 [node name="Player" type="KinematicBody2D"]
 
+transform/pos = Vector2( 400, 300 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
