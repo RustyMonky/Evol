@@ -10,7 +10,6 @@ radius = 10.0
 
 [node name="Player" type="KinematicBody2D"]
 
-transform/pos = Vector2( 400, 300 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -36,7 +35,7 @@ _update_shape_index = 0
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 0.4, 0.4 )
+zoom = Vector2( 0.75, 0.75 )
 limit/left = -10000000
 limit/top = -10000000
 limit/right = 10000000
