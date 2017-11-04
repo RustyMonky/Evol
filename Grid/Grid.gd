@@ -51,13 +51,13 @@ func _ready():
 func is_cell_vacant(pos, direction):
     var grid_pos = world_to_map(pos) + direction
 
-    if abs(grid_pos.x) < grid_size.x and grid_size.x >= 0:
+    if abs(grid_pos.x) <= grid_size.x and grid_size.x >= 0:
         if abs(grid_pos.y) < grid_size.y and grid_size.y >= 0:
             if grid[grid_pos.x][grid_pos.y] == null:
                 return true
             elif grid[grid_pos.x][grid_pos.y] == ENCOUNTER:
-                print("Encounter!")
-                return true
+                get_tree().change_scene("res://Battle/Battle.tscn")
+                return false
             else:
                 return false
     return false
