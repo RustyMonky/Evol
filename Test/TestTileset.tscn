@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://Test/grass1.tex" type="Texture" id=1]
 [ext_resource path="res://Test/grass2.tex" type="Texture" id=2]
 [ext_resource path="res://Test/grass3.tex" type="Texture" id=3]
-[ext_resource path="res://Test/grass4.tex" type="Texture" id=4]
+[ext_resource path="res://Test/road.tex" type="Texture" id=4]
 [ext_resource path="res://Test/rockwall.tex" type="Texture" id=5]
+[ext_resource path="res://Test/roadturndownleft.tex" type="Texture" id=6]
+[ext_resource path="res://Test/roadturndownright.tex" type="Texture" id=7]
+[ext_resource path="res://Test/roadturnupleft.tex" type="Texture" id=8]
+[ext_resource path="res://Test/roadturnupright.tex" type="Texture" id=9]
+[ext_resource path="res://Test/roadSide.tex" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -35,7 +40,7 @@ region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="TestRoad" type="Sprite" parent="."]
 
-transform/pos = Vector2( 192, 0 )
+transform/pos = Vector2( 190, 0 )
 texture = ExtResource( 4 )
 region = true
 region_rect = Rect2( 0, 0, 32, 32 )
@@ -66,5 +71,40 @@ build_mode = 0
 polygon = Vector2Array( -20, 16, 20, 16, 20, -4, 10, -14, 0, -24, -10, -14, -20, -4, -20, 16 )
 shape_range = Vector2( 0, 0 )
 trigger = false
+
+[node name="TestRoadBend1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0, 128 )
+texture = ExtResource( 6 )
+region = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="TestRoadBend2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 64, 128 )
+texture = ExtResource( 7 )
+region = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="TestRoadBend3" type="Sprite" parent="."]
+
+transform/pos = Vector2( 128, 128 )
+texture = ExtResource( 8 )
+region = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="TestRoadBend4" type="Sprite" parent="."]
+
+transform/pos = Vector2( 192, 128 )
+texture = ExtResource( 9 )
+region = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="TestRoadSide" type="Sprite" parent="."]
+
+transform/pos = Vector2( 256, 128 )
+texture = ExtResource( 10 )
+region = true
+region_rect = Rect2( 0, 0, 32, 32 )
 
 

@@ -18,8 +18,6 @@ const RIGHT = Vector2(1, 0)
 const MAX_SPEED = 200
 
 func _ready():
-    # Called every time the node is added to the scene.
-    # Initialization here
     grid = get_parent()
     type = grid.PLAYER
     set_fixed_process(true)
