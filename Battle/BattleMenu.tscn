@@ -104,7 +104,7 @@ underline = 2
 [node name="BattleMenuPromptTimer" type="Timer" parent="BattleMenuFrame"]
 
 process_mode = 1
-wait_time = 0.1
+wait_time = 0.05
 one_shot = false
 autostart = true
 
