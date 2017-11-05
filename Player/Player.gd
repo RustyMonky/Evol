@@ -51,6 +51,7 @@ func _fixed_process(delta):
 
         var pos = get_pos()
         var distance_to_target = Vector2(abs(target_pos.x - pos.x), abs(target_pos.y - pos.y))
+        global.player_pos = pos
 
         if abs(velocity.x) > distance_to_target.x:
             velocity.x = distance_to_target.x * target_direction.x

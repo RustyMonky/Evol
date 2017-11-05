@@ -20,8 +20,7 @@ func _ready():
             grid[x].append(null)
 
     var Player = get_node("Player")
-    var start_pos = update_child_pos(Player)
-    Player.set_pos(start_pos)
+    Player.set_pos(global.player_pos)
 
     var encounter_positions = []
 
