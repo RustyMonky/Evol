@@ -56,7 +56,8 @@ func is_cell_vacant(pos, direction):
             if grid[grid_pos.x][grid_pos.y] == null:
                 return true
             elif grid[grid_pos.x][grid_pos.y] == ENCOUNTER:
-                get_tree().change_scene("res://Battle/Battle.tscn")
+                get_node("/root/global").goto_scene("res://Battle/Battle.tscn")
+                #get_tree().change_scene("res://Battle/Battle.tscn")
                 return false
             else:
                 return false

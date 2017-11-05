@@ -1,6 +1,7 @@
 extends Control
 
 var cursor
+var cursor_is_moving
 var menu_frame
 var menu_prompt
 
@@ -16,16 +17,20 @@ func _ready():
 
     cursor = menu_frame.get_node("Cursor")
     cursor_update()
+    cursor_is_moving = false
     set_fixed_process(true)
 
 func _fixed_process(delta):
     if Input.is_action_pressed("ui_accept") && current_option == 1:
-        self.queue_free()
-        get_tree().change_scene("res://Grid/Grid.tscn")
-    elif Input.is_action_pressed("ui_left"):
+        #self.queue_free()
+        #get_tree().change_scene("res://Grid/Grid.tscn")
+        get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
+    elif Input.is_action_pressed("ui_left") && !cursor_is_moving:
+        cursor_is_moving = true
         update_current_option("left")
         cursor_update()
-    elif Input.is_action_pressed("ui_right"):
+    elif Input.is_action_pressed("ui_right") && !cursor_is_moving:
+        cursor_is_moving = true
         update_current_option("right")
         cursor_update()
         
@@ -35,13 +40,12 @@ func cursor_update():
 
 # param direction cursor direction
 func update_current_option(direction):
+    if cursor_is_moving == false:
+        return false
+
+    # Simplified menu logic until more options are added
     if direction == "left":
-        if current_option == 0:
-            current_option = options.size() - 1
-        else:
-            current_option -= 1
+        current_option = 0
     elif direction == "right":
-        if current_option == options.size() - 1:
-            current_option = 0
-        else:
-            current_option += 1
+        current_option = 1
+    cursor_is_moving = false
