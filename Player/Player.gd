@@ -29,15 +29,19 @@ func _fixed_process(delta):
     if Input.is_action_pressed("player_up"):
         direction = TOP
         get_node("PlayerSprite").set_frame(1)
+        global.player_sprite_frame = 1
     elif Input.is_action_pressed("player_down"):
         direction = DOWN
         get_node("PlayerSprite").set_frame(0)
+        global.player_sprite_frame = 0
     elif Input.is_action_pressed("player_left"):
         direction = LEFT
         get_node("PlayerSprite").set_frame(3)
+        global.player_sprite_frame = 3
     elif Input.is_action_pressed("player_right"):
         direction = RIGHT
         get_node("PlayerSprite").set_frame(2)
+        global.player_sprite_frame = 2
 
     if not is_moving and direction != Vector2():
         target_direction = direction

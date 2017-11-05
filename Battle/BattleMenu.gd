@@ -3,21 +3,24 @@ extends Control
 var cursor
 var cursor_is_moving
 var menu_frame
-var menu_prompt
 
 var current_option = 0
-var options
+var options = []
 
 func _ready():
     menu_frame = get_node("BattleMenuFrame")
-    menu_prompt = menu_frame.get_node("BattleMenuPrompt")
-    menu_prompt.set_text("What will you do?")
 
     options = menu_frame.get_node("BattleMenuOptions").get_children()
 
     cursor = menu_frame.get_node("Cursor")
     cursor_update()
     cursor_is_moving = false
+
+    # Make the options and cursor invisible until all the introductory prompts are done
+    cursor.set_hidden(true)
+    for op in options:
+        op.set_hidden(true)
+        
     set_fixed_process(true)
 
 func _fixed_process(delta):
@@ -33,7 +36,8 @@ func _fixed_process(delta):
         cursor_is_moving = true
         update_current_option("right")
         cursor_update()
-        
+
+    # If the prompt is complete, show all text
 
 func cursor_update():
     cursor.set_global_pos(Vector2(options[current_option].get_global_pos().x - 8, cursor.get_global_pos().y))

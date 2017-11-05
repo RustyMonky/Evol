@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Battle/BattleMenu.gd" type="Script" id=1]
 [ext_resource path="res://Battle/battlePanel.tex" type="Texture" id=2]
 [ext_resource path="res://Fonts/Somepx.fnt" type="BitmapFont" id=3]
-[ext_resource path="res://Battle/cursor.tex" type="Texture" id=4]
+[ext_resource path="res://Battle/BattleMenuPrompt.gd" type="Script" id=4]
+[ext_resource path="res://Battle/cursor.tex" type="Texture" id=5]
 
 [node name="BattleMenu" type="Control"]
 
@@ -30,7 +31,7 @@ margin/bottom = 72.0
 texture = ExtResource( 2 )
 stretch_mode = 0
 
-[node name="BattleMenuPrompt" type="Label" parent="BattleMenuFrame"]
+[node name="BattleMenuPrompt" type="RichTextLabel" parent="BattleMenuFrame"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -40,16 +41,18 @@ margin/left = 16.0
 margin/top = 16.0
 margin/right = 160.0
 margin/bottom = 56.0
-custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode/enabled = true
+bbcode/bbcode = ""
+visible_characters = -1
 percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+script/script = ExtResource( 4 )
 
 [node name="Cursor" type="Sprite" parent="BattleMenuFrame"]
 
 transform/pos = Vector2( 0, 20 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="BattleMenuOptions" type="Control" parent="BattleMenuFrame"]
 
@@ -97,5 +100,14 @@ enabled_focus_mode = 0
 shortcut = null
 text = "Run"
 underline = 2
+
+[node name="BattleMenuPromptTimer" type="Timer" parent="BattleMenuFrame"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="BattleMenuFrame/BattleMenuPromptTimer" to="BattleMenuFrame/BattleMenuPrompt" method="_on_BattleMenuPromptTimer_timeout"]
 
 

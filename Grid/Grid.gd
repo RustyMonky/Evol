@@ -21,6 +21,7 @@ func _ready():
 
     var Player = get_node("Player")
     Player.set_pos(global.player_pos)
+    Player.get_node("PlayerSprite").set_frame(global.player_sprite_frame)
 
     var encounter_positions = []
 
