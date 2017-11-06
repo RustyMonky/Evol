@@ -42,10 +42,17 @@ func _fixed_process(delta):
 
     # If the prompt is complete, show all text
 
+# ---------------
+# Class Functions
+# ---------------
+
+# cursor_update
+# Updates the position of the cursor based on the currently selected menu option
 func cursor_update():
     cursor.set_global_pos(Vector2(options[current_option].get_global_pos().x - 8, cursor.get_global_pos().y))
 
-# param direction cursor direction
+# update_current_option
+# Updates the currently selected cursor option
 func update_current_option(direction):
     if cursor_is_moving == false:
         return false

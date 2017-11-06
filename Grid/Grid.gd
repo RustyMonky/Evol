@@ -36,6 +36,12 @@ func _ready():
         grid[pos.x][pos.y] = ENCOUNTER
         add_child(new_encounter)
 
+# ---------------
+# Class Functions
+# ---------------
+
+# is_cell_vacant
+# Determines if the cell the player is moving to is vacant in the grid
 func is_cell_vacant(pos, direction):
     var grid_pos = world_to_map(pos) + direction
 
@@ -50,6 +56,8 @@ func is_cell_vacant(pos, direction):
                 return false
     return false
 
+# update_child_pos
+# Updates the player's position on the grid
 func update_child_pos(child_node):
     # Move a child to a new position in the grid Array
     # Returns the new target world position of the child

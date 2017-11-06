@@ -4,6 +4,7 @@ var current_scene = null
 # The below value may change and is currently hardset to work with the test grid
 var player_pos = Vector2(1, 0)
 var player_sprite_frame = 0
+var mob_name = ""
 
 func _ready():
     var root = get_tree().get_root()
