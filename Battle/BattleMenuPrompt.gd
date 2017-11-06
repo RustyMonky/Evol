@@ -15,22 +15,23 @@ func _ready():
     is_running = false
     is_intro = true
 
-    prompt_text = "A " + global.mob_name + " appeared!"
-    set_prompt_text(prompt_text)
-
-    set_fixed_process(true)
-
 func _on_BattleMenuPromptTimer_timeout():
     set_visible_characters(get_visible_characters() + 1)
 
+    # If all characters are outputed and the encounter intro is not playing
     if get_visible_characters() == get_total_character_count() && not is_intro:
         if is_running:
             get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
         else:
             toggle_hidden(false)
-    elif get_visible_characters() == get_total_character_count() && is_intro:
+    # If all characters are outputed and the encounter intro is playing
+    elif get_visible_characters() > 0 and get_visible_characters() == get_total_character_count() && is_intro:
         is_intro = false
         set_prompt_text("What will you do?")
+    # If we just began the encounter intro
+    elif get_visible_characters() == 0 && is_intro:
+        prompt_text = "A " + global.mob_name + " appeared!"
+        set_prompt_text(prompt_text)
 
 # ---------------
 # Class Functions
