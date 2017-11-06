@@ -25,6 +25,6 @@ func _ready():
     set_fixed_process(true)
 
 func _fixed_process(delta):
-    if mob_node.get_pos().x < (battle_background.get_size().x  / 2):
+    if mob_node.get_pos().x < (battle_background.get_size().x  / 2 - 64):
         mob_node.move(Vector2(MOB_MOVE_SPEED * delta, 0))
 
