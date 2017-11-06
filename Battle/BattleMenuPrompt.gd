@@ -21,7 +21,7 @@ func _on_BattleMenuPromptTimer_timeout():
         if is_running:
             get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
         else:
-            toggle_visibility(false)
+            toggle_hidden(false)
 
 
 func set_prompt_text(text):
@@ -30,11 +30,11 @@ func set_prompt_text(text):
 
 func set_run_text(text):
     is_running = true
-    toggle_visibility(true)
+    toggle_hidden(true)
     set_prompt_text(text)
 
 # Toggles visibility of cursor and battle menu options
-func toggle_visibility(is_visible):
+func toggle_hidden(is_visible):
     cursor.set_hidden(is_visible)
     for opt in battle_menu.options:
         opt.set_hidden(is_visible)

@@ -56,6 +56,7 @@ texture = ExtResource( 5 )
 
 [node name="BattleMenuOptions" type="Control" parent="BattleMenuFrame"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
