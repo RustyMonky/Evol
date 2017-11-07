@@ -38,8 +38,6 @@ func _fixed_process(delta):
         update_current_option("right")
         cursor_update()
 
-    # If the prompt is complete, show all text
-
 # ---------------
 # Class Functions
 # ---------------
