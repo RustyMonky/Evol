@@ -20,7 +20,7 @@ func _ready():
     mob_to_fight = mobs[0]
     if mob_to_fight == "slime":
         mob_sprite.set_texture(load("res://Mobs/shadedSlime.tex"))
-        global.mob_name = "Shaded Slime"
+        global.mob.name = "Shaded Slime"
 
     set_fixed_process(true)
 

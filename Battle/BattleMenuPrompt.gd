@@ -39,7 +39,7 @@ func _on_BattleMenuPromptTimer_timeout():
         text_done(true)
     # If we just began the encounter intro
     elif get_visible_characters() == 0 && is_intro:
-        prompt_text = "A " + global.mob_name + " appeared!"
+        prompt_text = "A " + global.mob.name + " appeared!"
         set_prompt_text(prompt_text)
 
 func _fixed_process(delta):

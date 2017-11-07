@@ -20,8 +20,8 @@ func _ready():
             grid[x].append(null)
 
     var Player = get_node("Player")
-    Player.set_pos(global.player_pos)
-    Player.get_node("PlayerSprite").set_frame(global.player_sprite_frame)
+    Player.set_pos(global.player.pos)
+    Player.get_node("PlayerSprite").set_frame(global.player.sprite_frame)
 
     var encounter_positions = []
 
