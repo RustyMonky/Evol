@@ -15,11 +15,9 @@ const DOWN = Vector2(0, 1)
 const LEFT = Vector2(-1, 0)
 const RIGHT = Vector2(1, 0)
 
-const MAX_SPEED = 200
+const MAX_SPEED = 100
 
 func _ready():
-    # Called every time the node is added to the scene.
-    # Initialization here
     grid = get_parent()
     type = grid.PLAYER
     set_fixed_process(true)
@@ -31,15 +29,19 @@ func _fixed_process(delta):
     if Input.is_action_pressed("player_up"):
         direction = TOP
         get_node("PlayerSprite").set_frame(1)
+        global.player_sprite_frame = 1
     elif Input.is_action_pressed("player_down"):
         direction = DOWN
         get_node("PlayerSprite").set_frame(0)
+        global.player_sprite_frame = 0
     elif Input.is_action_pressed("player_left"):
         direction = LEFT
         get_node("PlayerSprite").set_frame(3)
+        global.player_sprite_frame = 3
     elif Input.is_action_pressed("player_right"):
         direction = RIGHT
         get_node("PlayerSprite").set_frame(2)
+        global.player_sprite_frame = 2
 
     if not is_moving and direction != Vector2():
         target_direction = direction
@@ -53,6 +55,7 @@ func _fixed_process(delta):
 
         var pos = get_pos()
         var distance_to_target = Vector2(abs(target_pos.x - pos.x), abs(target_pos.y - pos.y))
+        global.player_pos = pos
 
         if abs(velocity.x) > distance_to_target.x:
             velocity.x = distance_to_target.x * target_direction.x
