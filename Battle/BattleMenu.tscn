@@ -109,6 +109,11 @@ wait_time = 0.05
 one_shot = false
 autostart = true
 
+[node name="TextCursor" type="Sprite" parent="BattleMenuFrame"]
+
+transform/pos = Vector2( 304, 56 )
+texture = ExtResource( 5 )
+
 [connection signal="timeout" from="BattleMenuFrame/BattleMenuPromptTimer" to="BattleMenuFrame/BattleMenuPrompt" method="_on_BattleMenuPromptTimer_timeout"]
 
 

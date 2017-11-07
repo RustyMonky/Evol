@@ -27,9 +27,7 @@ func _ready():
     set_fixed_process(true)
 
 func _fixed_process(delta):
-    if Input.is_action_pressed("ui_accept") && current_option == 1:
-        #self.queue_free()
-        #get_tree().change_scene("res://Grid/Grid.tscn")
+    if Input.is_action_pressed("ui_accept") && current_option == 1 && !menu_prompt.must_leave:
             menu_prompt.set_run_text("Got away safely!")
     elif Input.is_action_pressed("ui_left") && !cursor_is_moving:
         cursor_is_moving = true
