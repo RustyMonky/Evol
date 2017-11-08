@@ -11,6 +11,9 @@ func _ready():
     level_label = get_node("LevelLabel")
     hp_bar = get_node("HpBar")
 
+    name_label.set_text(global.mob.name)
+    level_label.set_text("Lvl. " + String(global.mob.level))
+
     hp_bar.set_max(max_hp)
     hp_bar.set_value(current_hp)
 

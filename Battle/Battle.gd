@@ -31,6 +31,7 @@ func _ready():
         global.mob.max_hp = 10
         global.mob.current_hp = 10
 
+    # Add mob info instance
     mob_info = load("res://Battle/BattleInfo.tscn").instance();
     mob_info.get_node("NameLabel").set_pos(Vector2(-140, -128))
     mob_info.get_node("LevelLabel").set_pos(Vector2(-140, -112))
@@ -40,6 +41,18 @@ func _ready():
     mob_info.current_hp = global.mob.max_hp
 
     get_node("BattleControl").call_deferred("add_child", mob_info)
+
+    # Add player info instance
+    player_info = load("res://Battle/BattleInfo.tscn").instance();
+
+    player_info.get_node("NameLabel").set_pos(Vector2(0, -48))
+    player_info.get_node("LevelLabel").set_pos(Vector2(0, -32))
+    player_info.get_node("HpBar").set_pos(Vector2(0, -16))
+
+    player_info.max_hp = global.player.max_hp
+    player_info.current_hp = global.player.max_hp
+
+    get_node("BattleControl").call_deferred("add_child", player_info)
 
     set_fixed_process(true)
 

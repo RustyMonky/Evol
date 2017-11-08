@@ -4,6 +4,7 @@ var current_scene = null
 
 var player = {
     current_hp = 10,
+    level = 1,
     max_hp = 10,
     # The below value may change and is currently hardset to work with the test grid
     pos = Vector2(1, 0),
@@ -11,6 +12,7 @@ var player = {
 }
 
 var mob = {
+    level = 1,
     max_hp = 10,
     name = ""
 }
