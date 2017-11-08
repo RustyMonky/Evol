@@ -50,10 +50,12 @@ margin/right = 160.0
 margin/bottom = 144.0
 color = Color( 1, 1, 1, 1 )
 
-[node name="BattleMenu" parent="BattleControl/BattleBackground" instance=ExtResource( 2 )]
+[node name="BattleMenu" parent="BattleControl" instance=ExtResource( 2 )]
 
-margin/top = 216.0
-margin/bottom = 256.0
+margin/left = -160.0
+margin/top = 72.0
+margin/right = 160.0
+margin/bottom = 112.0
 
 [node name="BattleMob" parent="." instance=ExtResource( 3 )]
 

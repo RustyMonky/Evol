@@ -3,12 +3,15 @@ extends Node
 var current_scene = null
 
 var player = {
+    current_hp = 10,
+    max_hp = 10,
     # The below value may change and is currently hardset to work with the test grid
     pos = Vector2(1, 0),
     sprite_frame = 0
 }
 
 var mob = {
+    max_hp = 10,
     name = ""
 }
 
