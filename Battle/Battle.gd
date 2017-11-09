@@ -32,10 +32,11 @@ func _ready():
         global.mob.current_hp = 10
 
     # Add mob info instance
-    mob_info = load("res://Battle/BattleInfo.tscn").instance();
-    mob_info.get_node("NameLabel").set_pos(Vector2(-140, -128))
-    mob_info.get_node("LevelLabel").set_pos(Vector2(-140, -112))
-    mob_info.get_node("HpBar").set_pos(Vector2(-140, -96))
+    mob_info = preload("res://Battle/BattleInfo.tscn").instance();
+    mob_info.type = "mob"
+    mob_info.get_node("NameLabel").set_pos(Vector2(16, 16))
+    mob_info.get_node("LevelLabel").set_pos(Vector2(16, 32))
+    mob_info.get_node("HpBar").set_pos(Vector2(16, 48))
 
     mob_info.max_hp = global.mob.max_hp
     mob_info.current_hp = global.mob.max_hp
@@ -43,11 +44,12 @@ func _ready():
     get_node("BattleControl").call_deferred("add_child", mob_info)
 
     # Add player info instance
-    player_info = load("res://Battle/BattleInfo.tscn").instance();
+    player_info = preload("res://Battle/BattleInfo.tscn").instance();
 
-    player_info.get_node("NameLabel").set_pos(Vector2(0, -48))
-    player_info.get_node("LevelLabel").set_pos(Vector2(0, -32))
-    player_info.get_node("HpBar").set_pos(Vector2(0, -16))
+    player_info.get_node("NameLabel").set_pos(Vector2(80, 80))
+    player_info.type = "player"
+    player_info.get_node("LevelLabel").set_pos(Vector2(80, 96))
+    player_info.get_node("HpBar").set_pos(Vector2(80, 112))
 
     player_info.max_hp = global.player.max_hp
     player_info.current_hp = global.player.max_hp
@@ -57,7 +59,7 @@ func _ready():
     set_fixed_process(true)
 
 func _fixed_process(delta):
-    if round(mob_node.get_pos().x) < (battle_background.get_size().x  / 2 - 64):
+    if round(mob_node.get_pos().x) < (battle_background.get_size().x - 64):
         mob_node.move(Vector2(MOB_MOVE_SPEED * delta, 0))
     elif not show_info:
         show_info = true
@@ -66,4 +68,8 @@ func _fixed_process(delta):
         mob_info.get_node("NameLabel").set_hidden(false)
         mob_info.get_node("LevelLabel").set_hidden(false)
         mob_info.get_node("HpBar").set_hidden(false)
+
+        player_info.get_node("NameLabel").set_hidden(false)
+        player_info.get_node("LevelLabel").set_hidden(false)
+        player_info.get_node("HpBar").set_hidden(false)
 

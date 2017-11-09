@@ -5,14 +5,19 @@ var level_label
 var hp_bar
 var current_hp
 var max_hp
+var type
 
 func _ready():
     name_label = get_node("NameLabel")
     level_label = get_node("LevelLabel")
     hp_bar = get_node("HpBar")
 
-    name_label.set_text(global.mob.name)
-    level_label.set_text("Lvl. " + String(global.mob.level))
+    if type == "mob":
+        name_label.set_text(global.mob.name)
+        level_label.set_text("Lvl. " + String(global.mob.level))
+    elif type == "player":
+        name_label.set_text("Evol")
+        level_label.set_text("Lvl. " + String(global.player.level))
 
     hp_bar.set_max(max_hp)
     hp_bar.set_value(current_hp)
