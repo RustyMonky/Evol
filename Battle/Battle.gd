@@ -46,10 +46,10 @@ func _ready():
     # Add player info instance
     player_info = preload("res://Battle/BattleInfo.tscn").instance();
 
-    player_info.get_node("NameLabel").set_pos(Vector2(80, 80))
+    player_info.get_node("NameLabel").set_pos(Vector2(144, 160))
     player_info.type = "player"
-    player_info.get_node("LevelLabel").set_pos(Vector2(80, 96))
-    player_info.get_node("HpBar").set_pos(Vector2(80, 112))
+    player_info.get_node("LevelLabel").set_pos(Vector2(144, 176))
+    player_info.get_node("HpBar").set_pos(Vector2(144, 192))
 
     player_info.max_hp = global.player.max_hp
     player_info.current_hp = global.player.max_hp
