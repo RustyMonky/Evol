@@ -6,6 +6,9 @@ var player = {
     current_hp = 10,
     level = 1,
     max_hp = 10,
+    moves = [
+        { name = 'Attack' }, { name = 'Attack' }, { name = 'Attack' }, { name = 'Attack' }
+    ],
     # The below value may change and is currently hardset to work with the test grid
     pos = Vector2(1, 0),
     sprite_frame = 0

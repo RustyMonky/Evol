@@ -114,6 +114,108 @@ autostart = true
 transform/pos = Vector2( 304, 56 )
 texture = ExtResource( 5 )
 
+[node name="FightOptions" type="Control" parent="BattleMenuFrame"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="FightMove1" type="LinkButton" parent="BattleMenuFrame/FightOptions"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 16.0
+margin/top = 16.0
+margin/right = 40.0
+margin/bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+underline = 2
+
+[node name="FightMove2" type="LinkButton" parent="BattleMenuFrame/FightOptions"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 64.0
+margin/top = 16.0
+margin/right = 88.0
+margin/bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+underline = 2
+
+[node name="FightMove3" type="LinkButton" parent="BattleMenuFrame/FightOptions"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 16.0
+margin/top = 48.0
+margin/right = 40.0
+margin/bottom = 64.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+underline = 2
+
+[node name="FightMove4" type="LinkButton" parent="BattleMenuFrame/FightOptions"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 64.0
+margin/top = 48.0
+margin/right = 88.0
+margin/bottom = 64.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+underline = 2
+
+[node name="FightBackButton" type="LinkButton" parent="BattleMenuFrame"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 280.0
+margin/top = 48.0
+margin/right = 328.0
+margin/bottom = 64.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+text = "Back"
+underline = 2
+
 [connection signal="timeout" from="BattleMenuFrame/BattleMenuPromptTimer" to="BattleMenuFrame/BattleMenuPrompt" method="_on_BattleMenuPromptTimer_timeout"]
 
 
