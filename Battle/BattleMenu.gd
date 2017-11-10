@@ -16,12 +16,19 @@ var show_moves = false
 var fight_back_btn
 var fight_cursor
 
+var mob_info
+var is_attacking = false
+
 func _ready():
     menu_frame = get_node("BattleMenuFrame")
 
     menu_prompt = menu_frame.get_node("BattleMenuPrompt")
 
     moves = menu_frame.get_node("FightOptions").get_children()
+
+    for move in moves:
+        var index = moves.find(move);
+        move.set_text(global.player.moves[index].name)
 
     options = menu_frame.get_node("BattleMenuOptions").get_children()
 
@@ -52,16 +59,13 @@ func _fixed_process(delta):
     # Fight
     elif Input.is_action_pressed("ui_accept") && current_option == 0 && !menu_prompt.must_leave && !show_moves && !menu_prompt.is_intro && menu_prompt.is_text_done:
         show_moves = true
+        for move in moves:
+            move.set_hidden(false)
 
         menu_prompt.toggle_hidden(true)
         menu_frame.get_node("TextCursor").set_hidden(true)
         # The above hides children, this hides the prompt itself
         menu_prompt.set_hidden(true)
-
-        for move in moves:
-            var index = moves.find(move);
-            move.set_text(global.player.moves[index].name)
-            move.set_hidden(false)
 
         fight_back_btn.set_hidden(false)
         fight_cursor_update()
@@ -83,16 +87,12 @@ func _fixed_process(delta):
 
     # Exit fight menu
     elif show_moves:
+        # Cancel "Fight"
         if Input.is_action_pressed("ui_cancel"):
 
-            show_moves = false
-            fight_back_btn.set_hidden(true)
-            menu_prompt.toggle_hidden(false)
-            menu_prompt.set_hidden(false)
-            for move in moves:
-                move.set_hidden(true)
-            fight_cursor.set_hidden(true)
+            hide_fight_controls(true)
 
+        # Movement Options
         elif Input.is_action_pressed("ui_left") && !fight_cursor_is_moving:
             fight_cursor_is_moving = true
             update_current_move("left")
@@ -113,10 +113,25 @@ func _fixed_process(delta):
             update_current_move("down")
             fight_cursor_update()
 
+        elif Input.is_action_pressed("ui_accept") && moves[current_option].is_visible():
+            if (is_attacking):
+                hide_fight_controls(true)
+                menu_prompt.set_prompt_text("You used " + global.player.moves[current_option].name + "!")
+            else:
+                is_attacking = true
+
+
 
 # ---------------
 # Class Functions
 # ---------------
+
+# calculate_damage
+# Calculates the damage of the selected move
+func calculate_damage():
+    var damage = global.player.moves[current_option].damage * global.player.stats.strength / global.mob.stats.defense
+    global.mob.current_hp -= damage
+    print(global.mob.current_hp)
 
 # cursor_update
 # Updates the position of the cursor based on the currently selected menu option
@@ -127,6 +142,18 @@ func cursor_update():
 # Updates the position of the cursor based on the currently selected move
 func fight_cursor_update():
     fight_cursor.set_global_pos(Vector2(moves[current_move].get_global_pos().x - 8, moves[current_move].get_global_pos().y + 4))
+
+# hide_fight_controls
+# Toggles visibility of various fight controls
+func hide_fight_controls(hide):
+    show_moves = !hide
+    is_attacking = !hide
+    fight_back_btn.set_hidden(hide)
+    menu_prompt.toggle_hidden(!hide)
+    menu_prompt.set_hidden(!hide)
+    for move in moves:
+        move.set_hidden(hide)
+    fight_cursor.set_hidden(hide)
 
 # update_current_move
 # Updates the currently selected fight cursor move

@@ -7,17 +7,31 @@ var player = {
     level = 1,
     max_hp = 10,
     moves = [
-        { name = 'Attack' }, { name = 'Attack' }, { name = 'Attack' }, { name = 'Attack' }
+        { name = 'Attack', damage = 3 },
+        { name = 'Attack', damage = 3 },
+        { name = 'Attack', damage = 3 },
+        { name = 'Attack', damage = 3 }
     ],
     # The below value may change and is currently hardset to work with the test grid
     pos = Vector2(1, 0),
+    stats = {
+        defense = 2,
+        speed = 2,
+        strength = 2
+    },
     sprite_frame = 0
 }
 
 var mob = {
+    current_hp = 10,
     level = 1,
     max_hp = 10,
-    name = ""
+    name = "",
+    stats = {
+        defense = 2,
+        speed = 2,
+        strength = 2
+    }
 }
 
 func _ready():
