@@ -150,9 +150,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 64.0
+margin/left = 128.0
 margin/top = 16.0
-margin/right = 88.0
+margin/right = 152.0
 margin/bottom = 32.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -186,9 +186,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 64.0
+margin/left = 128.0
 margin/top = 48.0
-margin/right = 88.0
+margin/right = 152.0
 margin/bottom = 64.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -215,6 +215,11 @@ enabled_focus_mode = 0
 shortcut = null
 text = "Back"
 underline = 2
+
+[node name="FightCursor" type="Sprite" parent="BattleMenuFrame"]
+
+visibility/visible = false
+texture = ExtResource( 5 )
 
 [connection signal="timeout" from="BattleMenuFrame/BattleMenuPromptTimer" to="BattleMenuFrame/BattleMenuPrompt" method="_on_BattleMenuPromptTimer_timeout"]
 
