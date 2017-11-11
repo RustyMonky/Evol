@@ -7,6 +7,7 @@ var mob_sprite
 var mob_info
 
 var battle_background
+var battle_menu
 
 var player_info
 
@@ -16,6 +17,7 @@ const MOB_MOVE_SPEED = 200
 
 func _ready():
     battle_background = get_node("BattleControl").get_node("BattleBackground")
+    battle_menu = get_node("BattleControl").get_node("BattleMenu")
 
     show_info = false
 
@@ -42,6 +44,7 @@ func _ready():
     mob_info.current_hp = global.mob.max_hp
 
     get_node("BattleControl").call_deferred("add_child", mob_info)
+    battle_menu.mob_info = mob_info
 
     # Add player info instance
     player_info = preload("res://Battle/BattleInfo.tscn").instance();
@@ -55,6 +58,7 @@ func _ready():
     player_info.current_hp = global.player.max_hp
 
     get_node("BattleControl").call_deferred("add_child", player_info)
+    battle_menu.player_info = player_info
 
     set_fixed_process(true)
 

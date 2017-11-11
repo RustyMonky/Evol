@@ -17,6 +17,7 @@ var fight_back_btn
 var fight_cursor
 
 var mob_info
+var player_info
 var is_attacking = false
 
 func _ready():
@@ -52,18 +53,19 @@ func _ready():
 
 func _fixed_process(delta):
     # Run
-    if Input.is_action_pressed("ui_accept") && current_option == 1 && !menu_prompt.must_leave:
+    if Input.is_action_pressed("ui_accept") && current_option == 1 && !menu_prompt.must_leave && !show_moves:
 
         menu_prompt.set_run_text("Got away safely!")
 
     # Fight
-    elif Input.is_action_pressed("ui_accept") && current_option == 0 && !menu_prompt.must_leave && !show_moves && !menu_prompt.is_intro && menu_prompt.is_text_done:
+    elif Input.is_action_pressed("ui_accept") && current_option == 0 && !menu_prompt.must_leave && !show_moves && !menu_prompt.is_intro && menu_prompt.is_text_done && !is_attacking:
         show_moves = true
         for move in moves:
             move.set_hidden(false)
 
         menu_prompt.toggle_hidden(true)
         menu_frame.get_node("TextCursor").set_hidden(true)
+
         # The above hides children, this hides the prompt itself
         menu_prompt.set_hidden(true)
 
@@ -113,10 +115,12 @@ func _fixed_process(delta):
             update_current_move("down")
             fight_cursor_update()
 
-        elif Input.is_action_pressed("ui_accept") && moves[current_option].is_visible():
+        elif Input.is_action_pressed("ui_select") && moves[current_move].is_visible():
             if (is_attacking):
+                calculate_damage()
                 hide_fight_controls(true)
-                menu_prompt.set_prompt_text("You used " + global.player.moves[current_option].name + "!")
+                menu_prompt.toggle_hidden(true)
+                menu_prompt.set_prompt_text("You used " + global.player.moves[current_move].name + "!")
             else:
                 is_attacking = true
 
@@ -129,9 +133,11 @@ func _fixed_process(delta):
 # calculate_damage
 # Calculates the damage of the selected move
 func calculate_damage():
-    var damage = global.player.moves[current_option].damage * global.player.stats.strength / global.mob.stats.defense
+    if not is_attacking:
+        return false
+    var damage = global.player.moves[current_move].damage * global.player.stats.strength / global.mob.stats.defense
     global.mob.current_hp -= damage
-    print(global.mob.current_hp)
+    mob_info.current_hp = global.mob.current_hp
 
 # cursor_update
 # Updates the position of the cursor based on the currently selected menu option

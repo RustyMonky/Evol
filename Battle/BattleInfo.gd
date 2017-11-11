@@ -32,6 +32,8 @@ func _ready():
 
 func _fixed_process(delta):
 
+    hp_bar.set_value(current_hp)
+
     if current_hp > (max_hp / 4) && current_hp <= (max_hp / 2):
         hp_bar.set_progress_texture(load("res://Battle/hpMid.tex"))
     elif current_hp <= (max_hp / 4):
