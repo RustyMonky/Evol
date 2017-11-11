@@ -26,6 +26,12 @@ var mob = {
     current_hp = 10,
     level = 1,
     max_hp = 10,
+    moves = [
+        { name = 'Attack', damage = 3 },
+        { name = 'Attack', damage = 3 },
+        { name = 'Attack', damage = 3 },
+        { name = 'Attack', damage = 3 }
+    ],
     name = "",
     stats = {
         defense = 2,

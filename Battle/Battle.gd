@@ -55,7 +55,7 @@ func _ready():
     player_info.get_node("HpBar").set_pos(Vector2(144, 192))
 
     player_info.max_hp = global.player.max_hp
-    player_info.current_hp = global.player.max_hp
+    player_info.current_hp = global.player.current_hp
 
     get_node("BattleControl").call_deferred("add_child", player_info)
     battle_menu.player_info = player_info

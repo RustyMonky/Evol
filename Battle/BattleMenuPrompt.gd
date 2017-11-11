@@ -11,6 +11,8 @@ var is_intro
 var is_text_done
 var must_leave
 
+var change_turn = false
+
 func _ready():
     battle_menu = get_parent().get_parent()
     battle_menu_options = get_parent().get_node("BattleMenuOptions")
@@ -30,8 +32,10 @@ func _on_BattleMenuPromptTimer_timeout():
     # If all characters are outputed and the encounter intro is not playing
     if get_visible_characters() == get_total_character_count() && not is_intro:
         text_done(true)
-        if !is_running:
+        if !is_running && !battle_menu.is_attacking:
             toggle_hidden(false)
+        elif battle_menu.is_attacking:
+            change_turn = true
         else:
             must_leave = true
     # If all characters are outputed and the encounter intro is playing
@@ -44,12 +48,17 @@ func _on_BattleMenuPromptTimer_timeout():
 
 func _fixed_process(delta):
 
-    if is_intro && is_text_done && Input.is_action_pressed("ui_accept"):
+    if is_intro && is_text_done && Input.is_action_pressed("ui_accept") && !battle_menu.is_attacking:
         is_intro = false
         set_prompt_text("What will you do?")
     elif is_running && is_text_done && must_leave && Input.is_action_pressed("ui_accept"):
         get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
 
+
+    if change_turn && prompt_cursor.is_visible() and Input.is_action_pressed("ui_accept"):
+        battle_menu.is_player_turn = !battle_menu.is_player_turn
+        battle_menu.is_turn_done = true
+        change_turn = false
 
 # ---------------
 # Class Functions

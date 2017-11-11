@@ -19,6 +19,8 @@ var fight_cursor
 var mob_info
 var player_info
 var is_attacking = false
+var is_player_turn
+var is_turn_done = false
 
 func _ready():
     menu_frame = get_node("BattleMenuFrame")
@@ -93,6 +95,7 @@ func _fixed_process(delta):
         if Input.is_action_pressed("ui_cancel"):
 
             hide_fight_controls(true)
+            show_moves = false
 
         # Movement Options
         elif Input.is_action_pressed("ui_left") && !fight_cursor_is_moving:
@@ -117,12 +120,23 @@ func _fixed_process(delta):
 
         elif Input.is_action_pressed("ui_select") && moves[current_move].is_visible():
             if (is_attacking):
-                calculate_damage()
-                hide_fight_controls(true)
-                menu_prompt.toggle_hidden(true)
-                menu_prompt.set_prompt_text("You used " + global.player.moves[current_move].name + "!")
+                if global.player.stats.speed >= global.mob.stats.speed:
+                    player_attack()
+                else:
+                    mob_attack()
             else:
                 is_attacking = true
+
+        if is_attacking && is_turn_done:
+
+            if is_player_turn:
+                player_attack()
+            else:
+                mob_attack()
+
+            is_turn_done = false
+            is_attacking = false
+            show_moves = false
 
 
 
@@ -131,13 +145,22 @@ func _fixed_process(delta):
 # ---------------
 
 # calculate_damage
+# param attack
 # Calculates the damage of the selected move
-func calculate_damage():
-    if not is_attacking:
-        return false
-    var damage = global.player.moves[current_move].damage * global.player.stats.strength / global.mob.stats.defense
-    global.mob.current_hp -= damage
-    mob_info.current_hp = global.mob.current_hp
+func calculate_damage(attack):
+    var damage
+
+    if not is_player_turn:
+
+        damage = global.mob.moves[attack].damage * global.mob.stats.strength / global.player.stats.defense
+        global.player.current_hp -= damage
+        player_info.current_hp = global.player.current_hp
+
+    elif is_player_turn:
+
+        damage = global.player.moves[attack].damage * global.player.stats.strength / global.mob.stats.defense
+        global.mob.current_hp -= damage
+        mob_info.current_hp = global.mob.current_hp
 
 # cursor_update
 # Updates the position of the cursor based on the currently selected menu option
@@ -152,14 +175,31 @@ func fight_cursor_update():
 # hide_fight_controls
 # Toggles visibility of various fight controls
 func hide_fight_controls(hide):
-    show_moves = !hide
-    is_attacking = !hide
     fight_back_btn.set_hidden(hide)
     menu_prompt.toggle_hidden(!hide)
     menu_prompt.set_hidden(!hide)
     for move in moves:
         move.set_hidden(hide)
     fight_cursor.set_hidden(hide)
+
+# mob_attack
+# Prepares the mob's attack
+func mob_attack():
+    is_player_turn = false
+    var mob_attack = floor(rand_range(0, 4))
+    calculate_damage(mob_attack)
+    hide_fight_controls(true)
+    menu_prompt.toggle_hidden(true)
+    menu_prompt.set_prompt_text(global.mob.name + " used " + global.mob.moves[mob_attack].name + "!")
+
+# player_attack
+# Prepares the player's attack
+func player_attack():
+    is_player_turn = true
+    calculate_damage(current_move)
+    hide_fight_controls(true)
+    menu_prompt.toggle_hidden(true)
+    menu_prompt.set_prompt_text("You used " + global.player.moves[current_move].name + "!")
 
 # update_current_move
 # Updates the currently selected fight cursor move
