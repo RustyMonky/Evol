@@ -11,6 +11,8 @@ var is_intro
 var is_text_done
 var must_leave
 
+var is_battle_done = false
+
 var change_turn = false
 
 func _ready():
@@ -59,6 +61,11 @@ func _fixed_process(delta):
         battle_menu.is_player_turn = !battle_menu.is_player_turn
         battle_menu.is_turn_done = true
         change_turn = false
+
+    if is_text_done && is_battle_done && !must_leave:
+        set_run_text("You gained " + String(global.mob.xp) + " experience points.")
+        must_leave = true
+        global.player.xp += global.mob.xp
 
 # ---------------
 # Class Functions

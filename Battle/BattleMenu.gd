@@ -77,6 +77,7 @@ func _fixed_process(delta):
 
     # Move between "Fight" and "Run"
     if (!show_moves):
+
         if Input.is_action_pressed("ui_left") && !cursor_is_moving:
 
             cursor_is_moving = true
@@ -161,6 +162,12 @@ func calculate_damage(attack):
         damage = global.player.moves[attack].damage * global.player.stats.strength / global.mob.stats.defense
         global.mob.current_hp -= damage
         mob_info.current_hp = global.mob.current_hp
+
+    if mob_info.current_hp <= 0:
+        menu_prompt.set_prompt_text(global.mob.name + " fainted!")
+        is_attacking = false
+        show_moves = false
+        menu_prompt.is_battle_done = true
 
 # cursor_update
 # Updates the position of the cursor based on the currently selected menu option

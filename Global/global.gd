@@ -19,7 +19,8 @@ var player = {
         speed = 2,
         strength = 2
     },
-    sprite_frame = 0
+    sprite_frame = 0,
+    xp = 0
 }
 
 var mob = {
@@ -37,7 +38,8 @@ var mob = {
         defense = 2,
         speed = 2,
         strength = 2
-    }
+    },
+    xp = 10
 }
 
 func _ready():
