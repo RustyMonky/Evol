@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
 [ext_resource path="res://Battle/BattleMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Mobs/Mob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Battle/baseEvolLgBack.tex" type="Texture" id=4]
 
 [node name="Battle" type="Node2D"]
 
@@ -57,5 +58,10 @@ margin/top = 218.0
 margin/bottom = 258.0
 
 [node name="BattleMob" parent="." instance=ExtResource( 3 )]
+
+[node name="BattlePlayer" type="Sprite" parent="."]
+
+transform/pos = Vector2( 48, 182 )
+texture = ExtResource( 4 )
 
 
