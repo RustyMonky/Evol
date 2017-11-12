@@ -30,7 +30,16 @@ func _on_BattleMenuPromptTimer_timeout():
         text_done(true)
 
         if not is_running && not battle_menu.is_attacking:
-            toggle_hidden(false)
+            # If the mob died, control which text to display before leaving
+            if global.mob.current_hp <= 0:
+                if not is_battle_done:
+                    set_prompt_text(global.mob.name + " fainted!")
+                    is_battle_done = true
+                else:
+                    set_run_text("You gained " + String(global.mob.xp) + " experience points.")
+                    global.player.xp += global.mob.xp
+            else:
+                toggle_hidden(false)
         elif battle_menu.is_attacking:
             change_turn = true
         else:
@@ -63,16 +72,6 @@ func _fixed_process(delta):
             battle_menu.is_player_turn = !battle_menu.is_player_turn
             battle_menu.is_turn_done = true
             change_turn = false
-
-    # If the battle is finished but not ready to close because more information must be displayed...
-    elif is_text_done && is_battle_done && not must_leave:
-
-        # If it's because the mob is defeated, give the user xp
-        if (global.mob.current_hp <= 0):
-            set_run_text("You gained " + String(global.mob.xp) + " experience points.")
-            global.player.xp += global.mob.xp
-            # We can now leave
-            must_leave = true
 
 # ---------------
 # Class Functions

@@ -8,7 +8,7 @@ var cursor_is_moving
 
 var fight_back_btn
 var fight_cursor
-var fight_cursor_is_moving
+var fight_cursor_is_moving = false
 
 var is_attacking = false
 var is_player_turn
@@ -48,47 +48,49 @@ func _ready():
     fight_back_btn = menu_frame.get_node("FightBackButton")
 
     fight_cursor = menu_frame.get_node("FightCursor")
-    fight_cursor_is_moving = false
 
     # Make the options and cursor invisible until all the introductory prompts are done
     cursor.set_hidden(true)
+
     for op in options:
         op.set_hidden(true)
         
     set_fixed_process(true)
 
 func _fixed_process(delta):
-    # Run
-    if Input.is_action_pressed("ui_accept") && current_option == 1 && !menu_prompt.must_leave && !show_moves:
+    if Input.is_action_pressed("ui_accept") && not menu_prompt.must_leave && not show_moves:
 
-        menu_prompt.set_run_text("Got away safely!")
+        # If the user clicks to continue on the Run option, display text before allowing them to leave
+        if current_option == 1 && !show_moves:
+            menu_prompt.set_run_text("Got away safely!")
 
-    # Fight
-    elif Input.is_action_pressed("ui_accept") && current_option == 0 && !menu_prompt.must_leave && !show_moves && !menu_prompt.is_intro && menu_prompt.is_text_done && !is_attacking:
-        show_moves = true
-        for move in moves:
-            move.set_hidden(false)
+        # Otherwise, if the user clicks to continue and the intro is completed, they'll be choosing fight by default
+        # Tl,dr: start the battle
+        elif current_option == 0 && not menu_prompt.is_intro && menu_prompt.is_text_done && not is_attacking:
+            show_moves = true
+            for move in moves:
+                move.set_hidden(false)
 
-        menu_prompt.toggle_hidden(true)
-        menu_frame.get_node("TextCursor").set_hidden(true)
+            menu_prompt.toggle_hidden(true)
+            menu_frame.get_node("TextCursor").set_hidden(true)
 
-        # The above hides children, this hides the prompt itself
-        menu_prompt.set_hidden(true)
+            # The above hides children, this hides the prompt itself
+            menu_prompt.set_hidden(true)
 
-        fight_back_btn.set_hidden(false)
-        fight_cursor_update()
-        fight_cursor.set_hidden(false)
+            fight_back_btn.set_hidden(false)
+            fight_cursor_update()
+            fight_cursor.set_hidden(false)
 
     # Move between "Fight" and "Run"
-    if (!show_moves):
+    if not show_moves && not cursor_is_moving:
 
-        if Input.is_action_pressed("ui_left") && !cursor_is_moving:
+        if Input.is_action_pressed("ui_left"):
 
             cursor_is_moving = true
             update_current_option("left")
             cursor_update()
 
-        elif Input.is_action_pressed("ui_right") && !cursor_is_moving:
+        elif Input.is_action_pressed("ui_right"):
 
             cursor_is_moving = true
             update_current_option("right")
@@ -123,8 +125,10 @@ func _fixed_process(delta):
             update_current_move("down")
             fight_cursor_update()
 
+        # If the user selects an attack whose text is clearly visible...
         elif Input.is_action_pressed("ui_select") && moves[current_move].is_visible():
             if (is_attacking):
+                # Whoever is faster attacks first
                 if global.player.stats.speed >= global.mob.stats.speed:
                     player_attack()
                 else:
@@ -132,6 +136,7 @@ func _fixed_process(delta):
             else:
                 is_attacking = true
 
+        # If we're already attacking and the turn is done, switch turns
         if is_attacking && is_turn_done:
 
             if is_player_turn:
@@ -167,11 +172,10 @@ func calculate_damage(attack):
         global.mob.current_hp -= damage
         mob_info.current_hp = global.mob.current_hp
 
+    # If mob is dead
     if mob_info.current_hp <= 0:
-        menu_prompt.set_prompt_text(global.mob.name + " fainted!")
         is_attacking = false
         show_moves = false
-        menu_prompt.is_battle_done = true
 
 # cursor_update
 # Updates the position of the cursor based on the currently selected menu option
@@ -187,19 +191,25 @@ func fight_cursor_update():
 # Toggles visibility of various fight controls
 func hide_fight_controls(hide):
     fight_back_btn.set_hidden(hide)
+
     menu_prompt.toggle_hidden(!hide)
     menu_prompt.set_hidden(!hide)
+
     for move in moves:
         move.set_hidden(hide)
+
     fight_cursor.set_hidden(hide)
 
 # mob_attack
 # Prepares the mob's attack
 func mob_attack():
     is_player_turn = false
+
     var mob_attack = floor(rand_range(0, 4))
     calculate_damage(mob_attack)
+
     hide_fight_controls(true)
+
     menu_prompt.toggle_hidden(true)
     menu_prompt.set_prompt_text(global.mob.name + " used " + global.mob.moves[mob_attack].name + "!")
 
@@ -207,8 +217,11 @@ func mob_attack():
 # Prepares the player's attack
 func player_attack():
     is_player_turn = true
+
     calculate_damage(current_move)
+
     hide_fight_controls(true)
+
     menu_prompt.toggle_hidden(true)
     menu_prompt.set_prompt_text("You used " + global.player.moves[current_move].name + "!")
 
@@ -266,4 +279,5 @@ func update_current_option(direction):
         current_option = 0
     elif direction == "right":
         current_option = 1
+
     cursor_is_moving = false
