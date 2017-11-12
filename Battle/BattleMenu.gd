@@ -1,26 +1,30 @@
 extends Control
 
+var current_option = 0
+var current_move = 0
+
 var cursor
 var cursor_is_moving
-var fight_cursor_is_moving
-var menu_frame
-var menu_prompt
-
-var current_option = 0
-var options = []
-var current_move = 0
-var moves = []
-
-var show_moves = false
 
 var fight_back_btn
 var fight_cursor
+var fight_cursor_is_moving
 
-var mob_info
-var player_info
 var is_attacking = false
 var is_player_turn
 var is_turn_done = false
+
+var menu_frame
+var menu_prompt
+
+var mob_info
+
+var moves = []
+var options = []
+
+var player_info
+
+var show_moves = false
 
 func _ready():
     menu_frame = get_node("BattleMenuFrame")

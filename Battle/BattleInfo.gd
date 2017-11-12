@@ -1,10 +1,10 @@
 extends Control
 
-var name_label
-var level_label
-var hp_bar
 var current_hp
+var hp_bar
+var level_label
 var max_hp
+var name_label
 var type
 
 func _ready():

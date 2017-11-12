@@ -1,19 +1,16 @@
 extends RichTextLabel
 
-var prompt_text
-var prompt_cursor
 var battle_menu
 var battle_menu_options
+var change_turn = false
 var cursor
-var is_running
+var is_battle_done = false
 var is_intro
-
+var is_running
 var is_text_done
 var must_leave
-
-var is_battle_done = false
-
-var change_turn = false
+var prompt_cursor
+var prompt_text
 
 func _ready():
     battle_menu = get_parent().get_parent()

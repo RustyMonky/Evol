@@ -1,13 +1,13 @@
 extends Node2D
 
+var battle_background
+var battle_menu
+
 var mobs = ["slime"]
 var mob_to_fight
 var mob_node
 var mob_sprite
 var mob_info
-
-var battle_background
-var battle_menu
 
 var player_info
 
