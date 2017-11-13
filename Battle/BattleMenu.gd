@@ -176,6 +176,10 @@ func calculate_damage(attack):
     if mob_info.current_hp <= 0:
         is_attacking = false
         show_moves = false
+    # But if player is dead
+    elif player_info.current_hp <= 0:
+        is_attacking = false
+        show_moves = false
 
 # cursor_update
 # Updates the position of the cursor based on the currently selected menu option

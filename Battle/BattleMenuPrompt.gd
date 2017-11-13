@@ -6,6 +6,7 @@ var change_turn = false
 var cursor
 var is_battle_done = false
 var is_intro = true
+var is_player_dead = false
 var is_running = false
 var is_text_done = false
 var must_leave = false
@@ -29,6 +30,10 @@ func _on_BattleMenuPromptTimer_timeout():
 
         text_done(true)
 
+        # If we're dead, nothing else matters
+        if is_player_dead:
+            return false
+
         if not is_running && not battle_menu.is_attacking:
             # If the mob died, control which text to display before leaving
             if global.mob.current_hp <= 0:
@@ -38,6 +43,10 @@ func _on_BattleMenuPromptTimer_timeout():
                 else:
                     set_run_text("You gained " + String(global.mob.xp) + " experience points.")
                     global.player.xp += global.mob.xp
+            # If the player died, show text before switching to game over
+            elif global.player.current_hp <= 0:
+                set_prompt_text("You fainted!")
+                is_player_dead = true
             else:
                 toggle_hidden(false)
         elif battle_menu.is_attacking:
@@ -57,6 +66,10 @@ func _fixed_process(delta):
 
     # if the text is done and the user clicks to continue...
     if is_text_done && Input.is_action_pressed("ui_accept"):
+
+        # We're dead, so...
+        if is_player_dead:
+            get_node("/root/global").goto_scene("res://Gameover/Gameover.tscn")
 
         # If it was the intro text, start the fight and prompt their choice
         if is_intro:

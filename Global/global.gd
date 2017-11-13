@@ -28,10 +28,10 @@ var mob = {
     level = 1,
     max_hp = 10,
     moves = [
-        { name = 'Attack', damage = 3 },
-        { name = 'Attack', damage = 3 },
-        { name = 'Attack', damage = 3 },
-        { name = 'Attack', damage = 3 }
+        { name = 'Attack', damage = 10 },
+        { name = 'Attack', damage = 10 },
+        { name = 'Attack', damage = 10 },
+        { name = 'Attack', damage = 10 }
     ],
     name = "",
     stats = {
