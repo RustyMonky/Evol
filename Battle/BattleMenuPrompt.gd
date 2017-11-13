@@ -30,10 +30,6 @@ func _on_BattleMenuPromptTimer_timeout():
 
         text_done(true)
 
-        # If we're dead, nothing else matters
-        if is_player_dead:
-            return false
-
         if not is_running && not battle_menu.is_attacking:
             # If the mob died, control which text to display before leaving
             if global.mob.current_hp <= 0:
@@ -44,10 +40,11 @@ func _on_BattleMenuPromptTimer_timeout():
                     set_run_text("You gained " + String(global.mob.xp) + " experience points.")
                     global.player.xp += global.mob.xp
             # If the player died, show text before switching to game over
-            elif global.player.current_hp <= 0:
+            elif global.player.current_hp <= 0 && not is_player_dead:
                 set_prompt_text("You fainted!")
                 is_player_dead = true
-            else:
+            # Otherwise, if player is not dead, just show the menu options
+            elif not is_player_dead:
                 toggle_hidden(false)
         elif battle_menu.is_attacking:
             change_turn = true

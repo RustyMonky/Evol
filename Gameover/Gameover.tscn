@@ -47,13 +47,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 16.0
-margin/top = 16.0
+margin/top = 4.0
 margin/right = 304.0
-margin/bottom = 56.0
+margin/bottom = 44.0
 custom_fonts/normal_font = ExtResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode/enabled = true
-bbcode/bbcode = ""
+bbcode/bbcode = "Would you like to continue from your last save point?"
 visible_characters = -1
 percent_visible = 1.0
 script/script = ExtResource( 3 )
@@ -64,6 +64,23 @@ process_mode = 1
 wait_time = 0.05
 one_shot = false
 autostart = true
+
+[node name="GameoverChoiceText" type="RichTextLabel" parent="GameoverBackground/GameoverTextBox"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 160.0
+margin/top = 32.0
+margin/right = 320.0
+margin/bottom = 64.0
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode/enabled = true
+bbcode/bbcode = ""
+visible_characters = -1
+percent_visible = 1.0
 
 [connection signal="timeout" from="GameoverBackground/GameoverTextBox/GameoverTimer" to="GameoverBackground/GameoverTextBox/GameoverText" method="_on_GameoverTimer_timeout"]
 
