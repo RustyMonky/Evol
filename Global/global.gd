@@ -20,6 +20,7 @@ var player = {
         strength = 2
     },
     sprite_frame = 0,
+    total_mobs_killed = 0,
     xp = 0
 }
 

@@ -3,11 +3,16 @@ extends RichTextLabel
 var can_reload = false
 var gameover_choice_text
 
+var mobs_killed_value
+
 func _ready():
 
     set_visible_characters(0)
 
     gameover_choice_text = get_parent().get_node("GameoverChoiceText")
+
+    mobs_killed_value = get_parent().get_parent().get_node("MobsKilledValue")
+    mobs_killed_value.set_text(String(global.player.total_mobs_killed))
 
     set_fixed_process(true)
 

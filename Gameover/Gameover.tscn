@@ -47,9 +47,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 16.0
-margin/top = 4.0
+margin/top = 8.0
 margin/right = 304.0
-margin/bottom = 44.0
+margin/bottom = 48.0
 custom_fonts/normal_font = ExtResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode/enabled = true
@@ -81,6 +81,39 @@ bbcode/enabled = true
 bbcode/bbcode = ""
 visible_characters = -1
 percent_visible = 1.0
+
+[node name="MobsKilledLabel" type="Label" parent="GameoverBackground"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 32.0
+margin/right = 138.0
+margin/bottom = 48.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Total Mobs Killed"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MobsKilledValue" type="Label" parent="GameoverBackground"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 170.0
+margin/top = 32.0
+margin/right = 210.0
+margin/bottom = 48.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="timeout" from="GameoverBackground/GameoverTextBox/GameoverTimer" to="GameoverBackground/GameoverTextBox/GameoverText" method="_on_GameoverTimer_timeout"]
 

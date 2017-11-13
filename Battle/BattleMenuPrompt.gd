@@ -39,6 +39,7 @@ func _on_BattleMenuPromptTimer_timeout():
                 else:
                     set_run_text("You gained " + String(global.mob.xp) + " experience points.")
                     global.player.xp += global.mob.xp
+                    global.player.total_mobs_killed += 1
             # If the player died, show text before switching to game over
             elif global.player.current_hp <= 0 && not is_player_dead:
                 set_prompt_text("You fainted!")
