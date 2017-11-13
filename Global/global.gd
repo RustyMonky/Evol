@@ -1,10 +1,47 @@
 extends Node
 
 var current_scene = null
-# The below value may change and is currently hardset to work with the test grid
-var player_pos = Vector2(1, 0)
-var player_sprite_frame = 0
-var mob_name = ""
+
+var player = {
+    current_hp = 10,
+    level = 1,
+    max_hp = 10,
+    moves = [
+        { name = 'Attack', damage = 3 },
+        { name = 'Attack', damage = 3 },
+        { name = 'Attack', damage = 3 },
+        { name = 'Attack', damage = 3 }
+    ],
+    # The below value may change and is currently hardset to work with the test grid
+    pos = Vector2(1, 0),
+    stats = {
+        defense = 2,
+        speed = 2,
+        strength = 2
+    },
+    sprite_frame = 0,
+    total_mobs_killed = 0,
+    xp = 0
+}
+
+var mob = {
+    current_hp = 10,
+    level = 1,
+    max_hp = 10,
+    moves = [
+        { name = 'Attack', damage = 10 },
+        { name = 'Attack', damage = 10 },
+        { name = 'Attack', damage = 10 },
+        { name = 'Attack', damage = 10 }
+    ],
+    name = "",
+    stats = {
+        defense = 2,
+        speed = 2,
+        strength = 2
+    },
+    xp = 10
+}
 
 func _ready():
     var root = get_tree().get_root()

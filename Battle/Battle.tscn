@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
-[ext_resource path="res://Battle/BattleMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Mobs/Mob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Battle/baseEvolLgBack.tex" type="Texture" id=2]
+[ext_resource path="res://Battle/BattleMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Mobs/Mob.tscn" type="PackedScene" id=4]
 
 [node name="Battle" type="Node2D"]
 
@@ -21,6 +22,7 @@ margin/bottom = 288.0
 
 [node name="BattleCamera" type="Camera2D" parent="BattleControl"]
 
+offset = Vector2( 160, 140 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -44,17 +46,22 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -160.0
-margin/top = -144.0
-margin/right = 160.0
-margin/bottom = 144.0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 288.0
 color = Color( 1, 1, 1, 1 )
 
-[node name="BattleMenu" parent="BattleControl/BattleBackground" instance=ExtResource( 2 )]
+[node name="BattlePlayerSprite" type="Sprite" parent="BattleControl/BattleBackground"]
 
-margin/top = 216.0
-margin/bottom = 256.0
+transform/pos = Vector2( 72, 184 )
+texture = ExtResource( 2 )
 
-[node name="BattleMob" parent="." instance=ExtResource( 3 )]
+[node name="BattleMenu" parent="BattleControl" instance=ExtResource( 3 )]
+
+margin/top = 218.0
+margin/bottom = 258.0
+
+[node name="BattleMob" parent="." instance=ExtResource( 4 )]
 
 

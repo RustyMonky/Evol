@@ -1,0 +1,120 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://Battle/battlePanel.tex" type="Texture" id=1]
+[ext_resource path="res://Fonts/Somepx.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://Gameover/Gameover.gd" type="Script" id=3]
+
+[node name="Gameover" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="GameoverBackground" type="ColorFrame" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 288.0
+color = Color( 1, 1, 1, 1 )
+
+[node name="GameoverTextBox" type="TextureFrame" parent="GameoverBackground"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 216.0
+margin/right = 320.0
+margin/bottom = 288.0
+texture = ExtResource( 1 )
+stretch_mode = 0
+
+[node name="GameoverText" type="RichTextLabel" parent="GameoverBackground/GameoverTextBox"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 8.0
+margin/right = 304.0
+margin/bottom = 48.0
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode/enabled = true
+bbcode/bbcode = "Would you like to continue from your last save point?"
+visible_characters = -1
+percent_visible = 1.0
+script/script = ExtResource( 3 )
+
+[node name="GameoverTimer" type="Timer" parent="GameoverBackground/GameoverTextBox"]
+
+process_mode = 1
+wait_time = 0.05
+one_shot = false
+autostart = true
+
+[node name="GameoverChoiceText" type="RichTextLabel" parent="GameoverBackground/GameoverTextBox"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 160.0
+margin/top = 32.0
+margin/right = 320.0
+margin/bottom = 64.0
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode/enabled = true
+bbcode/bbcode = ""
+visible_characters = -1
+percent_visible = 1.0
+
+[node name="MobsKilledLabel" type="Label" parent="GameoverBackground"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 32.0
+margin/right = 138.0
+margin/bottom = 48.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Total Mobs Killed"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MobsKilledValue" type="Label" parent="GameoverBackground"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 170.0
+margin/top = 32.0
+margin/right = 210.0
+margin/bottom = 48.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="timeout" from="GameoverBackground/GameoverTextBox/GameoverTimer" to="GameoverBackground/GameoverTextBox/GameoverText" method="_on_GameoverTimer_timeout"]
+
+

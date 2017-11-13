@@ -1,26 +1,24 @@
 extends RichTextLabel
 
-var prompt_text
-var prompt_cursor
 var battle_menu
 var battle_menu_options
+var change_turn = false
 var cursor
-var is_running
-var is_intro
-
-var is_text_done
-var must_leave
+var is_battle_done = false
+var is_intro = true
+var is_player_dead = false
+var is_running = false
+var is_text_done = false
+var must_leave = false
+var prompt_cursor
+var prompt_text
 
 func _ready():
     battle_menu = get_parent().get_parent()
     battle_menu_options = get_parent().get_node("BattleMenuOptions")
     cursor = get_parent().get_node("Cursor")
     prompt_cursor = get_parent().get_node("TextCursor")
-
-    is_running = false
-    is_intro = true
-    text_done(false)
-    must_leave = false
+    prompt_cursor.set_hidden(true)
 
     set_fixed_process(true)
 
@@ -29,27 +27,62 @@ func _on_BattleMenuPromptTimer_timeout():
 
     # If all characters are outputed and the encounter intro is not playing
     if get_visible_characters() == get_total_character_count() && not is_intro:
+
         text_done(true)
-        if !is_running:
-            toggle_hidden(false)
+
+        if not is_running && not battle_menu.is_attacking:
+            # If the mob died, control which text to display before leaving
+            if global.mob.current_hp <= 0:
+                if not is_battle_done:
+                    set_prompt_text(global.mob.name + " fainted!")
+                    is_battle_done = true
+                else:
+                    set_run_text("You gained " + String(global.mob.xp) + " experience points.")
+                    global.player.xp += global.mob.xp
+                    global.player.total_mobs_killed += 1
+            # If the player died, show text before switching to game over
+            elif global.player.current_hp <= 0 && not is_player_dead:
+                set_prompt_text("You fainted!")
+                is_player_dead = true
+            # Otherwise, if player is not dead, just show the menu options
+            elif not is_player_dead:
+                toggle_hidden(false)
+        elif battle_menu.is_attacking:
+            change_turn = true
         else:
             must_leave = true
-    # If all characters are outputed and the encounter intro is playing
+
+    # If all characters are outputed and the encounter intro is completed, indicate that the text is done
     elif get_visible_characters() > 0 and get_visible_characters() == get_total_character_count() && is_intro:
         text_done(true)
+
     # If we just began the encounter intro
     elif get_visible_characters() == 0 && is_intro:
-        prompt_text = "A " + global.mob_name + " appeared!"
-        set_prompt_text(prompt_text)
+        set_prompt_text("A " + global.mob.name + " appeared!")
 
 func _fixed_process(delta):
 
-    if is_intro && is_text_done && Input.is_action_pressed("ui_accept"):
-        is_intro = false
-        set_prompt_text("What will you do?")
-    elif is_running && is_text_done && must_leave && Input.is_action_pressed("ui_accept"):
-        get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
+    # if the text is done and the user clicks to continue...
+    if is_text_done && Input.is_action_pressed("ui_accept"):
 
+        # We're dead, so...
+        if is_player_dead:
+            get_node("/root/global").goto_scene("res://Gameover/Gameover.tscn")
+
+        # If it was the intro text, start the fight and prompt their choice
+        if is_intro:
+            is_intro = false
+            set_prompt_text("What will you do?")
+
+        # Otherwise, if the encounter must end, return to the grid
+        elif is_running && must_leave:
+            get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
+
+        # Or, if changing turns in the middle of the battle...
+        elif change_turn && prompt_cursor.is_visible():
+            battle_menu.is_player_turn = !battle_menu.is_player_turn
+            battle_menu.is_turn_done = true
+            change_turn = false
 
 # ---------------
 # Class Functions
@@ -74,8 +107,10 @@ func set_run_text(text):
 # Toggles visibility of cursor and battle menu options
 func toggle_hidden(is_visible):
     cursor.set_hidden(is_visible)
+
     for opt in battle_menu.options:
         opt.set_hidden(is_visible)
+
     prompt_cursor.set_hidden(!is_visible)
 
 # text_done
