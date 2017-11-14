@@ -55,9 +55,9 @@ func _ready():
     for op in options:
         op.set_hidden(true)
         
-    set_fixed_process(true)
+    set_process_input(true)
 
-func _fixed_process(delta):
+func _input(event):
     if Input.is_action_pressed("ui_accept") && not menu_prompt.must_leave && not show_moves:
 
         # If the user clicks to continue on the Run option, display text before allowing them to leave
