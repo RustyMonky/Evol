@@ -17,20 +17,20 @@ func _ready():
 func _input(event):
 
 	# Move up and down in the pause menu
-	if event.is_action_pressed("ui_up"):
+	if event.is_action_pressed("ui_down"):
 
-		if current_option >= options_count:
-			current_option = 0
-		elif current_option != 0:
+		if current_option <= 0:
+			current_option = options_count
+		else:
 			current_option -= 1
 
 		cursor_update()
 
-	elif event.is_action_pressed("ui_down"):
+	elif event.is_action_pressed("ui_up"):
 
-		if current_option <= 0:
+		if current_option >= options_count:
 			current_option = 0
-		elif current_option != options_count:
+		else:
 			current_option += 1
 
 		cursor_update()
