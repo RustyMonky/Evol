@@ -16,7 +16,7 @@ size_flags/vertical = 2
 margin/left = 320.0
 margin/top = 0.0
 margin/right = 80.0
-margin/bottom = 144.0
+margin/bottom = 216.0
 
 [node name="TextureFrame" type="TextureFrame" parent="."]
 

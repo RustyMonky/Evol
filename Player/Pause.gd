@@ -37,7 +37,9 @@ func _input(event):
 
 	# Accept the current option
 	elif event.is_action_pressed("ui_accept"):
-		return
+
+		if current_option == 1:
+			save.save_game()
 
 # cursor_update
 # Updates the position of the cursor based on the currently selected menu option
