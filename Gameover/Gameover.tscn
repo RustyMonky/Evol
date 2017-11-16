@@ -61,7 +61,7 @@ script/script = ExtResource( 3 )
 [node name="GameoverTimer" type="Timer" parent="GameoverBackground/GameoverTextBox"]
 
 process_mode = 1
-wait_time = 0.05
+wait_time = 0.03
 one_shot = false
 autostart = true
 
