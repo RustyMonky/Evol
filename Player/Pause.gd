@@ -46,6 +46,9 @@ func _input(event):
         # Accept the current option
         elif event.is_action_pressed("ui_accept"):
 
+            if current_option == 0:
+                get_node("/root/global").goto_scene("res://Player/Stats.tscn")
+
             if current_option == 1 and not start_saving:
                 start_saving = true
 
