@@ -52,6 +52,7 @@ func is_cell_vacant(pos, direction):
             elif grid[grid_pos.x][grid_pos.y] == ENCOUNTER:
                 # Remove the encounter from the grid position to allow movement after the encounter
                 grid[grid_pos.x][grid_pos.y] = null
+                global.game_state.is_battling = true
                 get_node("/root/global").goto_scene("res://Battle/Battle.tscn")
                 return false
     return false

@@ -14,7 +14,7 @@ func _ready():
     mobs_killed_value = get_parent().get_parent().get_node("MobsKilledValue")
     mobs_killed_value.set_text(String(global.player.total_mobs_killed))
 
-    set_fixed_process(true)
+    set_process_input(true)
 
 func _on_GameoverTimer_timeout():
     set_visible_characters(get_visible_characters() + 1)
@@ -25,8 +25,11 @@ func _on_GameoverTimer_timeout():
         gameover_choice_text.set_visible_characters(100)
 
 
-func _fixed_process(delta):
+func _input(event):
 
-    if can_reload and Input.is_action_pressed("ui_accept"):
-        # Replace this with loading of saved file
-        get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
+    if can_reload:
+        if event.is_action_pressed("ui_accept"):
+            save.load_game()
+            get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
+        elif event.is_action_pressed("ui_cancel"):
+            get_tree().quit()

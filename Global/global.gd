@@ -2,6 +2,12 @@ extends Node
 
 var current_scene = null
 
+var game_state = {
+    is_battling = false,
+    is_paused = false,
+    is_saving = false
+}
+
 var player = {
     current_hp = 10,
     level = 1,

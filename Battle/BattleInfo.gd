@@ -28,9 +28,9 @@ func _ready():
     level_label.set_hidden(true)
     hp_bar.set_hidden(true)
 
-    set_fixed_process(true)
+    set_process(true)
 
-func _fixed_process(delta):
+func _process(delta):
 
     hp_bar.set_value(current_hp)
 

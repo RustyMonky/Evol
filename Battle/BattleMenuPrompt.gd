@@ -20,7 +20,7 @@ func _ready():
     prompt_cursor = get_parent().get_node("TextCursor")
     prompt_cursor.set_hidden(true)
 
-    set_fixed_process(true)
+    set_process_input(true)
 
 func _on_BattleMenuPromptTimer_timeout():
     set_visible_characters(get_visible_characters() + 1)
@@ -60,7 +60,7 @@ func _on_BattleMenuPromptTimer_timeout():
     elif get_visible_characters() == 0 && is_intro:
         set_prompt_text("A " + global.mob.name + " appeared!")
 
-func _fixed_process(delta):
+func _input(event):
 
     # if the text is done and the user clicks to continue...
     if is_text_done && Input.is_action_pressed("ui_accept"):
@@ -76,6 +76,7 @@ func _fixed_process(delta):
 
         # Otherwise, if the encounter must end, return to the grid
         elif is_running && must_leave:
+            global.game_state.is_battling = false
             get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
 
         # Or, if changing turns in the middle of the battle...
