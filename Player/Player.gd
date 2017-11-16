@@ -1,8 +1,10 @@
 extends KinematicBody2D
 
 var camera
+var cam_pos
 var direction = Vector2()
 var grid
+var pause_pos
 var speed = 0
 var type
 var velocity = Vector2()
@@ -28,7 +30,8 @@ func _ready():
     camera = get_node("PlayerCamera")
 
     pause_menu = preload("res://Player/PauseMenu.tscn").instance()
-    pause_menu.set_hidden(true)
+    pause_menu.set_hidden(!global.game_state.is_paused)
+
     get_tree().get_root().call_deferred("add_child", pause_menu)
 
     set_fixed_process(true)
@@ -38,6 +41,12 @@ func _ready():
 func _fixed_process(delta):
     # Movement
     direction = Vector2()
+
+    # If paused, set the position appropriately
+    if global.game_state.is_paused:
+        cam_pos = camera.get_camera_pos()
+        pause_pos = Vector2(floor(cam_pos.x) + pause_menu.get_size().x/2, floor(cam_pos.y) - 100)
+        pause_menu.set_pos(pause_pos)
 
     # Only pursue movement if the player is not paused or battling
     if not global.game_state.is_paused and not global.game_state.is_battling:
@@ -85,10 +94,9 @@ func _input(event):
 
         if not global.game_state.is_paused and not global.game_state.is_battling:
             global.game_state.is_paused = true
-            var cam_pos = camera.get_camera_pos()
-            var pause_pos = Vector2(floor(cam_pos.x) + pause_menu.get_size().x/2, floor(cam_pos.y) - 100)
+            cam_pos = camera.get_camera_pos()
+            pause_pos = Vector2(floor(cam_pos.x) + pause_menu.get_size().x/2, floor(cam_pos.y) - 100)
             pause_menu.set_pos(pause_pos)
-
             pause_menu.set_hidden(false)
         elif not global.game_state.is_saving:
             pause_menu.set_hidden(true)
