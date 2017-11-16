@@ -8,7 +8,6 @@ var type
 var velocity = Vector2()
 
 var is_moving = false
-var is_paused = false
 
 var pause_menu
 
@@ -40,8 +39,8 @@ func _fixed_process(delta):
     # Movement
     direction = Vector2()
 
-    # Only pursue movement if the player is not paused
-    if not is_paused:
+    # Only pursue movement if the player is not paused or battling
+    if not global.game_state.is_paused and not global.game_state.is_battling:
         if Input.is_action_pressed("player_up"):
             direction = TOP
             get_node("PlayerSprite").set_frame(1)
@@ -84,13 +83,13 @@ func _input(event):
 
     if event.is_action_pressed("player_pause"):
 
-        if not is_paused:
-            is_paused = true
+        if not global.game_state.is_paused and not global.game_state.is_battling:
+            global.game_state.is_paused = true
             var cam_pos = camera.get_camera_pos()
             var pause_pos = Vector2(floor(cam_pos.x) + pause_menu.get_size().x/2, floor(cam_pos.y) - 100)
             pause_menu.set_pos(pause_pos)
 
             pause_menu.set_hidden(false)
-        else:
+        elif not global.game_state.is_saving:
             pause_menu.set_hidden(true)
-            is_paused = false
+            global.game_state.is_paused = false

@@ -76,6 +76,7 @@ func _input(event):
 
         # Otherwise, if the encounter must end, return to the grid
         elif is_running && must_leave:
+            global.game_state.is_battling = false
             get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
 
         # Or, if changing turns in the middle of the battle...
