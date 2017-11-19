@@ -34,8 +34,9 @@ func _ready():
     moves = menu_frame.get_node("FightOptions").get_children()
 
     for move in moves:
-        var index = moves.find(move);
-        move.set_text(global.player.moves[index].name)
+        var index = moves.find(move)
+        if global.player.moves.size() > index:
+            move.set_text(global.player.moves[index].name)
 
     options = menu_frame.get_node("BattleMenuOptions").get_children()
 

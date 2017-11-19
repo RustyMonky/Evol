@@ -21,7 +21,7 @@ func _ready():
 
     for move in global.player.moves:
         var index = global.player.moves.find(move)
-        moves_list[index].set_text("-- " + move.name)
+        moves_list[index].set_text("-- " + move.name + ": " + move.desc)
 
     set_process_input(true)
 

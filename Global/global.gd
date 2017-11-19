@@ -13,10 +13,7 @@ var player = {
     level = 1,
     max_hp = 10,
     moves = [
-        { name = 'Attack', damage = 5 },
-        { name = 'Attack', damage = 5 },
-        { name = 'Attack', damage = 5 },
-        { name = 'Attack', damage = 5 }
+        { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
     ],
     # The below value may change and is currently hardset to work with the test grid
     pos = Vector2(1, 0),
@@ -35,10 +32,10 @@ var mob = {
     level = 1,
     max_hp = 10,
     moves = [
-        { name = 'Attack', damage = 1 },
-        { name = 'Attack', damage = 1 },
-        { name = 'Attack', damage = 1 },
-        { name = 'Attack', damage = 1 }
+        { name = 'Rush', damage = 1, desc = "Charge at an enemy" },
+        { name = 'Rush', damage = 1, desc = "Charge at an enemy" },
+        { name = 'Rush', damage = 1, desc = "Charge at an enemy" },
+        { name = 'Rush', damage = 1, desc = "Charge at an enemy" }
     ],
     name = "",
     stats = {
@@ -93,3 +90,32 @@ func level_up():
     player.stats.defense += 1
     player.stats.speed += 1
     player.stats.strength += 1
+
+    # Learn moves
+    if player.level == 2:
+        player.moves.append({
+            name = "Buff Up",
+            damage = 0,
+            desc = "Increases STR",
+            stat = {
+                strength = 1
+            }
+        })
+    elif player.level == 3:
+        player.moves.append({
+            name = "Raise Guard",
+            damage = 0,
+            desc = "Increases DEF",
+            stat = {
+                defense = 1
+            }
+        })
+    elif player.level == 4:
+        player.moves.append({
+            name = "Speed Up",
+            damage = 0,
+            desc = "Increases SPD",
+            stat = {
+                speed = 1
+            }
+        })
