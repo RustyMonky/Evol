@@ -1,10 +1,14 @@
 extends Control
 
+var level_label
 var moves_list
 var player
 var stat_values
 
 func _ready():
+    level_label = get_node("LvlLabel")
+    level_label.set_text("Lvl. " + String(global.player.level))
+
     moves_list = get_node("KnownMoves").get_children()
 
     stat_values = get_node("StatValues")
