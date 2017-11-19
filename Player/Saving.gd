@@ -58,8 +58,8 @@ func _input(event):
 func done_saving():
     is_open = false
     global.game_state.is_saving = false
-    get_parent().get_parent().set_hidden(true)
-    self.queue_free()
+    global.game_state.is_paused = false
+    get_parent().get_parent().queue_free()
     get_tree().get_root().get_node("PauseMenu").get_node("PauseFrame").set_hidden(true)
 
 # cursor_update
