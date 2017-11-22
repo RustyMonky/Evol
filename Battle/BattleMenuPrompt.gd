@@ -2,6 +2,7 @@ extends RichTextLabel
 
 var battle_menu
 var battle_menu_options
+var battle_node
 var change_turn = false
 var cursor
 var is_battle_done = false
@@ -42,9 +43,26 @@ func _on_BattleMenuPromptTimer_timeout():
                     global.player.total_mobs_killed += 1
 
                     # Check if the player can level up
+                    # But first, reset any battle temporary stat gains
+                    battle_node = get_tree().get_root().get_node("Battle")
+                    var resetStats = {
+                        defense = 0,
+                        speed = 0,
+                        strength = 0
+                    }
+                    global.player.statsChanged = resetStats
+                    global.mob.statsChanged = resetStats
+
                     if global.player.xp >= global.xp_required_array[global.player.level]:
+                        var pre_level_up_moves_count = global.player.moves.size()
+
                         global.level_up()
+
                         end_battle_text += ".. and grew to level " + String(global.player.level) +" !"
+
+                        # If the player learned a move, add that info to the text as well
+                        if global.player.moves.size() > pre_level_up_moves_count:
+                            end_battle_text += "... And you learned " + String(global.player.moves[-1].name) + " !"
 
                     set_run_text(end_battle_text)
             # If the player died, show text before switching to game over

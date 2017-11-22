@@ -22,6 +22,11 @@ var player = {
         speed = 2,
         strength = 2
     },
+    statsChanged = {
+        defense = 0,
+        speed = 0,
+        strength = 0
+    },
     sprite_frame = 0,
     total_mobs_killed = 0,
     xp = 0
@@ -42,6 +47,11 @@ var mob = {
         defense = 2,
         speed = 2,
         strength = 2
+    },
+    statsChanged = {
+        defense = 0,
+        speed = 0,
+        strength = 0
     },
     xp = 10
 }

@@ -163,15 +163,44 @@ func calculate_damage(attack):
 
     if not is_player_turn:
 
-        damage = global.mob.moves[attack].damage * global.mob.stats.strength / global.player.stats.defense
-        global.player.current_hp -= damage
-        player_info.current_hp = global.player.current_hp
+        # If the ability deals damage...
+        if global.mob.moves[attack].damage > 0:
+
+            damage = floor(global.mob.moves[attack].damage * (global.mob.stats.strength + global.mob.statsChanged.strength) / (global.player.stats.defense + global.player.statsChanged.defense))
+
+            # But if it's so weak it's floored to 0, bump to 1
+            if (damage == 0): damage = 1
+
+            global.player.current_hp -= damage
+            player_info.current_hp = global.player.current_hp
+
+        # Otherwise, if it's stat based...
+        else:
+            if global.mob.moves[attack].stat.has('strength'):
+                global.mob.statsChanged.strength += global.mob.moves[attack].stat.strength
+            elif global.mob.moves[attack].stat.has('defense'):
+                global.mob.statsChanged.defense += global.mob.moves[attack].stat.defense
+            elif global.mob.moves[attack].stat.has('speed'):
+                global.mob.statsChanged.speed += global.mob.moves[attack].stat.speed
 
     elif is_player_turn:
 
-        damage = global.player.moves[attack].damage * global.player.stats.strength / global.mob.stats.defense
-        global.mob.current_hp -= damage
-        mob_info.current_hp = global.mob.current_hp
+        if global.player.moves[attack].damage > 0:
+
+            damage = floor(global.player.moves[attack].damage * (global.player.stats.strength + global.player.statsChanged.strength) / (global.mob.stats.defense + global.mob.statsChanged.defense))
+
+            if (damage == 0): damage = 1
+
+            global.mob.current_hp -= damage
+            mob_info.current_hp = global.mob.current_hp
+
+        else:
+            if global.player.moves[attack].stat.has('strength'):
+                global.player.statsChanged.strength += global.player.moves[attack].stat.strength
+            elif global.player.moves[attack].stat.has('defense'):
+                global.player.statsChanged.defense += global.player.moves[attack].stat.defense
+            elif global.player.moves[attack].stat.has('speed'):
+                global.player.statsChanged.speed += global.player.moves[attack].stat.speed
 
     # If mob is dead
     if mob_info.current_hp <= 0:
