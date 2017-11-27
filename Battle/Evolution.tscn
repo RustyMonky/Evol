@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://Battle/Evolution.gd" type="Script" id=1]
 [ext_resource path="res://Assets/evolDefenseform.tex" type="Texture" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://Assets/evolStrengthform.tex" type="Texture" id=4]
 [ext_resource path="res://Assets/cursorup.tex" type="Texture" id=5]
 [ext_resource path="res://Fonts/SomepxLarge.fnt" type="BitmapFont" id=6]
-[ext_resource path="res://Assets/panel.tex" type="Texture" id=7]
+[ext_resource path="res://Fonts/Somepx.fnt" type="BitmapFont" id=7]
+[ext_resource path="res://Assets/panel.tex" type="Texture" id=8]
 
 [node name="Evolution" type="Node2D"]
 
@@ -88,11 +89,11 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 140.0
 margin/top = 20.0
-margin/right = 280.0
-margin/bottom = 40.0
-custom_fonts/font = ExtResource( 6 )
+margin/right = 300.0
+margin/bottom = 60.0
+custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-align = 1
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -107,7 +108,7 @@ margin/left = 1.5
 margin/top = 200.0
 margin/right = 326.5
 margin/bottom = 295.0
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 patch_margin/left = 12
 patch_margin/top = 12
 patch_margin/right = 12
