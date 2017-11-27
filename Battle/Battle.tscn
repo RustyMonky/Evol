@@ -22,7 +22,7 @@ margin/bottom = 288.0
 
 [node name="BattleCamera" type="Camera2D" parent="BattleControl"]
 
-offset = Vector2( 160, 140 )
+offset = Vector2( 160, 145 )
 anchor_mode = 1
 rotating = false
 current = true

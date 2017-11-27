@@ -1,0 +1,154 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://Assets/evolDefenseform.tex" type="Texture" id=1]
+[ext_resource path="res://Assets/evolSpeedform.tex" type="Texture" id=2]
+[ext_resource path="res://Assets/evolStrengthform.tex" type="Texture" id=3]
+[ext_resource path="res://Assets/cursorup.tex" type="Texture" id=4]
+[ext_resource path="res://Fonts/SomepxLarge.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://Assets/panel.tex" type="Texture" id=6]
+
+[node name="Evolution" type="Node2D"]
+
+[node name="EvoBackground" type="ColorFrame" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 288.0
+color = Color( 1, 1, 1, 1 )
+
+[node name="EvoChoices" type="Node2D" parent="EvoBackground"]
+
+editor/display_folded = true
+
+[node name="DefenseSprite" type="Sprite" parent="EvoBackground/EvoChoices"]
+
+transform/pos = Vector2( 20, 20 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="SpeedSprite" type="Sprite" parent="EvoBackground/EvoChoices"]
+
+transform/pos = Vector2( 120, 20 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="StrengthSprite" type="Sprite" parent="EvoBackground/EvoChoices"]
+
+transform/pos = Vector2( 220, 20 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Cursor" type="Sprite" parent="EvoBackground"]
+
+visibility/visible = false
+transform/pos = Vector2( 40, 100 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="ChoiceInfo" type="Control" parent="EvoBackground"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 130.0
+margin/right = 320.0
+margin/bottom = 200.0
+
+[node name="ChoiceName" type="Label" parent="EvoBackground/ChoiceInfo"]
+
+hint/tooltip = "Test"
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 20.0
+margin/top = 20.0
+margin/right = 60.0
+margin/bottom = 40.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ChoiceDesc" type="Label" parent="EvoBackground/ChoiceInfo"]
+
+hint/tooltip = "Test"
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 140.0
+margin/top = 20.0
+margin/right = 280.0
+margin/bottom = 40.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="EvoTextBox" type="Patch9Frame" parent="EvoBackground"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1.5
+margin/top = 200.0
+margin/right = 326.5
+margin/bottom = 295.0
+texture = ExtResource( 6 )
+patch_margin/left = 12
+patch_margin/top = 12
+patch_margin/right = 12
+patch_margin/bottom = 12
+
+[node name="EvoText" type="RichTextLabel" parent="EvoBackground/EvoTextBox"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 310.0
+margin/bottom = 50.0
+custom_fonts/normal_font = ExtResource( 5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode/enabled = true
+bbcode/bbcode = ""
+visible_characters = -1
+percent_visible = 1.0
+
+[node name="EvoCamera" type="Camera2D" parent="."]
+
+offset = Vector2( 160, 145 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+
