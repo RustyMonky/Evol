@@ -47,6 +47,10 @@ func _input(event):
         update_cursor_pos()
         update_choice_text()
 
+    elif (event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_select")) and is_selecting:
+        evo_text.set_visible_characters(0)
+        evo_text.set_bbcode("Are you sure you want this form?")
+
 func update_choice_text():
     if current_option == 0:
         choice_desc.set_text("A durable form that excels at absorbing damage. Sacrifices speed.")
