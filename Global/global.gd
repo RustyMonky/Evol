@@ -28,6 +28,7 @@ var player = {
         strength = 0
     },
     sprite_frame = 0,
+    spritePath = "",
     total_mobs_killed = 0,
     xp = 0
 }

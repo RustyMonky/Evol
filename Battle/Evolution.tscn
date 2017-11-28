@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Battle/Evolution.gd" type="Script" id=1]
 [ext_resource path="res://Assets/evolDefenseform.tex" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Fonts/SomepxLarge.fnt" type="BitmapFont" id=6]
 [ext_resource path="res://Fonts/Somepx.fnt" type="BitmapFont" id=7]
 [ext_resource path="res://Assets/panel.tex" type="Texture" id=8]
+[ext_resource path="res://Battle/cursor.tex" type="Texture" id=9]
 
 [node name="Evolution" type="Node2D"]
 
@@ -137,6 +138,49 @@ process_mode = 1
 wait_time = 0.05
 one_shot = false
 autostart = true
+
+[node name="EvoConfirm" type="Label" parent="EvoBackground/EvoTextBox"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 100.0
+margin/top = 50.0
+margin/right = 140.0
+margin/bottom = 80.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Yes"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="EvoReject" type="Label" parent="EvoBackground/EvoTextBox"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 160.0
+margin/top = 50.0
+margin/right = 200.0
+margin/bottom = 80.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "No"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TextCursor" type="Sprite" parent="EvoBackground/EvoTextBox"]
+
+visibility/visible = false
+texture = ExtResource( 9 )
 
 [node name="EvoCamera" type="Camera2D" parent="."]
 
