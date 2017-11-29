@@ -82,6 +82,20 @@ func _input(event):
 # Class Functions
 # ----------------
 
+func evolve():
+    if current_option == 0:
+        global.player.stats.defense += 4
+        global.player.stats.strength += 2
+        global.player.stats.speed -= 2
+    elif current_option == 1:
+        global.player.stats.defense += 2
+        global.player.stats.strength -= 2
+        global.player.stats.speed += 4
+    elif current_option == 2:
+        global.player.stats.defense -=2
+        global.player.stats.strength += 4
+        global.player.stats.speed += 2
+
 # is_confirming_choice
 # Toggles visibility of nodes for confirming evolution choice
 func is_confirming_choice(b):
