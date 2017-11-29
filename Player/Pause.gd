@@ -49,7 +49,7 @@ func _input(event):
             if current_option == 0:
                 get_node("/root/global").goto_scene("res://Player/Stats.tscn")
 
-            if current_option == 1 and not start_saving:
+            elif current_option == 1 and not start_saving:
                 start_saving = true
 
                 var cam_pos = player_camera.get_camera_pos()
@@ -60,6 +60,10 @@ func _input(event):
                 get_tree().get_root().call_deferred("add_child", saving_frame)
 
                 global.game_state.is_saving = true
+
+            elif current_option == 2:
+                get_parent().set_hidden(true)
+                global.game_state.is_paused = false
 
 # cursor_update
 # Updates the position of the cursor based on the currently selected menu option

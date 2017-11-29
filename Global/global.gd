@@ -9,14 +9,12 @@ var game_state = {
 }
 
 var player = {
+    battle_sprite = "res://Assets/baseEvolLgBack.tex",
     current_hp = 10,
     level = 1,
     max_hp = 10,
     moves = [
-        { name = 'Attack', damage = 3 },
-        { name = 'Attack', damage = 3 },
-        { name = 'Attack', damage = 3 },
-        { name = 'Attack', damage = 3 }
+        { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
     ],
     # The below value may change and is currently hardset to work with the test grid
     pos = Vector2(1, 0),
@@ -25,7 +23,14 @@ var player = {
         speed = 2,
         strength = 2
     },
+    statsChanged = {
+        defense = 0,
+        speed = 0,
+        strength = 0
+    },
+    stats_sprite = "res://Assets/evolStatsSprite.tex",
     sprite_frame = 0,
+    sprite_path = "res://Player/baseEvolSheet.tex",
     total_mobs_killed = 0,
     xp = 0
 }
@@ -35,10 +40,10 @@ var mob = {
     level = 1,
     max_hp = 10,
     moves = [
-        { name = 'Attack', damage = 10 },
-        { name = 'Attack', damage = 10 },
-        { name = 'Attack', damage = 10 },
-        { name = 'Attack', damage = 10 }
+        { name = 'Rush', damage = 1, desc = "Charge at an enemy" },
+        { name = 'Rush', damage = 1, desc = "Charge at an enemy" },
+        { name = 'Rush', damage = 1, desc = "Charge at an enemy" },
+        { name = 'Rush', damage = 1, desc = "Charge at an enemy" }
     ],
     name = "",
     stats = {
@@ -46,8 +51,15 @@ var mob = {
         speed = 2,
         strength = 2
     },
+    statsChanged = {
+        defense = 0,
+        speed = 0,
+        strength = 0
+    },
     xp = 10
 }
+
+var xp_required_array = [0, 10, 15, 25, 40]
 
 func _ready():
     var root = get_tree().get_root()
@@ -82,3 +94,44 @@ func _deferred_goto_scene(path):
 
     # optional, to make it compatible with the SceneTree.change_scene() API
     get_tree().set_current_scene(current_scene)
+
+# Level up function when can be called from anywhere
+func level_up():
+    player.level += 1
+    player.current_hp += 2
+    player.max_hp += 2
+    player.stats.defense += 1
+    player.stats.speed += 1
+    player.stats.strength += 1
+
+    # Learn moves
+    if player.level == 2:
+        player.moves.append({
+            name = "Buff Up",
+            damage = 0,
+            desc = "Increases STR",
+            stat = {
+                strength = 1
+            }
+        })
+    elif player.level == 3:
+        player.moves.append({
+            name = "Raise Guard",
+            damage = 0,
+            desc = "Increases DEF",
+            stat = {
+                defense = 1
+            }
+        })
+    elif player.level == 4:
+        player.moves.append({
+            name = "Speed Up",
+            damage = 0,
+            desc = "Increases SPD",
+            stat = {
+                speed = 1
+            }
+        })
+    elif player.level == 5:
+        game_state.is_battling = false;
+        goto_scene("res://Battle/Evolution.tscn")
