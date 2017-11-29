@@ -21,6 +21,7 @@ func save_game():
 			sprite_path = global.player.sprite_path,
 			sprite_frame = global.player.sprite_frame,
 			stats = global.player.stats,
+			stats_sprite = global.player.stats_sprite,
 			total_mobs_killed = global.player.total_mobs_killed,
 			xp = global.player.xp
 
@@ -53,5 +54,6 @@ func load_game():
 	global.player.sprite_path = data["player"]["sprite_path"]
 	global.player.sprite_frame = data["player"]["sprite_frame"]
 	global.player.stats = data["player"]["stats"]
+	global.player.stats_sprite = data["player"]["stats_sprite"]
 	global.player.total_mobs_killed = data["player"]["total_mobs_killed"]
 	global.player.xp = data["player"]["xp"]

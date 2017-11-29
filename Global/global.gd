@@ -28,6 +28,7 @@ var player = {
         speed = 0,
         strength = 0
     },
+    stats_sprite = "res://Assets/evolStatsSprite.tex",
     sprite_frame = 0,
     sprite_path = "res://Player/baseEvolSheet.tex",
     total_mobs_killed = 0,
