@@ -19,10 +19,6 @@ func _ready():
         for y in range(grid_size.y):
             grid[x].append(null)
 
-    var Player = get_node("Player")
-    Player.set_pos(global.player.pos)
-    Player.get_node("PlayerSprite").set_frame(global.player.sprite_frame)
-
     var encounter_positions = []
 
     for n in range(5):

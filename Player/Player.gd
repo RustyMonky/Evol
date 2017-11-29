@@ -16,6 +16,8 @@ var pause_menu
 var target_pos = Vector2()
 var target_direction = Vector2()
 
+var sprite_texture
+
 const TOP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const LEFT = Vector2(-1, 0)
@@ -26,6 +28,12 @@ const MAX_SPEED = 100
 func _ready():
     grid = get_parent()
     type = grid.PLAYER
+
+    sprite_texture = load(global.player.sprite_path)
+    get_node("PlayerSprite").set_texture(sprite_texture)
+    get_node("PlayerSprite").set_frame(global.player.sprite_frame)
+
+    set_pos(global.player.pos)
 
     camera = get_node("PlayerCamera")
 

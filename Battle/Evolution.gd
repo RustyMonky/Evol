@@ -62,7 +62,6 @@ func _input(event):
             is_confirming_choice(true)
 
     elif is_confirming and not is_selecting:
-        print("yep")
         if event.is_action_pressed("ui_left"):
             confirm_option = 0
             update_text_cursor_pos()
@@ -83,18 +82,29 @@ func _input(event):
 # ----------------
 
 func evolve():
+    # DEF
     if current_option == 0:
         global.player.stats.defense += 4
         global.player.stats.strength += 2
         global.player.stats.speed -= 2
+        global.player.sprite_path = "res://Assets/evolDefenseSheet.tex"
+
+    # SPD
     elif current_option == 1:
         global.player.stats.defense += 2
         global.player.stats.strength -= 2
         global.player.stats.speed += 4
+        global.player.sprite_path = "res://Assets/evolSpeedSheet.tex"
+
+    # STR
     elif current_option == 2:
         global.player.stats.defense -=2
         global.player.stats.strength += 4
         global.player.stats.speed += 2
+        global.player.sprite_path = "res://Assets/evolStrengthSheet.tex"
+
+    save.save_game()
+    get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
 
 # is_confirming_choice
 # Toggles visibility of nodes for confirming evolution choice

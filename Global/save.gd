@@ -17,6 +17,7 @@ func save_game():
 				x = global.player.pos.x,
 				y = global.player.pos.y
 			},
+			sprite_path = global.player.sprite_path,
 			sprite_frame = global.player.sprite_frame,
 			stats = global.player.stats,
 			total_mobs_killed = global.player.total_mobs_killed,
@@ -47,6 +48,7 @@ func load_game():
 	global.player.max_hp = data["player"]["max_hp"]
 	global.player.moves = data["player"]["moves"]
 	global.player.pos = Vector2(data["player"]["pos"]["x"], data["player"]["pos"]["y"])
+	global.player.sprite_path = data["player"]["sprite_path"]
 	global.player.sprite_frame = data["player"]["sprite_frame"]
 	global.player.stats = data["player"]["stats"]
 	global.player.total_mobs_killed = data["player"]["total_mobs_killed"]

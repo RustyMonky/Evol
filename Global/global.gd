@@ -28,7 +28,7 @@ var player = {
         strength = 0
     },
     sprite_frame = 0,
-    spritePath = "",
+    sprite_path = "res://Player/baseEvolSheet.tex",
     total_mobs_killed = 0,
     xp = 0
 }
@@ -130,3 +130,6 @@ func level_up():
                 speed = 1
             }
         })
+    elif player.level == 5:
+        game_state.is_battling = false;
+        goto_scene("res://Battle/Evolution.tscn")
