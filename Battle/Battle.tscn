@@ -54,6 +54,7 @@ color = Color( 1, 1, 1, 1 )
 [node name="BattlePlayerSprite" type="Sprite" parent="BattleControl/BattleBackground"]
 
 transform/pos = Vector2( 72, 184 )
+transform/scale = Vector2( 1.5, 1.5 )
 
 [node name="BattleMenu" parent="BattleControl" instance=ExtResource( 2 )]
 
