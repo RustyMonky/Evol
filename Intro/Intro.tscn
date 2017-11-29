@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://Intro/Intro.gd" type="Script" id=1]
+[ext_resource path="res://Assets/evolTitle.tex" type="Texture" id=2]
+[ext_resource path="res://Fonts/SomepxLarge.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://Assets/cursorwhite.tex" type="Texture" id=4]
+
+[node name="Intro" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = ExtResource( 1 )
+
+[node name="ColorFrame" type="ColorFrame" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 288.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+transform/pos = Vector2( 160, 144 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Options" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="Continue" type="Label" parent="Options"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 130.0
+margin/top = 230.0
+margin/right = 190.0
+margin/bottom = 250.0
+custom_fonts/font = ExtResource( 3 )
+text = "Continue"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="New" type="Label" parent="Options"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 130.0
+margin/top = 250.0
+margin/right = 200.0
+margin/bottom = 270.0
+custom_fonts/font = ExtResource( 3 )
+text = "New Game"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Cursor" type="Sprite" parent="."]
+
+transform/pos = Vector2( 110, 230 )
+texture = ExtResource( 4 )
+centered = false
+
+
