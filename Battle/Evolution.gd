@@ -88,6 +88,7 @@ func evolve():
         global.player.stats.strength += 2
         global.player.stats.speed -= 2
         global.player.sprite_path = "res://Assets/evolDefenseSheet.tex"
+        global.player.battle_sprite = "res://Assets/evolDefenseBack.tex"
 
     # SPD
     elif current_option == 1:
@@ -95,6 +96,7 @@ func evolve():
         global.player.stats.strength -= 2
         global.player.stats.speed += 4
         global.player.sprite_path = "res://Assets/evolSpeedSheet.tex"
+        global.player.battle_sprite = "res://Assets/evolSpeedBack.tex"
 
     # STR
     elif current_option == 2:
@@ -102,6 +104,7 @@ func evolve():
         global.player.stats.strength += 4
         global.player.stats.speed += 2
         global.player.sprite_path = "res://Assets/evolStrengthSheet.tex"
+        global.player.battle_sprite = "res://Assets/evolStrengthBack.tex"
 
     save.save_game()
     get_node("/root/global").goto_scene("res://Grid/Grid.tscn")

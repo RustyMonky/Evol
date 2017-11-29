@@ -9,6 +9,7 @@ func save_game():
 
 	var save_dictionary = {
 		player = {
+			battle_sprite = global.player.battle_sprite,
 			current_hp = global.player.current_hp,
 			level = global.player.level,
 			max_hp = global.player.max_hp,
@@ -43,6 +44,7 @@ func load_game():
 	save_file.open(SAVE_PATH, File.READ)
 	data.parse_json(save_file.get_as_text())
 
+	global.player.battle_sprite = data["player"]["battle_sprite"]
 	global.player.current_hp = data["player"]["current_hp"]
 	global.player.level = data["player"]["level"]
 	global.player.max_hp = data["player"]["max_hp"]

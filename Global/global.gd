@@ -9,6 +9,7 @@ var game_state = {
 }
 
 var player = {
+    battle_sprite = "res://Assets/baseEvolLgBack.tex",
     current_hp = 10,
     level = 1,
     max_hp = 10,

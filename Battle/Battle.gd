@@ -10,6 +10,7 @@ var mob_sprite
 var mob_info
 
 var player_info
+var player_sprite
 
 var show_info
 
@@ -59,6 +60,10 @@ func _ready():
 
     get_node("BattleControl").call_deferred("add_child", player_info)
     battle_menu.player_info = player_info
+
+    player_sprite = battle_background.get_node("BattlePlayerSprite")
+    var player_texture = load(global.player.battle_sprite)
+    player_sprite.set_texture(player_texture)
 
     set_fixed_process(true)
 
