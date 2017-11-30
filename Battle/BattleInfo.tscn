@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Battle/BattleInfo.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Somepx.fnt" type="BitmapFont" id=2]
-[ext_resource path="res://Battle/hpBkgd.tex" type="Texture" id=3]
-[ext_resource path="res://Battle/hpHigh.tex" type="Texture" id=4]
+[ext_resource path="res://Assets/Battle/hpBkgd.tex" type="Texture" id=3]
+[ext_resource path="res://Assets/Battle/hpHigh.tex" type="Texture" id=4]
 
 [node name="BattleInfo" type="Control"]
 

@@ -29,7 +29,7 @@ func _input(event):
 # Overwrites the save file with a fresh start
 func start_new_game():
 	global.player = {
-	    battle_sprite = "res://Assets/baseEvolLgBack.tex",
+	    battle_sprite = "res://Assets/Battle/baseBattleSprite.tex",
 	    current_hp = 10,
 	    level = 1,
 	    max_hp = 10,
@@ -48,7 +48,7 @@ func start_new_game():
 	        speed = 0,
 	        strength = 0
 	    },
-	    stats_sprite = "res://Assets/evolStatsSprite.tex",
+	    stats_sprite = "res://Assets/GUI/statsBaseSprite.png",
 	    sprite_frame = 0,
 	    sprite_path = "res://Player/baseEvolSheet.tex",
 	    total_mobs_killed = 0,

@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Battle/Evolution.gd" type="Script" id=1]
-[ext_resource path="res://Assets/evolDefenseform.tex" type="Texture" id=2]
-[ext_resource path="res://Assets/evolSpeedform.tex" type="Texture" id=3]
-[ext_resource path="res://Assets/evolStrengthform.tex" type="Texture" id=4]
-[ext_resource path="res://Assets/cursorup.tex" type="Texture" id=5]
+[ext_resource path="res://Assets/Forms/defFront.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Forms/spdSide.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Forms/strFront.png" type="Texture" id=4]
+[ext_resource path="res://Assets/GUI/cursorup.tex" type="Texture" id=5]
 [ext_resource path="res://Fonts/SomepxLarge.fnt" type="BitmapFont" id=6]
 [ext_resource path="res://Fonts/Somepx.fnt" type="BitmapFont" id=7]
-[ext_resource path="res://Assets/panel.tex" type="Texture" id=8]
-[ext_resource path="res://Battle/cursor.tex" type="Texture" id=9]
+[ext_resource path="res://Assets/GUI/panel.tex" type="Texture" id=8]
+[ext_resource path="res://Assets/GUI/cursor.tex" type="Texture" id=9]
 
 [node name="Evolution" type="Node2D"]
 

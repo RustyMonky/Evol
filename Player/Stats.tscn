@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://Player/Stats.gd" type="Script" id=1]
-[ext_resource path="res://Assets/evolStatsSprite.tex" type="Texture" id=2]
+[ext_resource path="res://Assets/GUI/statsBaseSprite.png" type="Texture" id=2]
 [ext_resource path="res://Fonts/SomepxLarge.fnt" type="BitmapFont" id=3]
 
 [node name="StatsControl" type="Control"]

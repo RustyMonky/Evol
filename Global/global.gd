@@ -9,7 +9,7 @@ var game_state = {
 }
 
 var player = {
-    battle_sprite = "res://Assets/baseEvolLgBack.tex",
+    battle_sprite = "res://Assets/Battle/baseBattleSprite.tex",
     current_hp = 10,
     level = 1,
     max_hp = 10,
@@ -28,7 +28,7 @@ var player = {
         speed = 0,
         strength = 0
     },
-    stats_sprite = "res://Assets/evolStatsSprite.tex",
+    stats_sprite = "res://Assets/GUI/statsBaseSprite.png",
     sprite_frame = 0,
     sprite_path = "res://Player/baseEvolSheet.tex",
     total_mobs_killed = 0,

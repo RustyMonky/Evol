@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://Battle/battlePanel.tex" type="Texture" id=1]
+[ext_resource path="res://Assets/GUI/panel.tex" type="Texture" id=1]
 [ext_resource path="res://Fonts/Somepx.fnt" type="BitmapFont" id=2]
 [ext_resource path="res://Gameover/Gameover.gd" type="Script" id=3]
 
@@ -27,7 +27,7 @@ margin/right = 320.0
 margin/bottom = 288.0
 color = Color( 1, 1, 1, 1 )
 
-[node name="GameoverTextBox" type="TextureFrame" parent="GameoverBackground"]
+[node name="GameoverTextBox" type="Patch9Frame" parent="GameoverBackground"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -35,10 +35,13 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 216.0
-margin/right = 320.0
-margin/bottom = 288.0
+margin/right = 330.0
+margin/bottom = 296.0
 texture = ExtResource( 1 )
-stretch_mode = 0
+patch_margin/left = 12
+patch_margin/top = 12
+patch_margin/right = 12
+patch_margin/bottom = 12
 
 [node name="GameoverText" type="RichTextLabel" parent="GameoverBackground/GameoverTextBox"]
 
