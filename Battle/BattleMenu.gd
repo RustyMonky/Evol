@@ -63,6 +63,7 @@ func _input(event):
 
         # If the user clicks to continue on the Run option, display text before allowing them to leave
         if current_option == 1 && !show_moves:
+            menu_prompt.must_leave = true
             menu_prompt.set_run_text("Got away safely!")
 
         # Otherwise, if the user clicks to continue and the intro is completed, they'll be choosing fight by default
@@ -299,6 +300,9 @@ func update_current_move(direction):
             current_move = 2
         elif current_move == 1:
             current_move = 3
+
+    if moves[current_move].get_text() == '':
+        current_move = 0
 
     fight_cursor_is_moving = false
 
