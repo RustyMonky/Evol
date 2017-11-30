@@ -59,11 +59,16 @@ var mob = {
     xp = 10
 }
 
-var xp_required_array = [0, 10, 15, 25, 40]
+var xp_required_array = []
 
 func _ready():
     var root = get_tree().get_root()
     current_scene = root.get_child(root.get_child_count() - 1)
+
+    # Populate xp array
+    for n in range(1, 101):
+        var xp_req = (n * 10 * 2) * n
+        xp_required_array.append(xp_req)
 
 func goto_scene(path):
     # This function will usually be called from a signal callback,

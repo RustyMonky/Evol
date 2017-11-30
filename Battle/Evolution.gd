@@ -102,7 +102,7 @@ func evolve():
 
     # STR
     elif current_option == 2:
-        global.player.stats.defense -=2
+        global.player.stats.defense -= 2
         global.player.stats.strength += 4
         global.player.stats.speed += 2
         global.player.sprite_path = "res://Assets/evolStrengthSheet.tex"
