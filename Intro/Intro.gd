@@ -37,7 +37,7 @@ func start_new_game():
 	        { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
 	    ],
 	    # The below value may change and is currently hardset to work with the test grid
-	    pos = Vector2(1, 0),
+	    pos = Vector2(200, 200),
 	    stats = {
 	        defense = 2,
 	        speed = 2,

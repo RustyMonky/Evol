@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://Test/grass1.tex" type="Texture" id=1]
 [ext_resource path="res://Test/grass2.tex" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Test/roadturnupleft.tex" type="Texture" id=8]
 [ext_resource path="res://Test/roadturnupright.tex" type="Texture" id=9]
 [ext_resource path="res://Test/roadSide.tex" type="Texture" id=10]
+[ext_resource path="res://Test/emptySpace.png" type="Texture" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -104,6 +105,13 @@ region_rect = Rect2( 0, 0, 32, 32 )
 
 transform/pos = Vector2( 256, 128 )
 texture = ExtResource( 10 )
+region = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 64, 64 )
+texture = ExtResource( 11 )
 region = true
 region_rect = Rect2( 0, 0, 32, 32 )
 

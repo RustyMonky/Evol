@@ -5,7 +5,7 @@ var half_tile_size = tile_size / 2
 
 # Modify grid size below for testing purposes
 # THESE ARE CONSTANTLY CHANGING BASED ON TILEMAP EDITS
-var grid_size = Vector2(7, 5)
+var grid_size = Vector2(20, 20)
 var grid = []
 
 onready var Encounter = preload("res://Test/TestEncounter.tscn")
@@ -21,7 +21,7 @@ func _ready():
 
     var encounter_positions = []
 
-    for n in range(5):
+    for n in range(20):
         var grid_pos = Vector2(randi() % int(grid_size.x), randi() % int(grid_size.y))
         if not grid_pos in encounter_positions:
             encounter_positions.append(grid_pos)
@@ -42,7 +42,7 @@ func is_cell_vacant(pos, direction):
     var grid_pos = world_to_map(pos) + direction
 
     if grid_pos.x < grid_size.x and grid_size.x >= 0 and grid_pos.x > 0:
-        if abs(grid_pos.y) < grid_size.y and grid_size.y >= 0:
+        if abs(grid_pos.y) < grid_size.y and grid_pos.y >= 0:
             if grid[grid_pos.x][grid_pos.y] == null:
                 return true
             elif grid[grid_pos.x][grid_pos.y] == ENCOUNTER:
