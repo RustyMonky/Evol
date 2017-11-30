@@ -24,13 +24,13 @@ func _ready():
 
     mob_node = get_node("BattleMob")
     mob_sprite = mob_node.get_node("MobSprite")
-    mob_node.set_pos(Vector2(battle_background.get_pos().x - 32, battle_background.get_pos().y + 32))
+    mob_node.set_pos(Vector2(battle_background.get_pos().x - 32, battle_background.get_pos().y + 48))
 
     # Update in the future to randomize mob selection
     mob_to_fight = mobs[0]
     if mob_to_fight == "slime":
-        mob_sprite.set_texture(load("res://Mobs/shadedSlime.tex"))
-        global.mob.name = "Shaded Slime"
+        mob_sprite.set_texture(load("res://Assets/Mobs/slime.png"))
+        global.mob.name = "Slime"
         global.mob.max_hp = 10
         global.mob.current_hp = 10
 
