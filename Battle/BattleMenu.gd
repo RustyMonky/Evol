@@ -240,7 +240,7 @@ func hide_fight_controls(hide):
 func mob_attack():
     is_player_turn = false
 
-    var mob_attack = floor(rand_range(0, 4))
+    var mob_attack = floor(rand_range(0, global.mob.moves.size()))
     calculate_damage(mob_attack)
 
     hide_fight_controls(true)

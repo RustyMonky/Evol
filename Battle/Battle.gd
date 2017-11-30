@@ -3,7 +3,7 @@ extends Node2D
 var battle_background
 var battle_menu
 
-var mobs = ["slime"]
+var mobs = {}
 var mob_to_fight
 var mob_node
 var mob_sprite
@@ -26,13 +26,28 @@ func _ready():
     mob_sprite = mob_node.get_node("MobSprite")
     mob_node.set_pos(Vector2(battle_background.get_pos().x - 32, battle_background.get_pos().y + 48))
 
-    # Update in the future to randomize mob selection
-    mob_to_fight = mobs[0]
-    if mob_to_fight == "slime":
-        mob_sprite.set_texture(load("res://Assets/Mobs/slime.png"))
-        global.mob.name = "Slime"
-        global.mob.max_hp = 10
-        global.mob.current_hp = 10
+    # Let's open our mob json and get the mob data
+    var file = File.new()
+    file.open("res://Mobs/mobs.json", File.READ)
+    var file_text = file.get_as_text()
+    mobs.parse_json(file_text)
+    file.close()
+
+    # Randomize mob selection
+    var mob_index = global.get_random_number(3)
+    mob_to_fight = mobs.mobs[mob_index]
+    mob_sprite.set_texture(load(mob_to_fight.sprite))
+    global.mob = mob_to_fight
+    global.mob.current_hp = mob_to_fight.maxHp
+    global.mob.level = global.get_random_number(global.player.level)
+    global.mob.stats.defense += global.player.level
+    global.mob.stats.speed += global.player.level
+    global.mob.stats.strength += global.player.level
+    global.mob.statsChanged = {
+        defense = 0,
+        speed = 0,
+        strength = 0
+    }
 
     # Add mob info instance
     mob_info = preload("res://Battle/BattleInfo.tscn").instance();
@@ -41,8 +56,8 @@ func _ready():
     mob_info.get_node("LevelLabel").set_pos(Vector2(16, 32))
     mob_info.get_node("HpBar").set_pos(Vector2(16, 48))
 
-    mob_info.max_hp = global.mob.max_hp
-    mob_info.current_hp = global.mob.max_hp
+    mob_info.max_hp = mob_to_fight.maxHp
+    mob_info.current_hp = global.mob.current_hp
 
     get_node("BattleControl").call_deferred("add_child", mob_info)
     battle_menu.mob_info = mob_info

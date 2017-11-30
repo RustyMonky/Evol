@@ -38,25 +38,12 @@ var player = {
 var mob = {
     current_hp = 10,
     level = 1,
-    max_hp = 10,
-    moves = [
-        { name = 'Rush', damage = 1, desc = "Charge at an enemy" },
-        { name = 'Rush', damage = 1, desc = "Charge at an enemy" },
-        { name = 'Rush', damage = 1, desc = "Charge at an enemy" },
-        { name = 'Rush', damage = 1, desc = "Charge at an enemy" }
-    ],
-    name = "",
-    stats = {
-        defense = 2,
-        speed = 2,
-        strength = 2
-    },
+    stats = {},
     statsChanged = {
         defense = 0,
         speed = 0,
         strength = 0
-    },
-    xp = 10
+    }
 }
 
 var xp_required_array = []
@@ -99,6 +86,13 @@ func _deferred_goto_scene(path):
 
     # optional, to make it compatible with the SceneTree.change_scene() API
     get_tree().set_current_scene(current_scene)
+
+# Globally accessible function to generate a new random number
+func get_random_number(limit):
+    randomize()
+    if (randi() % int(limit)) == 0:
+        return 1
+    return (randi() % int(limit))
 
 # Level up function when can be called from anywhere
 func level_up():
