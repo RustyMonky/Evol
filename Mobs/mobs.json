@@ -45,7 +45,7 @@
                 "speed": 1,
                 "strength": 3
             },
-            "xp": 40
+            "xp": 30
         },
         {
             "maxHp": 15,
@@ -75,7 +75,7 @@
                 "speed": 3,
                 "strength": 2
             },
-            "xp": 50
+            "xp": 40
         }
     ]
 }

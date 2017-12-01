@@ -30,9 +30,9 @@ func _input(event):
 func start_new_game():
 	global.player = {
 	    battle_sprite = "res://Assets/Battle/baseBattleSprite.tex",
-	    current_hp = 10,
+	    current_hp = 15,
 	    level = 1,
-	    max_hp = 10,
+	    max_hp = 15,
 	    moves = [
 	        { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
 	    ],

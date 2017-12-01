@@ -39,15 +39,16 @@ func _ready():
     mob_sprite.set_texture(load(mob_to_fight.sprite))
     global.mob = mob_to_fight
     global.mob.current_hp = mob_to_fight.maxHp
-    global.mob.level = global.get_random_number(global.player.level)
-    global.mob.stats.defense += global.player.level
-    global.mob.stats.speed += global.player.level
-    global.mob.stats.strength += global.player.level
+    global.mob.level = (global.get_random_number(global.player.level) + 1)
+    global.mob.stats.defense += global.mob.level
+    global.mob.stats.speed += global.mob.level
+    global.mob.stats.strength += global.mob.level
     global.mob.statsChanged = {
         defense = 0,
         speed = 0,
         strength = 0
     }
+    global.mob.xp = mob_to_fight.xp * global.mob.level
 
     # Add mob info instance
     mob_info = preload("res://Battle/BattleInfo.tscn").instance();

@@ -59,8 +59,8 @@ func done_saving():
     is_open = false
     global.game_state.is_saving = false
     global.game_state.is_paused = false
-    get_parent().get_parent().queue_free()
     get_tree().get_root().get_node("PauseMenu").get_node("PauseFrame").set_hidden(true)
+    get_parent().get_parent().queue_free()
 
 # cursor_update
 # Updates the position of the cursor based on the currently selected menu option

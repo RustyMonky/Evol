@@ -10,9 +10,9 @@ var game_state = {
 
 var player = {
     battle_sprite = "res://Assets/Battle/baseBattleSprite.tex",
-    current_hp = 10,
+    current_hp = 15,
     level = 1,
-    max_hp = 10,
+    max_hp = 15,
     moves = [
         { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
     ],
@@ -36,7 +36,6 @@ var player = {
 
 var mob = {
     current_hp = 10,
-    level = 1,
     stats = {},
     statsChanged = {
         defense = 0,
