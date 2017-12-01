@@ -27,7 +27,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 80.0
-margin/bottom = 70.0
+margin/bottom = 90.0
 texture = ExtResource( 1 )
 patch_margin/left = 12
 patch_margin/top = 12
@@ -101,6 +101,23 @@ custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Exit"
 valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AboutLabel" type="Label" parent="PauseFrame/PauseMenuOptions"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 32.0
+margin/top = 56.0
+margin/right = 72.0
+margin/bottom = 70.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Info"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

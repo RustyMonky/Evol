@@ -65,6 +65,9 @@ func _input(event):
                 get_parent().set_hidden(true)
                 global.game_state.is_paused = false
 
+            elif current_option == 3:
+                get_node("/root/global").goto_scene("res://Player/About.tscn")
+
         # Just close
         elif event.is_action_pressed("ui_cancel"):
             get_parent().hide()
