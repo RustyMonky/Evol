@@ -1,13 +1,12 @@
 extends Patch9Frame
 
+var cam_pos
 var current_option = 0
 var cursor
 var menu_options
 var options_count
 var player
 var player_camera
-var saving_frame
-var start_saving = false
 
 func _ready():
     menu_options = get_node("PauseMenuOptions").get_children()
@@ -49,17 +48,10 @@ func _input(event):
             if current_option == 0:
                 get_node("/root/global").goto_scene("res://Player/Stats.tscn")
 
-            elif current_option == 1 and not start_saving:
-                start_saving = true
-
-                var cam_pos = player_camera.get_camera_pos()
-
-                saving_frame = preload("res://Player/SavingFrame.tscn").instance()
-                var saving_pos = Vector2(floor(cam_pos.x) - 120, floor(cam_pos.y) + 70)
-                saving_frame.set_pos(saving_pos)
-                get_tree().get_root().call_deferred("add_child", saving_frame)
-
-                global.game_state.is_saving = true
+            elif current_option == 1:
+                save.save_game()
+                get_parent().hide()
+                global.game_state.is_paused = false
 
             elif current_option == 2:
                 get_parent().set_hidden(true)
