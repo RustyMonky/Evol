@@ -16,7 +16,7 @@ var player = {
     moves = [
         { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
     ],
-    pos = Vector2(1, 0),
+    pos = Vector2(200, 200),
     stats = {
         defense = 5,
         speed = 5,
