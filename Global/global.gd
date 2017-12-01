@@ -16,12 +16,11 @@ var player = {
     moves = [
         { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
     ],
-    # The below value may change and is currently hardset to work with the test grid
     pos = Vector2(1, 0),
     stats = {
-        defense = 2,
-        speed = 2,
-        strength = 2
+        defense = 5,
+        speed = 5,
+        strength = 5
     },
     statsChanged = {
         defense = 0,
@@ -54,7 +53,7 @@ func _ready():
 
     # Populate xp array
     for n in range(1, 101):
-        var xp_req = (n * 10 * 2) * n
+        var xp_req = (n * 10) * n
         xp_required_array.append(xp_req)
 
 func goto_scene(path):

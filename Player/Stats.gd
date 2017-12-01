@@ -15,10 +15,10 @@ func _ready():
     stat_values = get_node("StatValues")
 
     stat_values.get_node("HpValue").set_text(String(global.player.current_hp) + "/" + String(global.player.max_hp))
-    stat_values.get_node("DefenseValue").set_text(String(round(global.player.stats.defense)))
-    stat_values.get_node("SpeedValue").set_text(String(round(global.player.stats.speed)))
-    stat_values.get_node("StrengthValue").set_text(String(round(global.player.stats.strength)))
-    stat_values.get_node("XpValue").set_text(String(round(global.player.xp)))
+    stat_values.get_node("DefenseValue").set_text(String(global.player.stats.defense))
+    stat_values.get_node("SpeedValue").set_text(String(global.player.stats.speed))
+    stat_values.get_node("StrengthValue").set_text(String(global.player.stats.strength))
+    stat_values.get_node("XpValue").set_text(String(global.player.xp))
 
     for move in global.player.moves:
         var index = global.player.moves.find(move)

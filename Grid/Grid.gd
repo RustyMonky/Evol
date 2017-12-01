@@ -21,7 +21,7 @@ func _ready():
 
     var encounter_positions = []
 
-    for n in range(20):
+    for n in range(100):
         var grid_pos = Vector2(randi() % int(grid_size.x), randi() % int(grid_size.y))
         if not grid_pos in encounter_positions:
             encounter_positions.append(grid_pos)

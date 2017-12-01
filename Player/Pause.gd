@@ -65,6 +65,11 @@ func _input(event):
                 get_parent().set_hidden(true)
                 global.game_state.is_paused = false
 
+        # Just close
+        elif event.is_action_pressed("ui_cancel"):
+            get_parent().hide()
+            global.game_state.is_paused = false
+
 # cursor_update
 # Updates the position of the cursor based on the currently selected menu option
 func cursor_update():

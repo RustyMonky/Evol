@@ -128,7 +128,7 @@ func _input(event):
             fight_cursor_update()
 
         # If the user selects an attack whose text is clearly visible...
-        elif Input.is_action_pressed("ui_select") && moves[current_move].is_visible():
+        elif event.is_action_pressed("ui_accept") && moves[current_move].is_visible():
             if (is_attacking):
                 # Whoever is faster attacks first
                 if global.player.stats.speed >= global.mob.stats.speed:

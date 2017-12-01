@@ -39,9 +39,9 @@ func start_new_game():
 	    # The below value may change and is currently hardset to work with the test grid
 	    pos = Vector2(200, 200),
 	    stats = {
-	        defense = 2,
-	        speed = 2,
-	        strength = 2
+	        defense = 5,
+	        speed = 5,
+	        strength = 5
 	    },
 	    statsChanged = {
 	        defense = 0,

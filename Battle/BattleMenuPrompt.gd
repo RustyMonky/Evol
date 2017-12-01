@@ -39,7 +39,7 @@ func _on_BattleMenuPromptTimer_timeout():
                     is_battle_done = true
                 else:
                     var end_battle_text = "You gained " + String(global.mob.xp) + " experience points."
-                    global.player.xp += global.mob.xp
+                    global.player.xp += (global.mob.xp * global.mob.level)
                     global.player.total_mobs_killed += 1
 
                     # Check if the player can level up
