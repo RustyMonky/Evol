@@ -92,6 +92,7 @@ func _input(event):
 
         # We're dead, so...
         if is_player_dead:
+            global.game_state.is_battling = false
             get_node("/root/global").goto_scene("res://Gameover/Gameover.tscn")
 
         # If it was the intro text, start the fight and prompt their choice
