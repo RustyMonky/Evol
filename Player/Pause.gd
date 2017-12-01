@@ -24,7 +24,7 @@ func _input(event):
 
     if global.game_state.is_paused and not global.game_state.is_saving:
         # Move up and down in the pause menu
-        if event.is_action_pressed("ui_up"):
+        if event.is_action_pressed("ui_up") or event.is_action_pressed("player_up"):
 
             if current_option <= 0:
                 current_option = options_count
@@ -33,7 +33,7 @@ func _input(event):
 
             cursor_update()
 
-        elif event.is_action_pressed("ui_down"):
+        elif event.is_action_pressed("ui_down") or event.is_action_pressed("player_down"):
 
             if current_option >= options_count:
                 current_option = 0

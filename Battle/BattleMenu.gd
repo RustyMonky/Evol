@@ -59,7 +59,7 @@ func _ready():
     set_process_input(true)
 
 func _input(event):
-    if Input.is_action_pressed("ui_accept") && not menu_prompt.must_leave && not show_moves:
+    if event.is_action_pressed("ui_accept") && not menu_prompt.must_leave && not show_moves:
 
         # If the user clicks to continue on the Run option, display text before allowing them to leave
         if current_option == 1 && !show_moves:
@@ -86,13 +86,13 @@ func _input(event):
     # Move between "Fight" and "Run"
     if not show_moves && not cursor_is_moving:
 
-        if Input.is_action_pressed("ui_left"):
+        if event.is_action_pressed("ui_left") or event.is_action_pressed("player_left"):
 
             cursor_is_moving = true
             update_current_option("left")
             cursor_update()
 
-        elif Input.is_action_pressed("ui_right"):
+        elif event.is_action_pressed("ui_right") or event.is_action_pressed("player_right"):
 
             cursor_is_moving = true
             update_current_option("right")
@@ -101,28 +101,28 @@ func _input(event):
     # Exit fight menu
     elif show_moves:
         # Cancel "Fight"
-        if Input.is_action_pressed("ui_cancel"):
+        if event.is_action_pressed("ui_cancel"):
 
             hide_fight_controls(true)
             show_moves = false
 
         # Movement Options
-        elif Input.is_action_pressed("ui_left") && !fight_cursor_is_moving:
+        elif event.is_action_pressed("ui_left") or event.is_action_pressed("player_left") && !fight_cursor_is_moving:
             fight_cursor_is_moving = true
             update_current_move("left")
             fight_cursor_update()
 
-        elif Input.is_action_pressed("ui_right") && !fight_cursor_is_moving:
+        elif event.is_action_pressed("ui_right") or event.is_action_pressed("player_right") && !fight_cursor_is_moving:
             fight_cursor_is_moving = true
             update_current_move("right")
             fight_cursor_update()
 
-        elif Input.is_action_pressed("ui_up") && !fight_cursor_is_moving:
+        elif event.is_action_pressed("ui_up") or event.is_action_pressed("player_up") && !fight_cursor_is_moving:
             fight_cursor_is_moving = true
             update_current_move("up")
             fight_cursor_update()
 
-        elif Input.is_action_pressed("ui_down") && !fight_cursor_is_moving:
+        elif event.is_action_pressed("ui_down") or event.is_action_pressed("player_down") && !fight_cursor_is_moving:
             fight_cursor_is_moving = true
             update_current_move("down")
             fight_cursor_update()

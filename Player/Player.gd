@@ -58,19 +58,19 @@ func _fixed_process(delta):
 
     # Only pursue movement if the player is not paused or battling
     if not global.game_state.is_paused and not global.game_state.is_battling:
-        if Input.is_action_pressed("player_up"):
+        if Input.is_action_pressed("player_up") or Input.is_action_pressed("ui_up"):
             direction = TOP
             get_node("PlayerSprite").set_frame(1)
             global.player.sprite_frame = 1
-        elif Input.is_action_pressed("player_down"):
+        elif Input.is_action_pressed("player_down") or Input.is_action_pressed("ui_down"):
             direction = DOWN
             get_node("PlayerSprite").set_frame(0)
             global.player.sprite_frame = 0
-        elif Input.is_action_pressed("player_left"):
+        elif Input.is_action_pressed("player_left") or Input.is_action_pressed("ui_left"):
             direction = LEFT
             get_node("PlayerSprite").set_frame(3)
             global.player.sprite_frame = 3
-        elif Input.is_action_pressed("player_right"):
+        elif Input.is_action_pressed("player_right") or Input.is_action_pressed("ui_right"):
             direction = RIGHT
             get_node("PlayerSprite").set_frame(2)
             global.player.sprite_frame = 2

@@ -1,6 +1,6 @@
 extends Control
 
-var current_option = 0
+var current_option = 1
 var cursor
 var options
 

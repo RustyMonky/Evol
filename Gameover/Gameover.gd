@@ -21,7 +21,7 @@ func _on_GameoverTimer_timeout():
 
     if get_visible_characters() == get_total_character_count() && get_total_character_count() > 0 && not can_reload:
         can_reload = true
-        gameover_choice_text.set_bbcode("Press A to reload, B to exit")
+        gameover_choice_text.set_bbcode("Press Z to reload, X to exit")
         gameover_choice_text.set_visible_characters(100)
 
 

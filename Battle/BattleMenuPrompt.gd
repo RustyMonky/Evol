@@ -88,7 +88,7 @@ func _on_BattleMenuPromptTimer_timeout():
 func _input(event):
 
     # if the text is done and the user clicks to continue...
-    if is_text_done && Input.is_action_pressed("ui_accept"):
+    if is_text_done && event.is_action_pressed("ui_accept"):
 
         # We're dead, so...
         if is_player_dead:
