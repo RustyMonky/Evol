@@ -2,7 +2,6 @@ extends Node
 
 var game_state = {
     is_battling = false,
-    is_paused = false,
     is_saving = false
 }
 
@@ -25,7 +24,7 @@ var player = {
         speed = 0,
         strength = 0
     },
-    stats_sprite = "res://Assets/GUI/statsBaseSprite.png",
+    stats_sprite = "res://Assets/sprites/forms/typeSheet.png",
     sprite_frame = Rect2(0, 0, 32, 32),
     sprite_path = "res://Assets/sprites/forms/typeSheet.png",
     total_mobs_killed = 0,

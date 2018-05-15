@@ -1,11 +1,7 @@
 extends KinematicBody2D
 
-var camera
-var cam_pos
 var direction = Vector2()
 var grid
-var pause_menu
-var pause_pos
 var player_sprite
 var speed = 0
 var sprite_texture
@@ -37,32 +33,16 @@ func _ready():
 
 	self.position = gameData.player.pos
 
-	camera = $camera
-
-	# TODO - Change implementation to create and kill instances upon pressing start
-	#pause_menu = load("res://Player/PauseMenu.tscn").instance()
-	#pause_menu.set_hidden(!gameData.game_state.is_paused)
-	#get_tree().get_root().call_deferred("add_child", pause_menu)
-
-	set_process(true)
-
 	set_physics_process(true)
 
 	set_process_input(true)
-
-func _process(delta):
-	# If paused, set the position appropriately
-    if gameData.game_state.is_paused and pause_menu:
-        cam_pos = camera.position
-        pause_pos = Vector2(floor(cam_pos.x) + pause_menu.get_size().x/2, floor(cam_pos.y) - 100)
-        pause_menu.set_position(pause_pos)
 
 func _physics_process(delta):
     # Movement
     direction = Vector2()
 
-    # Only pursue movement if the player is not paused or battling
-    if not gameData.game_state.is_paused and not gameData.game_state.is_battling:
+    # Only pursue movement if the player is not battling
+    if not  gameData.game_state.is_battling:
 
         if Input.is_action_pressed("player_up") or Input.is_action_pressed("ui_up"):
             direction = TOP
@@ -110,14 +90,4 @@ func _physics_process(delta):
 
 func _input(event):
 	if event.is_action_pressed("player_pause"):
-
-		if not gameData.game_state.is_paused and not gameData.game_state.is_battling:
-			var pause_menu = load("res://Player/pause/PauseMenu.tscn").instance()
-			camera.add_child(pause_menu)
-			gameData.game_state.is_paused = true
-			cam_pos = camera.position
-			pause_pos = Vector2(floor(cam_pos.x) + pause_menu.get_size().x/2, floor(cam_pos.y) - 100)
-			pause_menu.set_position(pause_pos)
-
-		elif not gameData.game_state.is_saving:
-			gameData.game_state.is_paused = false
+		sceneManager.goto_scene("res://Player/pause/PauseMenu.tscn")

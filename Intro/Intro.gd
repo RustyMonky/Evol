@@ -57,7 +57,7 @@ func start_new_game():
 	        speed = 0,
 	        strength = 0
 	    },
-	    stats_sprite = "res://Assets/GUI/statsBaseSprite.png",
+	    stats_sprite = "res://Assets/sprites/forms/typeSheet.png",
 	    sprite_frame = 0,
 	    sprite_path = "res://Assets/sprites/forms/typeSheet.png",
 	    total_mobs_killed = 0,

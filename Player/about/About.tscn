@@ -1,7 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Player/About.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/SomepxLarge.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://Player/about/About.gd" type="Script" id=1]
+[ext_resource path="res://Assets/fonts/pauseOptions.tres" type="BitmapFont" id=2]
+
+
 
 [node name="ColorFrame" type="ColorFrame"]
 
