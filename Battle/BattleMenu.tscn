@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Battle/BattleMenu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/panel.tex" type="Texture" id=2]
@@ -8,77 +8,77 @@
 
 [node name="BattleMenu" type="Control"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 320.0
-margin/bottom = 72.0
-script/script = ExtResource( 1 )
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 320.0
+margin_bottom = 72.0
+script = ExtResource( 1 )
 
-[node name="BattleMenuFrame" type="Patch9Frame" parent="."]
+[node name="BattleMenuFrame" type="NinePatchRect" parent="."]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 328.0
-margin/bottom = 80.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 328.0
+margin_bottom = 80.0
 texture = ExtResource( 2 )
-patch_margin/left = 12
-patch_margin/top = 12
-patch_margin/right = 12
-patch_margin/bottom = 12
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
 
 [node name="BattleMenuPrompt" type="RichTextLabel" parent="BattleMenuFrame"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 16.0
-margin/top = 16.0
-margin/right = 304.0
-margin/bottom = 56.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 304.0
+margin_bottom = 56.0
 custom_fonts/normal_font = ExtResource( 3 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-bbcode/enabled = true
-bbcode/bbcode = ""
+bbcode_enabled = true
+bbcode_text = ""
 visible_characters = -1
 percent_visible = 1.0
-script/script = ExtResource( 4 )
+script = ExtResource( 4 )
 
 [node name="Cursor" type="Sprite" parent="BattleMenuFrame"]
 
-transform/pos = Vector2( 0, 20 )
+position = Vector2( 0, 20 )
 texture = ExtResource( 5 )
 
 [node name="BattleMenuOptions" type="Control" parent="BattleMenuFrame"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 320.0
-margin/bottom = 72.0
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 320.0
+margin_bottom = 72.0
 
 [node name="FightButton" type="LinkButton" parent="BattleMenuFrame/BattleMenuOptions"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 208.0
-margin/top = 16.0
-margin/right = 241.0
-margin/bottom = 36.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 208.0
+margin_top = 16.0
+margin_right = 241.0
+margin_bottom = 36.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 toggle_mode = false
@@ -89,14 +89,14 @@ underline = 2
 
 [node name="RunButton" type="LinkButton" parent="BattleMenuFrame/BattleMenuOptions"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 288.0
-margin/top = 16.0
-margin/right = 312.0
-margin/bottom = 32.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 288.0
+margin_top = 16.0
+margin_right = 312.0
+margin_bottom = 32.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 toggle_mode = false
@@ -114,31 +114,31 @@ autostart = true
 
 [node name="TextCursor" type="Sprite" parent="BattleMenuFrame"]
 
-transform/pos = Vector2( 304, 56 )
+position = Vector2( 304, 56 )
 texture = ExtResource( 5 )
 
 [node name="FightOptions" type="Control" parent="BattleMenuFrame"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="FightMove1" type="LinkButton" parent="BattleMenuFrame/FightOptions"]
 
-visibility/visible = false
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 16.0
-margin/top = 16.0
-margin/right = 40.0
-margin/bottom = 32.0
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 40.0
+margin_bottom = 32.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 toggle_mode = false
@@ -148,15 +148,15 @@ underline = 2
 
 [node name="FightMove2" type="LinkButton" parent="BattleMenuFrame/FightOptions"]
 
-visibility/visible = false
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 128.0
-margin/top = 16.0
-margin/right = 152.0
-margin/bottom = 32.0
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 128.0
+margin_top = 16.0
+margin_right = 152.0
+margin_bottom = 32.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 toggle_mode = false
@@ -166,15 +166,15 @@ underline = 2
 
 [node name="FightMove3" type="LinkButton" parent="BattleMenuFrame/FightOptions"]
 
-visibility/visible = false
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 16.0
-margin/top = 48.0
-margin/right = 40.0
-margin/bottom = 64.0
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 40.0
+margin_bottom = 64.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 toggle_mode = false
@@ -184,15 +184,15 @@ underline = 2
 
 [node name="FightMove4" type="LinkButton" parent="BattleMenuFrame/FightOptions"]
 
-visibility/visible = false
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 128.0
-margin/top = 48.0
-margin/right = 152.0
-margin/bottom = 64.0
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 128.0
+margin_top = 48.0
+margin_right = 152.0
+margin_bottom = 64.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 toggle_mode = false
@@ -202,15 +202,15 @@ underline = 2
 
 [node name="FightBackButton" type="LinkButton" parent="BattleMenuFrame"]
 
-visibility/visible = false
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 280.0
-margin/top = 48.0
-margin/right = 328.0
-margin/bottom = 64.0
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 280.0
+margin_top = 48.0
+margin_right = 328.0
+margin_bottom = 64.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 toggle_mode = false
@@ -221,9 +221,7 @@ underline = 2
 
 [node name="FightCursor" type="Sprite" parent="BattleMenuFrame"]
 
-visibility/visible = false
+visible = false
 texture = ExtResource( 5 )
 
-[connection signal="timeout" from="BattleMenuFrame/BattleMenuPromptTimer" to="BattleMenuFrame/BattleMenuPrompt" method="_on_BattleMenuPromptTimer_timeout"]
-
-
+[connection signal="timeout"  from="BattleMenuFrame/BattleMenuPromptTimer"  to="BattleMenuFrame/BattleMenuPrompt" method="_on_BattleMenuPromptTimer_timeout" binds=[  ]]

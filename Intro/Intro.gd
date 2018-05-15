@@ -1,34 +1,34 @@
 extends Control
 
-var current_option = 1
-var cursor
+var current_option = 0
 var options
 
 func _ready():
-	cursor = get_node("Cursor")
+	options = $canvasLayer/container/options.get_children()
 
-	options = get_node("Options").get_children()
+	update_label_colors(current_option)
 
 	set_process_input(true)
 
 func _input(event):
 	if event.is_action_pressed("ui_up"):
 		current_option = 0
+		update_label_colors(current_option)
 	elif event.is_action_pressed("ui_down"):
 		current_option = 1
-	update_cursor_pos()
+		update_label_colors(current_option)
 
 	if event.is_action_pressed("ui_accept"):
 		if current_option == 0:
 			save.load_game()
-			get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
+			sceneManager.goto_scene("res://Grid/Grid.tscn")
 		elif current_option == 1:
 			start_new_game()
 
 # start_new_game
 # Overwrites the save file with a fresh start
 func start_new_game():
-	global.player = {
+	gameData.player = {
 	    battle_sprite = "res://Assets/Battle/baseBattleSprite.tex",
 	    current_hp = 15,
 	    level = 1,
@@ -57,9 +57,14 @@ func start_new_game():
 
 	save.save_game()
 
-	get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
+	sceneManager.goto_scene("res://Grid/Grid.tscn")
 
-# update_cursor_pos
-# Updates the cursor position
-func update_cursor_pos():
-	cursor.set_global_pos(Vector2(110, options[current_option].get_global_pos().y))	
+# update_label_colors
+# int index
+# Updates menu label colors for selection
+func update_label_colors(index):
+	for label in options:
+		if options[index] == label:
+			label.set("custom_colors/font_color", Color("#5b315b"))
+		else:
+			label.set("custom_colors/font_color", Color("#f9f9f9"))

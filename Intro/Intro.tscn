@@ -1,106 +1,122 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Intro/Intro.gd" type="Script" id=1]
-[ext_resource path="res://Assets/GUI/evolTitle.png" type="Texture" id=2]
-[ext_resource path="res://Fonts/SomepxLarge.fnt" type="BitmapFont" id=3]
-[ext_resource path="res://Assets/GUI/cursorwhite.tex" type="Texture" id=4]
+[ext_resource path="res://Assets/GUI/titleScreen.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/titleOptions.tres" type="DynamicFont" id=3]
 
-[node name="Intro" type="Control"]
+[node name="intro" type="Control" index="0"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
-script/script = ExtResource( 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 1 )
 
-[node name="ColorFrame" type="ColorFrame" parent="."]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 320.0
-margin/bottom = 288.0
-color = Color( 0, 0, 0, 1 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-transform/pos = Vector2( 160, 144 )
-anchor_mode = 1
-rotating = false
-current = true
-zoom = Vector2( 1, 1 )
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-drag_margin/h_enabled = true
-drag_margin/v_enabled = true
-smoothing/enable = false
-smoothing/speed = 5.0
-drag_margin/left = 0.2
-drag_margin/top = 0.2
-drag_margin/right = 0.2
-drag_margin/bottom = 0.2
-
-[node name="Sprite" type="Sprite" parent="."]
+[node name="titleSplash" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )
 centered = false
+_sections_unfolded = [ "Visibility" ]
 
-[node name="Options" type="Control" parent="."]
+[node name="canvasLayer" type="CanvasLayer" parent="." index="1"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Continue" type="Label" parent="Options"]
+[node name="container" type="Container" parent="canvasLayer" index="0"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 130.0
-margin/top = 230.0
-margin/right = 190.0
-margin/bottom = 250.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="options" type="Control" parent="canvasLayer/container" index="0"]
+
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -240.0
+margin_top = -432.0
+margin_right = 240.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+_sections_unfolded = [ "Rect" ]
+
+[node name="continue" type="Label" parent="canvasLayer/container/options" index="0"]
+
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -120.0
+margin_right = 50.0
+margin_bottom = -20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 0
 custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "Continue"
+align = 1
+autowrap = true
+uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
 
-[node name="New" type="Label" parent="Options"]
+[node name="new" type="Label" parent="canvasLayer/container/options" index="1"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 130.0
-margin/top = 250.0
-margin/right = 200.0
-margin/bottom = 270.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -80.0
+margin_right = 50.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 0
 custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "New Game"
+align = 1
+autowrap = true
+uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-
-[node name="Cursor" type="Sprite" parent="."]
-
-transform/pos = Vector2( 110, 230 )
-texture = ExtResource( 4 )
-centered = false
+_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
 
 
