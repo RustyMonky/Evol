@@ -45,8 +45,7 @@ func start_new_game():
 	    moves = [
 	        { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
 	    ],
-	    # The below value may change and is currently hardset to work with the test grid
-	    pos = Vector2(200, 200),
+	    pos = Vector2(1, 1),
 	    stats = {
 	        defense = 5,
 	        speed = 5,

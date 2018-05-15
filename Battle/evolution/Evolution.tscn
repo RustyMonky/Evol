@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Battle/Evolution.gd" type="Script" id=1]
+[ext_resource path="res://Battle/evolution/Evolution.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Forms/defFront.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Forms/spdSide.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Forms/strFront.png" type="Texture" id=4]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Fonts/Somepx.fnt" type="BitmapFont" id=7]
 [ext_resource path="res://Assets/GUI/panel.tex" type="Texture" id=8]
 [ext_resource path="res://Assets/GUI/cursor.tex" type="Texture" id=9]
+
 
 [node name="Evolution" type="Node2D"]
 

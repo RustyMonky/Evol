@@ -22,11 +22,12 @@ func _ready():
 
 	var encounter_positions = []
 
-	for n in range(100):
-	    var grid_pos = Vector2(randi() % int(grid_size.x), randi() % int(grid_size.y))
+	for n in range(int(grid_size.x / 5)):
+		randomize()
+		var grid_pos = Vector2(randi() % int(grid_size.x), randi() % int(grid_size.y))
 
-	    if not grid_pos in encounter_positions:
-	        encounter_positions.append(grid_pos)
+		if not grid_pos in encounter_positions:
+			encounter_positions.append(grid_pos)
 
 	for pos in encounter_positions:
 	    #var new_encounter = Encounter.instance()
@@ -39,7 +40,9 @@ func _ready():
 	# Finally, add an instance of the player
 	var player_instance = load("res://Player/Player.tscn").instance()
 	add_child(player_instance)
-	player_instance.position = gameData.player.pos
+	player_instance.position = map_to_world(gameData.player.pos)
+
+	print(encounter_positions)
 
 # ---------------
 # Class Functions

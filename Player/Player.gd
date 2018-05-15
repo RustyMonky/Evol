@@ -74,11 +74,10 @@ func _physics_process(delta):
         elif is_moving:
             speed = MAX_SPEED
             velocity = speed * target_direction * delta
-            move(velocity)
+            move_and_collide(velocity)
 
-            var pos = get_pos()
-            var distance_to_target = Vector2(abs(target_pos.x - pos.x), abs(target_pos.y - pos.y))
-            gameData.player.pos = pos
+            var distance_to_target = Vector2(abs(target_pos.x - self.position.x), abs(target_pos.y - self.position.y))
+            gameData.player.pos = self.position
 
             if abs(velocity.x) > distance_to_target.x:
                 velocity.x = distance_to_target.x * target_direction.x

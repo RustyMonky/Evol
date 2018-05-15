@@ -13,7 +13,7 @@ var player = {
     moves = [
         { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
     ],
-    pos = Vector2(200, 200),
+    pos = Vector2(1, 1),
     stats = {
         defense = 5,
         speed = 5,
@@ -52,8 +52,10 @@ func _ready():
 # Globally accessible function to generate a new random number
 func get_random_number(limit):
     randomize()
+
     if (randi() % int(limit)) == 0:
         return 1
+
     return (randi() % int(limit))
 
 # Level up function when can be called from anywhere

@@ -17,84 +17,79 @@ var show_info
 const MOB_MOVE_SPEED = 200
 
 func _ready():
-    battle_background = get_node("BattleControl").get_node("BattleBackground")
-    battle_menu = get_node("BattleControl").get_node("BattleMenu")
+	battle_menu = $control/BattleMenu
 
-    show_info = false
+	show_info = false
 
-    mob_node = get_node("BattleMob")
-    mob_sprite = mob_node.get_node("MobSprite")
-    mob_node.set_pos(Vector2(battle_background.get_pos().x - 32, battle_background.get_pos().y + 48))
+	mob_node = $BattleMob
+	mob_sprite = $BattleMob/MobSprite
+	mob_node.position = Vector2(-32, 48) # TODO - RETURN TO EDIT THIS
 
-    # Let's open our mob json and get the mob data
-    var file = File.new()
-    file.open("res://Mobs/mobs.json", File.READ)
-    var file_text = file.get_as_text()
-    mobs.parse_json(file_text)
-    file.close()
+	# Let's open our mob json and get the mob data
+	var file = File.new()
+	file.open("res://Mobs/mobs.json", File.READ)
+	var file_text = file.get_as_text()
+	mobs = parse_json(file_text)
+	file.close()
 
-    # Randomize mob selection
-    var mob_index = global.get_random_number(3)
-    mob_to_fight = mobs.mobs[mob_index]
-    mob_sprite.set_texture(load(mob_to_fight.sprite))
-    global.mob = mob_to_fight
-    global.mob.current_hp = mob_to_fight.maxHp
-    global.mob.level = (global.get_random_number(global.player.level) + 1)
-    global.mob.stats.defense += global.mob.level
-    global.mob.stats.speed += global.mob.level
-    global.mob.stats.strength += global.mob.level
-    global.mob.statsChanged = {
-        defense = 0,
-        speed = 0,
-        strength = 0
-    }
-    global.mob.xp = mob_to_fight.xp * global.mob.level
+	# Randomize mob selection
+	var mob_index = gameData.get_random_number(3) # TODO - Update Number to reflect mob count
 
-    # Add mob info instance
-    mob_info = preload("res://Battle/BattleInfo.tscn").instance();
-    mob_info.type = "mob"
-    mob_info.get_node("NameLabel").set_pos(Vector2(16, 16))
-    mob_info.get_node("LevelLabel").set_pos(Vector2(16, 32))
-    mob_info.get_node("HpBar").set_pos(Vector2(16, 48))
+	mob_to_fight = mobs.mobs[mob_index]
+	mob_sprite.set_texture(load(mob_to_fight.sprite))
 
-    mob_info.max_hp = mob_to_fight.maxHp
-    mob_info.current_hp = global.mob.current_hp
+	gameData.mob = mob_to_fight
+	gameData.mob.current_hp = mob_to_fight.maxHp
+	gameData.mob.level = (gameData.get_random_number(gameData.player.level) + 1)
+	gameData.mob.stats.defense += gameData.mob.level
+	gameData.mob.stats.speed += gameData.mob.level
+	gameData.mob.stats.strength += gameData.mob.level
+	gameData.mob.statsChanged = {
+	    defense = 0,
+	    speed = 0,
+	    strength = 0
+	}
+	gameData.mob.xp = mob_to_fight.xp * gameData.mob.level
 
-    get_node("BattleControl").call_deferred("add_child", mob_info)
-    battle_menu.mob_info = mob_info
+	# Add mob info instance
+	mob_info = load("res://Battle/info/BattleInfo.tscn").instance();
+	mob_info.type = "mob"
+	mob_info.max_hp = mob_to_fight.maxHp
+	mob_info.current_hp = gameData.mob.current_hp
+	#mob_info.position = Vector2(16, 16)
 
-    # Add player info instance
-    player_info = preload("res://Battle/BattleInfo.tscn").instance();
+	$control.call_deferred("add_child", mob_info)
+	battle_menu.mob_info = mob_info
 
-    player_info.get_node("NameLabel").set_pos(Vector2(144, 160))
-    player_info.type = "player"
-    player_info.get_node("LevelLabel").set_pos(Vector2(144, 176))
-    player_info.get_node("HpBar").set_pos(Vector2(144, 192))
+	# Add player info instance
+	player_info = load("res://Battle/info/BattleInfo.tscn").instance();
+	
+	#player_info.position = Vector2(144, 160)
+	player_info.type = "player"
+	player_info.max_hp = gameData.player.max_hp
+	player_info.current_hp = gameData.player.current_hp
+	
+	$control.call_deferred("add_child", player_info)
+	battle_menu.player_info = player_info
+	
+	#player_sprite = battle_background.get_node("BattlePlayerSprite")
+	#var player_texture = load(global.player.battle_sprite)
+	#player_sprite.set_texture(player_texture)
+	
+	set_process(true)
 
-    player_info.max_hp = global.player.max_hp
-    player_info.current_hp = global.player.current_hp
-
-    get_node("BattleControl").call_deferred("add_child", player_info)
-    battle_menu.player_info = player_info
-
-    player_sprite = battle_background.get_node("BattlePlayerSprite")
-    var player_texture = load(global.player.battle_sprite)
-    player_sprite.set_texture(player_texture)
-
-    set_fixed_process(true)
-
-func _fixed_process(delta):
-    if round(mob_node.get_pos().x) < (battle_background.get_size().x - 64):
-        mob_node.move(Vector2(MOB_MOVE_SPEED * delta, 0))
+func _process(delta):
+    if round(mob_node.position.x) < (480 - 64):
+        mob_node.move_and_collide(Vector2(MOB_MOVE_SPEED * delta, 0))
     elif not show_info:
         show_info = true
 
     if show_info:
-        mob_info.get_node("NameLabel").set_hidden(false)
-        mob_info.get_node("LevelLabel").set_hidden(false)
-        mob_info.get_node("HpBar").set_hidden(false)
+        mob_info.get_node("NameLabel").show()
+        mob_info.get_node("LevelLabel").show()
+        mob_info.get_node("HpBar").show()
 
-        player_info.get_node("NameLabel").set_hidden(false)
-        player_info.get_node("LevelLabel").set_hidden(false)
-        player_info.get_node("HpBar").set_hidden(false)
+        player_info.get_node("NameLabel").show()
+        player_info.get_node("LevelLabel").show()
+        player_info.get_node("HpBar").show()
 

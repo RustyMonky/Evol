@@ -3,12 +3,7 @@ extends Control
 var current_option = 0
 var current_move = 0
 
-var cursor
-var cursor_is_moving
-
 var fight_back_btn
-var fight_cursor
-var fight_cursor_is_moving = false
 
 var is_attacking = false
 var is_player_turn
@@ -27,34 +22,26 @@ var player_info
 var show_moves = false
 
 func _ready():
-    menu_frame = get_node("BattleMenuFrame")
+    menu_frame = $frame
 
-    menu_prompt = menu_frame.get_node("BattleMenuPrompt")
+    menu_prompt = $frame/menuPrompt
 
-    moves = menu_frame.get_node("FightOptions").get_children()
+    moves = $frame/fightOptions.get_children()
 
     for move in moves:
         var index = moves.find(move)
-        if global.player.moves.size() > index:
-            move.set_text(global.player.moves[index].name)
 
-    options = menu_frame.get_node("BattleMenuOptions").get_children()
+        if gameData.player.moves.size() > index:
+            move.set_text(gameData.player.moves[index].name)
 
-    cursor = menu_frame.get_node("Cursor")
-    cursor_update()
-    cursor_is_moving = false
+    options = $frame/menuOptions.get_children()
 
     show_moves = false
 
-    fight_back_btn = menu_frame.get_node("FightBackButton")
-
-    fight_cursor = menu_frame.get_node("FightCursor")
-
-    # Make the options and cursor invisible until all the introductory prompts are done
-    cursor.set_hidden(true)
+    fight_back_btn = $frame/back
 
     for op in options:
-        op.set_hidden(true)
+        op.visible = true
         
     set_process_input(true)
 
@@ -74,32 +61,19 @@ func _input(event):
                 move.set_hidden(false)
 
             menu_prompt.toggle_hidden(true)
-            menu_frame.get_node("TextCursor").set_hidden(true)
 
             # The above hides children, this hides the prompt itself
             menu_prompt.set_hidden(true)
 
             fight_back_btn.set_hidden(false)
-            fight_cursor_update()
-            fight_cursor.set_hidden(false)
 
     # Move between "Fight" and "Run"
-    if not show_moves && not cursor_is_moving:
+    #if not show_moves:
 
-        if event.is_action_pressed("ui_left") or event.is_action_pressed("player_left"):
-
-            cursor_is_moving = true
-            update_current_option("left")
-            cursor_update()
-
-        elif event.is_action_pressed("ui_right") or event.is_action_pressed("player_right"):
-
-            cursor_is_moving = true
-            update_current_option("right")
-            cursor_update()
+        # TODO - Replace cursor implementation with text highlighting
 
     # Exit fight menu
-    elif show_moves:
+    if show_moves:
         # Cancel "Fight"
         if event.is_action_pressed("ui_cancel"):
 
@@ -107,31 +81,27 @@ func _input(event):
             show_moves = false
 
         # Movement Options
-        elif event.is_action_pressed("ui_left") or event.is_action_pressed("player_left") && !fight_cursor_is_moving:
-            fight_cursor_is_moving = true
+        elif event.is_action_pressed("ui_left") or event.is_action_pressed("player_left"):
             update_current_move("left")
-            fight_cursor_update()
+            # Replace cursor implementaiton with text highlighting
 
-        elif event.is_action_pressed("ui_right") or event.is_action_pressed("player_right") && !fight_cursor_is_moving:
-            fight_cursor_is_moving = true
+        elif event.is_action_pressed("ui_right") or event.is_action_pressed("player_right"):
             update_current_move("right")
-            fight_cursor_update()
+            # Replace cursor implementaiton with text highlighting
 
-        elif event.is_action_pressed("ui_up") or event.is_action_pressed("player_up") && !fight_cursor_is_moving:
-            fight_cursor_is_moving = true
+        elif event.is_action_pressed("ui_up") or event.is_action_pressed("player_up"):
             update_current_move("up")
-            fight_cursor_update()
+            # Replace cursor implementaiton with text highlighting
 
-        elif event.is_action_pressed("ui_down") or event.is_action_pressed("player_down") && !fight_cursor_is_moving:
-            fight_cursor_is_moving = true
+        elif event.is_action_pressed("ui_down") or event.is_action_pressed("player_down"):
             update_current_move("down")
-            fight_cursor_update()
+            # Replace cursor implementaiton with text highlighting
 
         # If the user selects an attack whose text is clearly visible...
         elif event.is_action_pressed("ui_accept") && moves[current_move].is_visible():
             if (is_attacking):
                 # Whoever is faster attacks first
-                if global.player.stats.speed >= global.mob.stats.speed:
+                if gameData.player.stats.speed >= gameData.mob.stats.speed:
                     player_attack()
                 else:
                     mob_attack()
@@ -165,43 +135,43 @@ func calculate_damage(attack):
     if not is_player_turn:
 
         # If the ability deals damage...
-        if global.mob.moves[attack].damage > 0:
+        if gameData.mob.moves[attack].damage > 0:
 
-            damage = floor(global.mob.moves[attack].damage * (global.mob.stats.strength + global.mob.statsChanged.strength) / (global.player.stats.defense + global.player.statsChanged.defense))
+            damage = floor(gameData.mob.moves[attack].damage * (gameData.mob.stats.strength + gameData.mob.statsChanged.strength) / (gameData.player.stats.defense + gameData.player.statsChanged.defense))
 
             # But if it's so weak it's floored to 0, bump to 1
             if (damage == 0): damage = 1
 
-            global.player.current_hp -= damage
-            player_info.current_hp = global.player.current_hp
+            gameData.player.current_hp -= damage
+            player_info.current_hp = gameData.player.current_hp
 
         # Otherwise, if it's stat based...
         else:
-            if global.mob.moves[attack].stat.has('strength'):
-                global.mob.statsChanged.strength += global.mob.moves[attack].stat.strength
-            elif global.mob.moves[attack].stat.has('defense'):
-                global.mob.statsChanged.defense += global.mob.moves[attack].stat.defense
-            elif global.mob.moves[attack].stat.has('speed'):
-                global.mob.statsChanged.speed += global.mob.moves[attack].stat.speed
+            if gameData.mob.moves[attack].stat.has('strength'):
+                gameData.mob.statsChanged.strength += gameData.mob.moves[attack].stat.strength
+            elif gameData.mob.moves[attack].stat.has('defense'):
+                gameData.mob.statsChanged.defense += gameData.mob.moves[attack].stat.defense
+            elif gameData.mob.moves[attack].stat.has('speed'):
+                gameData.mob.statsChanged.speed += gameData.mob.moves[attack].stat.speed
 
     elif is_player_turn:
 
-        if global.player.moves[attack].damage > 0:
+        if gameData.player.moves[attack].damage > 0:
 
-            damage = floor(global.player.moves[attack].damage * (global.player.stats.strength + global.player.statsChanged.strength) / (global.mob.stats.defense + global.mob.statsChanged.defense))
+            damage = floor(gameData.player.moves[attack].damage * (gameData.player.stats.strength + gameData.player.statsChanged.strength) / (gameData.mob.stats.defense + gameData.mob.statsChanged.defense))
 
             if (damage == 0): damage = 1
 
-            global.mob.current_hp -= damage
-            mob_info.current_hp = global.mob.current_hp
+            gameData.mob.current_hp -= damage
+            mob_info.current_hp = gameData.mob.current_hp
 
         else:
-            if global.player.moves[attack].stat.has('strength'):
-                global.player.statsChanged.strength += global.player.moves[attack].stat.strength
-            elif global.player.moves[attack].stat.has('defense'):
-                global.player.statsChanged.defense += global.player.moves[attack].stat.defense
-            elif global.player.moves[attack].stat.has('speed'):
-                global.player.statsChanged.speed += global.player.moves[attack].stat.speed
+            if gameData.player.moves[attack].stat.has('strength'):
+                gameData.player.statsChanged.strength += gameData.player.moves[attack].stat.strength
+            elif gameData.player.moves[attack].stat.has('defense'):
+                gameData.player.statsChanged.defense += gameData.player.moves[attack].stat.defense
+            elif gameData.player.moves[attack].stat.has('speed'):
+                gameData.player.statsChanged.speed += gameData.player.moves[attack].stat.speed
 
     # If mob is dead
     if mob_info.current_hp <= 0:
@@ -211,16 +181,6 @@ func calculate_damage(attack):
     elif player_info.current_hp <= 0:
         is_attacking = false
         show_moves = false
-
-# cursor_update
-# Updates the position of the cursor based on the currently selected menu option
-func cursor_update():
-    cursor.set_global_pos(Vector2(options[current_option].get_global_pos().x - 8, cursor.get_global_pos().y))
-
-# fight_cursor_update
-# Updates the position of the cursor based on the currently selected move
-func fight_cursor_update():
-    fight_cursor.set_global_pos(Vector2(moves[current_move].get_global_pos().x - 8, moves[current_move].get_global_pos().y + 4))
 
 # hide_fight_controls
 # Toggles visibility of various fight controls
@@ -233,20 +193,18 @@ func hide_fight_controls(hide):
     for move in moves:
         move.set_hidden(hide)
 
-    fight_cursor.set_hidden(hide)
-
 # mob_attack
 # Prepares the mob's attack
 func mob_attack():
     is_player_turn = false
 
-    var mob_attack = floor(rand_range(0, global.mob.moves.size()))
+    var mob_attack = floor(rand_range(0, gameData.mob.moves.size()))
     calculate_damage(mob_attack)
 
     hide_fight_controls(true)
 
     menu_prompt.toggle_hidden(true)
-    menu_prompt.set_prompt_text(global.mob.name + " used " + global.mob.moves[mob_attack].name + "!")
+    menu_prompt.set_prompt_text(gameData.mob.name + " used " + gameData.mob.moves[mob_attack].name + "!")
 
 # player_attack
 # Prepares the player's attack
@@ -258,13 +216,11 @@ func player_attack():
     hide_fight_controls(true)
 
     menu_prompt.toggle_hidden(true)
-    menu_prompt.set_prompt_text("You used " + global.player.moves[current_move].name + "!")
+    menu_prompt.set_prompt_text("You used " + gameData.player.moves[current_move].name + "!")
 
 # update_current_move
 # Updates the currently selected fight cursor move
 func update_current_move(direction):
-    if fight_cursor_is_moving == false:
-        return false
 
     # In order to have the cursor move cleanly, instead of in rapid flashes
     # hard set the current option as opposed to incrementing or decrementing
@@ -304,18 +260,12 @@ func update_current_move(direction):
     if moves[current_move].get_text() == '':
         current_move = 0
 
-    fight_cursor_is_moving = false
-
 # update_current_option
 # Updates the currently selected cursor option
 func update_current_option(direction):
-    if cursor_is_moving == false:
-        return false
 
     # Simplified menu logic until more options are added
     if direction == "left":
         current_option = 0
     elif direction == "right":
         current_option = 1
-
-    cursor_is_moving = false

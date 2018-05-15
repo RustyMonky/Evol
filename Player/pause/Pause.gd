@@ -43,9 +43,6 @@ func _input(event):
 	
 		elif current_option == 2:
 			sceneManager.goto_scene("res://Grid/Grid.tscn")
-	
-		elif current_option == 3:
-			sceneManager.goto_scene("res://Player/About.tscn")
 
 	# Just close
 	elif event.is_action_pressed("ui_cancel"):

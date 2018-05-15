@@ -4,7 +4,7 @@
 [ext_resource path="res://Player/pause/Pause.gd" type="Script" id=2]
 [ext_resource path="res://Assets/fonts/pauseOptions.tres" type="DynamicFont" id=3]
 
-[node name="menu" type="Control" index="0"]
+[node name="menu" type="Control"]
 
 anchor_left = 1.0
 anchor_top = 0.0
@@ -64,9 +64,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 70.0
+margin_top = 107.0
 margin_right = 480.0
-margin_bottom = 140.0
+margin_bottom = 177.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -106,9 +106,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 144.0
+margin_top = 181.0
 margin_right = 480.0
-margin_bottom = 214.0
+margin_bottom = 251.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -148,9 +148,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 218.0
+margin_top = 255.0
 margin_right = 480.0
-margin_bottom = 288.0
+margin_bottom = 325.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -177,48 +177,6 @@ size_flags_vertical = 0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "Exit"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
-
-[node name="about" type="CenterContainer" parent="frame/menuOptions" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 292.0
-margin_right = 480.0
-margin_bottom = 362.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
-
-[node name="label" type="Label" parent="frame/menuOptions/about" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 189.0
-margin_right = 291.0
-margin_bottom = 70.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 2
-size_flags_vertical = 0
-custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
-text = "Info"
 align = 1
 valign = 1
 percent_visible = 1.0
