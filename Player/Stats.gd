@@ -8,17 +8,17 @@ var stat_values
 
 func _ready():
     level_label = get_node("LvlLabel")
-    level_label.set_text("Lvl. " + String(global.player.level))
+    level_label.set_text("Lvl. " + String(gameData.player.level))
 
     moves_list = get_node("KnownMoves").get_children()
 
     stat_values = get_node("StatValues")
 
-    stat_values.get_node("HpValue").set_text(String(global.player.current_hp) + "/" + String(global.player.max_hp))
-    stat_values.get_node("DefenseValue").set_text(String(global.player.stats.defense))
-    stat_values.get_node("SpeedValue").set_text(String(global.player.stats.speed))
-    stat_values.get_node("StrengthValue").set_text(String(global.player.stats.strength))
-    stat_values.get_node("XpValue").set_text(String(global.player.xp))
+    stat_values.get_node("HpValue").set_text(String(gameData.player.current_hp) + "/" + String(global.player.max_hp))
+    stat_values.get_node("DefenseValue").set_text(String(gameData.player.stats.defense))
+    stat_values.get_node("SpeedValue").set_text(String(gameData.player.stats.speed))
+    stat_values.get_node("StrengthValue").set_text(String(gameData.player.stats.strength))
+    stat_values.get_node("XpValue").set_text(String(gameData.player.xp))
 
     for move in global.player.moves:
         var index = global.player.moves.find(move)

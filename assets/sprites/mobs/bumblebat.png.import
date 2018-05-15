@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bumblebat.png-21e04fa4bfc6c5ca3312380f0c2eee7c.stex"
+path="res://.import/bumblebat.png-f900e861a2a3ddd3c308a1f7e67ed1e7.stex"
 
 [deps]
 
-source_file="res://assets/sprites/mobs/bumblebat.png"
+source_file="res://Assets/sprites/mobs/bumblebat.png"
 source_md5="e492fbc317d28fd0c8bb1281520a425b"
 
-dest_files=[ "res://.import/bumblebat.png-21e04fa4bfc6c5ca3312380f0c2eee7c.stex" ]
+dest_files=[ "res://.import/bumblebat.png-f900e861a2a3ddd3c308a1f7e67ed1e7.stex" ]
 dest_md5="cc3791da6aa4ac28ecf1434838ae4874"
 
 [params]

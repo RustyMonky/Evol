@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/statsBaseSprite.png-ca78fa705ecb327e3e8752fbf9042a23.stex"
+path="res://.import/statsBaseSprite.png-24827b6d0ad8b16dec00996f5139a47f.stex"
 
 [deps]
 
-source_file="res://assets/gui/statsBaseSprite.png"
+source_file="res://Assets/GUI/statsBaseSprite.png"
 source_md5="70627c16ba90ba03a974c2ec48d1c865"
 
-dest_files=[ "res://.import/statsBaseSprite.png-ca78fa705ecb327e3e8752fbf9042a23.stex" ]
+dest_files=[ "res://.import/statsBaseSprite.png-24827b6d0ad8b16dec00996f5139a47f.stex" ]
 dest_md5="d7c0165a5869a896b25e2fb5c3ad8947"
 
 [params]

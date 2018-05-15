@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spdBack.png-43c8f3463116f2e1b1335bc5c3c1effb.stex"
+path="res://.import/spdBack.png-17226cb052324b441c9bbb1671713aac.stex"
 
 [deps]
 
-source_file="res://assets/sprites/forms/spdBack.png"
+source_file="res://Assets/sprites/forms/spdBack.png"
 source_md5="496ea239861ab363a70ae688ee9777be"
 
-dest_files=[ "res://.import/spdBack.png-43c8f3463116f2e1b1335bc5c3c1effb.stex" ]
+dest_files=[ "res://.import/spdBack.png-17226cb052324b441c9bbb1671713aac.stex" ]
 dest_md5="81a5e0cde3d7f38cbb63166cc340b3ff"
 
 [params]

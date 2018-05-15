@@ -1,6 +1,7 @@
 extends Control
 
-var current_option = 0
+var current_option = 1
+var has_saved_game = false
 var options
 
 func _ready():
@@ -8,20 +9,28 @@ func _ready():
 
 	update_label_colors(current_option)
 
+	has_saved_game = save.load_game()
+
+	if !has_saved_game:
+		options[0].visible = false
+
 	set_process_input(true)
 
 func _input(event):
-	if event.is_action_pressed("ui_up"):
+	if event.is_action_pressed("ui_up") && has_saved_game:
 		current_option = 0
 		update_label_colors(current_option)
+
 	elif event.is_action_pressed("ui_down"):
 		current_option = 1
 		update_label_colors(current_option)
 
 	if event.is_action_pressed("ui_accept"):
+
 		if current_option == 0:
 			save.load_game()
 			sceneManager.goto_scene("res://Grid/Grid.tscn")
+
 		elif current_option == 1:
 			start_new_game()
 
@@ -50,7 +59,7 @@ func start_new_game():
 	    },
 	    stats_sprite = "res://Assets/GUI/statsBaseSprite.png",
 	    sprite_frame = 0,
-	    sprite_path = "res://Player/baseEvolSheet.tex",
+	    sprite_path = "res://Assets/sprites/forms/typeSheet.png",
 	    total_mobs_killed = 0,
 	    xp = 0
 	}
@@ -65,6 +74,6 @@ func start_new_game():
 func update_label_colors(index):
 	for label in options:
 		if options[index] == label:
-			label.set("custom_colors/font_color", Color("#5b315b"))
-		else:
 			label.set("custom_colors/font_color", Color("#f9f9f9"))
+		else:
+			label.set("custom_colors/font_color", Color("#5b315b"))

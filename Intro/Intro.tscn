@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/GUI/titleScreen.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/titleOptions.tres" type="DynamicFont" id=3]
 
-[node name="intro" type="Control" index="0"]
+[node name="intro" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -90,7 +90,7 @@ uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
+_sections_unfolded = [ "Rect", "Visibility", "custom_colors", "custom_fonts" ]
 
 [node name="new" type="Label" parent="canvasLayer/container/options" index="1"]
 

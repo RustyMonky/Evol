@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/strSheet.png-c5ded52a8ce6c71c2d32cc30a150d2f6.stex"
+path="res://.import/strSheet.png-2fedd114c9f75b1cae3946eb9ceb08a2.stex"
 
 [deps]
 
-source_file="res://assets/sprites/forms/strSheet.png"
+source_file="res://Assets/sprites/forms/strSheet.png"
 source_md5="e8ee29af653fd4aedbf796869b6639e8"
 
-dest_files=[ "res://.import/strSheet.png-c5ded52a8ce6c71c2d32cc30a150d2f6.stex" ]
+dest_files=[ "res://.import/strSheet.png-2fedd114c9f75b1cae3946eb9ceb08a2.stex" ]
 dest_md5="b67a2629fd0290162373b4bae0a8e182"
 
 [params]

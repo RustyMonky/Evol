@@ -30,7 +30,7 @@ func save_game():
 
 	var save_file = File.new()
 	save_file.open(SAVE_PATH, File.WRITE)
-	save_file.store_line(save_dictionary.to_json())
+	save_file.store_line(to_json(save_dictionary))
 	save_file.close()
 
 	gameData.game_state.is_saving = false
@@ -40,10 +40,13 @@ func load_game():
 	var data
 
 	if not save_file.file_exists(SAVE_PATH):
-		return
+		return false
 
 	save_file.open(SAVE_PATH, File.READ)
 	data = parse_json(save_file.get_as_text())
+
+	if data == null:
+		return false
 
 	gameData.player.battle_sprite = data["player"]["battle_sprite"]
 	gameData.player.current_hp = data["player"]["current_hp"]
@@ -57,3 +60,5 @@ func load_game():
 	gameData.player.stats_sprite = data["player"]["stats_sprite"]
 	gameData.player.total_mobs_killed = data["player"]["total_mobs_killed"]
 	gameData.player.xp = data["player"]["xp"]
+
+	return true

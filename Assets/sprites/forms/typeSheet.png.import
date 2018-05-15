@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/defBack.png-54d11716abebcfc34f656af3edd1f39a.stex"
+path="res://.import/typeSheet.png-011da6eedbdc9b00fd134b48737e9931.stex"
 
 [deps]
 
-source_file="res://Assets/sprites/forms/defBack.png"
-source_md5="fe6c51ddf70742944e1a338237facf27"
+source_file="res://Assets/sprites/forms/typeSheet.png"
+source_md5="83c086edc11755977725ece967b74062"
 
-dest_files=[ "res://.import/defBack.png-54d11716abebcfc34f656af3edd1f39a.stex" ]
-dest_md5="bebbb4c8ceb4993b9f2c3260c7be2853"
+dest_files=[ "res://.import/typeSheet.png-011da6eedbdc9b00fd134b48737e9931.stex" ]
+dest_md5="b8ea2f2180bcf117419a1bec3b43c1dd"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

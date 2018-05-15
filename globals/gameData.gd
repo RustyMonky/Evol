@@ -26,8 +26,8 @@ var player = {
         strength = 0
     },
     stats_sprite = "res://Assets/GUI/statsBaseSprite.png",
-    sprite_frame = 0,
-    sprite_path = "res://Player/baseEvolSheet.tex",
+    sprite_frame = Rect2(0, 0, 32, 32),
+    sprite_path = "res://Assets/sprites/forms/typeSheet.png",
     total_mobs_killed = 0,
     xp = 0
 }
