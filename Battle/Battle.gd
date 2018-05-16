@@ -1,12 +1,10 @@
 extends Node2D
 
-var battle_background
 var battle_menu
 
 var mobs = {}
 var mob_to_fight
 var mob_node
-var mob_sprite
 var mob_info
 
 var player_info
@@ -17,13 +15,13 @@ var show_info
 const MOB_MOVE_SPEED = 200
 
 func _ready():
-	battle_menu = $control/BattleMenu
+	battle_menu = load("res://battle/menu/BattleMenu.tscn").instance()
+	$control/container.call_deferred("add_child", battle_menu)
+	battle_menu.set_position(Vector2(0, 352)) # Display height - menu frame height
 
 	show_info = false
 
 	mob_node = $BattleMob
-	mob_sprite = $BattleMob/MobSprite
-	mob_node.position = Vector2(-32, 48) # TODO - RETURN TO EDIT THIS
 
 	# Let's open our mob json and get the mob data
 	var file = File.new()
@@ -33,10 +31,11 @@ func _ready():
 	file.close()
 
 	# Randomize mob selection
-	var mob_index = gameData.get_random_number(3) # TODO - Update Number to reflect mob count
+	var mob_index = gameData.get_random_number(mobs.mobs.size())
 
 	mob_to_fight = mobs.mobs[mob_index]
-	mob_sprite.set_texture(load(mob_to_fight.sprite))
+	mob_node.set_texture(load(mob_to_fight.sprite))
+	mob_node.position = Vector2(0 - mob_node.get_texture().get_size().x, mob_node.get_texture().get_size().y)
 
 	gameData.mob = mob_to_fight
 	gameData.mob.current_hp = mob_to_fight.maxHp
@@ -53,43 +52,33 @@ func _ready():
 
 	# Add mob info instance
 	mob_info = load("res://Battle/info/BattleInfo.tscn").instance();
+	$control/container.call_deferred("add_child", mob_info)
 	mob_info.type = "mob"
 	mob_info.max_hp = mob_to_fight.maxHp
 	mob_info.current_hp = gameData.mob.current_hp
-	#mob_info.position = Vector2(16, 16)
-
-	$control.call_deferred("add_child", mob_info)
+	mob_info.set_position(Vector2(0, 0))
+	mob_info.hide()
 	battle_menu.mob_info = mob_info
 
 	# Add player info instance
 	player_info = load("res://Battle/info/BattleInfo.tscn").instance();
-	
-	#player_info.position = Vector2(144, 160)
+	$control/container.call_deferred("add_child", player_info)
 	player_info.type = "player"
 	player_info.max_hp = gameData.player.max_hp
 	player_info.current_hp = gameData.player.current_hp
-	
-	$control.call_deferred("add_child", player_info)
+	player_info.set_position(Vector2(144, 160))
+	player_info.hide()
 	battle_menu.player_info = player_info
-	
-	#player_sprite = battle_background.get_node("BattlePlayerSprite")
-	#var player_texture = load(global.player.battle_sprite)
-	#player_sprite.set_texture(player_texture)
 	
 	set_process(true)
 
 func _process(delta):
     if round(mob_node.position.x) < (480 - 64):
-        mob_node.move_and_collide(Vector2(MOB_MOVE_SPEED * delta, 0))
+        mob_node.position.x += (MOB_MOVE_SPEED * delta)
     elif not show_info:
         show_info = true
 
     if show_info:
-        mob_info.get_node("NameLabel").show()
-        mob_info.get_node("LevelLabel").show()
-        mob_info.get_node("HpBar").show()
-
-        player_info.get_node("NameLabel").show()
-        player_info.get_node("LevelLabel").show()
-        player_info.get_node("HpBar").show()
+        mob_info.show()
+        player_info.show()
 

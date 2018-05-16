@@ -1,12 +1,5 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene format=2]
 
+[node name="mob" type="Sprite"]
 
-[node name="Mob" type="KinematicBody2D"]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/margin = 0.08
-
-[node name="MobSprite" type="Sprite" parent="."]
 

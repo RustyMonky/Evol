@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spdSide.png-3668447649f28920a451a21b305c5ec7.stex"
+path="res://.import/spdSide.png-6ca056fc8470845eae052a277054c2cd.stex"
 
 [deps]
 
-source_file="res://Assets/sprites/forms/spdSide.png"
+source_file="res://assets/sprites/forms/spdSide.png"
 source_md5="e22a45744249135fa05213dbb223035b"
 
-dest_files=[ "res://.import/spdSide.png-3668447649f28920a451a21b305c5ec7.stex" ]
+dest_files=[ "res://.import/spdSide.png-6ca056fc8470845eae052a277054c2cd.stex" ]
 dest_md5="5b0d24a66bbc8e35ba63b9095298b086"
 
 [params]

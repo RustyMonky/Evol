@@ -1,7 +1,6 @@
 extends RichTextLabel
 
 var battle_menu
-var battle_menu_options
 var battle_node
 var change_turn = false
 var is_battle_done = false
@@ -14,7 +13,6 @@ var prompt_text
 
 func _ready():
     battle_menu = get_parent().get_parent()
-    battle_menu_options = get_parent().get_node("BattleMenuOptions")
 
     set_process_input(true)
 
@@ -128,12 +126,14 @@ func set_run_text(text):
 
 # toggle_hidden
 # Toggles visibility of battle menu options
-func toggle_hidden(is_visible):
-    for opt in battle_menu.options:
-        opt.set_hidden(is_visible)
+func toggle_hidden(is_hidden):
+	for opt in battle_menu.options:
+		if is_hidden:
+			opt.hide()
+		else:
+			opt.show()
 
 # text_done
 # Updates node visibilities when prompt text is complete
 func text_done(is_done):
     is_text_done = is_done
-

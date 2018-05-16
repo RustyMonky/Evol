@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hpOver.png-5717620d1ac3643b5254367ea13736d4.stex"
+path="res://.import/hpOver.png-fb9ce6af8911693c874ac61f673dd284.stex"
 
 [deps]
 
-source_file="res://Assets/GUI/hp/hpOver.png"
+source_file="res://assets/gui/hp/hpOver.png"
 source_md5="8fee80837b635e9a300572d650cb76a0"
 
-dest_files=[ "res://.import/hpOver.png-5717620d1ac3643b5254367ea13736d4.stex" ]
+dest_files=[ "res://.import/hpOver.png-fb9ce6af8911693c874ac61f673dd284.stex" ]
 dest_md5="4df8495edd215eb0e54389be56599069"
 
 [params]

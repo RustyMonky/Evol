@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/defFront.png-1c21a51d8a14b86561ce67e547cf9d14.stex"
+path="res://.import/defFront.png-187babf6d9534195dc7750df1b9b279e.stex"
 
 [deps]
 
-source_file="res://Assets/sprites/forms/defFront.png"
+source_file="res://assets/sprites/forms/defFront.png"
 source_md5="c4b1245a9298f1e621cad2cc941a52c1"
 
-dest_files=[ "res://.import/defFront.png-1c21a51d8a14b86561ce67e547cf9d14.stex" ]
+dest_files=[ "res://.import/defFront.png-187babf6d9534195dc7750df1b9b279e.stex" ]
 dest_md5="1363853f9447d0f0fe60687951ef7bb8"
 
 [params]

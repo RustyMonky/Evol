@@ -1,69 +1,42 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
-[ext_resource path="res://Battle/menu/BattleMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Mobs/Mob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Mobs/Mob.tscn" type="PackedScene" id=2]
 
 [node name="battle" type="Node2D"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="control" type="Control" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 320.0
-margin_bottom = 288.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 416.0
+margin_bottom = 368.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
+_sections_unfolded = [ "Rect" ]
 
-[node name="camera" type="Camera2D" parent="control" index="0"]
-
-offset = Vector2( 160, 145 )
-anchor_mode = 1
-rotating = false
-current = true
-zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
-
-[node name="BattleMenu" parent="control" index="1" instance=ExtResource( 2 )]
+[node name="container" type="Container" parent="control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 218.0
-margin_bottom = 258.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 
-[node name="BattleMob" parent="." index="1" instance=ExtResource( 3 )]
-
-collision/safe_margin = 0.08
+[node name="BattleMob" parent="." index="1" instance=ExtResource( 2 )]
 
 

@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slime.png-300a5e3e514a19ce37ef98067365112f.stex"
+path="res://.import/slime.png-08ed1d6a87f1f21ddc6c9a88224a8d84.stex"
 
 [deps]
 
-source_file="res://Assets/sprites/mobs/slime.png"
+source_file="res://assets/sprites/mobs/slime.png"
 source_md5="7c8a1c4e0f6e397f09a86cc0b0cabc0d"
 
-dest_files=[ "res://.import/slime.png-300a5e3e514a19ce37ef98067365112f.stex" ]
+dest_files=[ "res://.import/slime.png-08ed1d6a87f1f21ddc6c9a88224a8d84.stex" ]
 dest_md5="b64b240de2c1f8d526281a23fed5c19a"
 
 [params]

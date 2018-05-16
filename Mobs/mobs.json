@@ -10,7 +10,7 @@
                 }
             ],
             "name": "Slime",
-            "sprite": "res://Assets/Mobs/slime.png",
+            "sprite": "res://assets/sprites/mobs/slime.png",
             "stats": {
                 "defense": 1,
                 "speed": 1,
@@ -39,7 +39,7 @@
                 }
             ],
             "name": "Dodocan",
-            "sprite": "res://Assets/Mobs/dodocan.png",
+            "sprite": "res://assets/sprites/mobs/dodocan.png",
             "stats": {
                 "defense": 1,
                 "speed": 1,
@@ -69,7 +69,7 @@
                 }
             ],
             "name": "Bumblebat",
-            "sprite": "res://Assets/Mobs/bumblebat.png",
+            "sprite": "res://assets/sprites/mobs/bumblebat.png",
             "stats": {
                 "defense": 1,
                 "speed": 3,

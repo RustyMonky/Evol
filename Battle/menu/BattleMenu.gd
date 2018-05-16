@@ -38,7 +38,7 @@ func _ready():
 
     show_moves = false
 
-    fight_back_btn = $frame/back
+    fight_back_btn = $frame/fightOptions/back
 
     for op in options:
         op.visible = true
@@ -58,14 +58,14 @@ func _input(event):
         elif current_option == 0 && not menu_prompt.is_intro && menu_prompt.is_text_done && not is_attacking:
             show_moves = true
             for move in moves:
-                move.set_hidden(false)
+                move.show()
 
             menu_prompt.toggle_hidden(true)
 
             # The above hides children, this hides the prompt itself
-            menu_prompt.set_hidden(true)
+            menu_prompt.hide()
 
-            fight_back_btn.set_hidden(false)
+            fight_back_btn.show()
 
     # Move between "Fight" and "Run"
     #if not show_moves:
@@ -185,13 +185,21 @@ func calculate_damage(attack):
 # hide_fight_controls
 # Toggles visibility of various fight controls
 func hide_fight_controls(hide):
-    fight_back_btn.set_hidden(hide)
+	if hide:
+		fight_back_btn.hide()
+		menu_prompt.toggle_hidden(false)
+		menu_prompt.show()
 
-    menu_prompt.toggle_hidden(!hide)
-    menu_prompt.set_hidden(!hide)
+		for move in moves:
+			move.hide()
 
-    for move in moves:
-        move.set_hidden(hide)
+	else:
+		fight_back_btn.show()
+		menu_prompt.toggle_hidden(true)
+		menu_prompt.hide()
+
+		for move in moves:
+			move.show()
 
 # mob_attack
 # Prepares the mob's attack

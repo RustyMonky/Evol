@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dodocan.png-7c77377ccd0e65b05cb1e7a896072345.stex"
+path="res://.import/dodocan.png-1c86f5d4b51ec2bb3888d1927048ff34.stex"
 
 [deps]
 
-source_file="res://Assets/sprites/mobs/dodocan.png"
+source_file="res://assets/sprites/mobs/dodocan.png"
 source_md5="3c6b85027cb6e4229d373c11de7286b9"
 
-dest_files=[ "res://.import/dodocan.png-7c77377ccd0e65b05cb1e7a896072345.stex" ]
+dest_files=[ "res://.import/dodocan.png-1c86f5d4b51ec2bb3888d1927048ff34.stex" ]
 dest_md5="5b266a1041eddc620d441e9a4053477a"
 
 [params]

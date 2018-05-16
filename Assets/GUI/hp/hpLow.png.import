@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hpLow.png-6366dc580da683ca7da5189261a94bed.stex"
+path="res://.import/hpLow.png-69f7cc2078c38e088fb15215ea4e5046.stex"
 
 [deps]
 
-source_file="res://Assets/GUI/hp/hpLow.png"
+source_file="res://assets/gui/hp/hpLow.png"
 source_md5="3af8d1f0488c18afe1d946f2adc83a19"
 
-dest_files=[ "res://.import/hpLow.png-6366dc580da683ca7da5189261a94bed.stex" ]
+dest_files=[ "res://.import/hpLow.png-69f7cc2078c38e088fb15215ea4e5046.stex" ]
 dest_md5="486aa1203516eb017c14cdfcda310f2b"
 
 [params]

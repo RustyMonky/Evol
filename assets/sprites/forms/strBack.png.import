@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/strBack.png-c88816e1e76e8e8eccb06f19adc9b46d.stex"
+path="res://.import/strBack.png-1f7cbc0c6c8298960747e630cfc8dac9.stex"
 
 [deps]
 
-source_file="res://Assets/sprites/forms/strBack.png"
+source_file="res://assets/sprites/forms/strBack.png"
 source_md5="c6d7f5845f9e0d0c1b57f9e544df4062"
 
-dest_files=[ "res://.import/strBack.png-c88816e1e76e8e8eccb06f19adc9b46d.stex" ]
+dest_files=[ "res://.import/strBack.png-1f7cbc0c6c8298960747e630cfc8dac9.stex" ]
 dest_md5="df082834bfe426370b93eae88b126315"
 
 [params]
