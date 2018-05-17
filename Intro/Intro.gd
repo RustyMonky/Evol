@@ -41,6 +41,7 @@ func start_new_game():
         battle_sprite = "",
         current_hp = 15,
         elemental_type = null,
+        form = null,
         level = 1,
         max_hp = 15,
         moves = [
@@ -57,9 +58,9 @@ func start_new_game():
             speed = 0,
             strength = 0
         },
-        stats_sprite = "res://assets/sprites/forms/typeSheet.png",
+        stats_sprite = "res://assets/sprites/forms/sheets-32x32/baseSheet.png",
         sprite_frame = 0,
-        sprite_path = "res://assets/sprites/forms/typeSheet.png",
+        sprite_path = "res://assets/sprites/forms/sheets-32x32/baseSheet.png",
         total_mobs_killed = 0,
         xp = 0
     }

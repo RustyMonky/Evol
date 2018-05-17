@@ -22,20 +22,20 @@ const RIGHT = Vector2(1, 0)
 const MAX_SPEED = 100
 
 func _ready():
-	grid = get_parent()
-	type = grid.PLAYER
+    grid = get_parent()
+    type = grid.PLAYER
 
-	player_sprite = $sprite
+    player_sprite = $sprite
 
-	sprite_texture = load(gameData.player.sprite_path)
-	player_sprite.set_texture(sprite_texture)
-	player_sprite.set_frame(gameData.player.sprite_frame)
+    sprite_texture = load(gameData.player.sprite_path)
+    player_sprite.set_texture(sprite_texture)
+    player_sprite.set_region_rect(gameData.player.sprite_frame)
 
-	self.position = gameData.player.pos
+    self.position = gameData.player.pos
 
-	set_physics_process(true)
+    set_physics_process(true)
 
-	set_process_input(true)
+    set_process_input(true)
 
 func _physics_process(delta):
     # Movement
@@ -85,5 +85,5 @@ func _physics_process(delta):
             is_moving = false
 
 func _input(event):
-	if event.is_action_pressed("player_pause"):
-		sceneManager.goto_scene("res://Player/pause/PauseMenu.tscn")
+    if event.is_action_pressed("player_pause"):
+        sceneManager.goto_scene("res://Player/pause/PauseMenu.tscn")

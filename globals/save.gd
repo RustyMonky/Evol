@@ -12,6 +12,7 @@ func save_game():
             battle_sprite = gameData.player.battle_sprite,
             current_hp = gameData.player.current_hp,
             elemental_type = gameData.player.elemental_type,
+            form = gameData.player.form,
             level = gameData.player.level,
             max_hp = gameData.player.max_hp,
             moves = gameData.player.moves,
@@ -52,6 +53,7 @@ func load_game():
     gameData.player.battle_sprite = data["player"]["battle_sprite"]
     gameData.player.current_hp = data["player"]["current_hp"]
     gameData.player.elemental_type = data["player"]["elemental_type"]
+    gameData.player.form = data["player"]["form"]
     gameData.player.level = data["player"]["level"]
     gameData.player.max_hp = data["player"]["max_hp"]
     gameData.player.moves = data["player"]["moves"]
