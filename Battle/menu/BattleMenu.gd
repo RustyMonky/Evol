@@ -85,17 +85,7 @@ func _input(event):
                 # Otherwise, if the user clicks to continue and the intro is completed, they'll be choosing fight by default
                 # Tl,dr: start the battle
                 elif current_option == 0 && not is_intro && not is_attacking:
-                    show_moves = true
-
-                    for move in moves:
-                        move.show()
-
-                    toggle_hidden(true)
-
-                    # The above hides children, this hides the prompt itself
-                    menu_prompt.hide()
-
-                    fight_back_btn.show()
+                    hide_fight_controls(false)
 
     # Otherwise, if the encounter must end, return to the grid
     elif event.is_action_pressed("ui_accept") && is_running && must_leave:
@@ -224,21 +214,23 @@ func calculate_damage(attack):
 # hide_fight_controls
 # Toggles visibility of various fight controls
 func hide_fight_controls(hide):
-	if hide:
-		fight_back_btn.hide()
-		toggle_hidden(false)
-		menu_prompt.show()
+    if hide:
+        show_moves = false
+        fight_back_btn.hide()
+        toggle_hidden(false)
+        menu_prompt.show()
 
-		for move in moves:
-			move.hide()
+        for move in moves:
+            move.hide()
 
-	else:
-		fight_back_btn.show()
-		toggle_hidden(true)
-		menu_prompt.hide()
+    else:
+        show_moves = true
+        fight_back_btn.show()
+        toggle_hidden(true)
+        menu_prompt.hide()
 
-		for move in moves:
-			move.show()
+        for move in moves:
+            move.show()
 
 # mob_attack
 # Prepares the mob's attack

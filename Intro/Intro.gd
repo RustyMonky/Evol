@@ -5,72 +5,73 @@ var has_saved_game = false
 var options
 
 func _ready():
-	options = $canvasLayer/container/options.get_children()
+    options = $canvasLayer/container/options.get_children()
 
-	update_label_colors(current_option)
+    update_label_colors(current_option)
 
-	has_saved_game = save.load_game()
+    has_saved_game = save.load_game()
 
-	if !has_saved_game:
-		options[0].hide()
+    if !has_saved_game:
+        options[0].hide()
 
-	set_process_input(true)
+    set_process_input(true)
 
 func _input(event):
-	if event.is_action_pressed("ui_up") && has_saved_game:
-		current_option = 0
-		update_label_colors(current_option)
+    if event.is_action_pressed("ui_up") && has_saved_game:
+        current_option = 0
+        update_label_colors(current_option)
 
-	elif event.is_action_pressed("ui_down"):
-		current_option = 1
-		update_label_colors(current_option)
+    elif event.is_action_pressed("ui_down"):
+        current_option = 1
+        update_label_colors(current_option)
 
-	if event.is_action_pressed("ui_accept"):
+    if event.is_action_pressed("ui_accept"):
 
-		if current_option == 0:
-			save.load_game()
-			sceneManager.goto_scene("res://grid/grid.tscn")
+        if current_option == 0:
+            save.load_game()
+            sceneManager.goto_scene("res://grid/grid.tscn")
 
-		elif current_option == 1:
-			start_new_game()
+        elif current_option == 1:
+            start_new_game()
 
 # start_new_game
 # Uses new values for new game - DOES NOT OVERWRITE SAVE
 func start_new_game():
-	gameData.player = {
-	    battle_sprite = "",
-	    current_hp = 15,
-	    level = 1,
-	    max_hp = 15,
-	    moves = [
-	        { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
-	    ],
-	    pos = Vector2(1, 1),
-	    stats = {
-	        defense = 5,
-	        speed = 5,
-	        strength = 5
-	    },
-	    statsChanged = {
-	        defense = 0,
-	        speed = 0,
-	        strength = 0
-	    },
-	    stats_sprite = "res://assets/sprites/forms/typeSheet.png",
-	    sprite_frame = 0,
-	    sprite_path = "res://assets/sprites/forms/typeSheet.png",
-	    total_mobs_killed = 0,
-	    xp = 0
-	}
+    gameData.player = {
+        battle_sprite = "",
+        current_hp = 15,
+        elemental_type = null,
+        level = 1,
+        max_hp = 15,
+        moves = [
+            { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
+        ],
+        pos = Vector2(1, 1),
+        stats = {
+            defense = 5,
+            speed = 5,
+            strength = 5
+        },
+        statsChanged = {
+            defense = 0,
+            speed = 0,
+            strength = 0
+        },
+        stats_sprite = "res://assets/sprites/forms/typeSheet.png",
+        sprite_frame = 0,
+        sprite_path = "res://assets/sprites/forms/typeSheet.png",
+        total_mobs_killed = 0,
+        xp = 0
+    }
 
-	sceneManager.goto_scene("res://grid/grid.tscn")
+    sceneManager.goto_scene("res://grid/grid.tscn")
 
 # update_label_colors
 # int index
 # Updates menu label colors for selection
 func update_label_colors(index):
-	for label in options:
-		if options[index] == label:
-			label.set("custom_colors/font_color", Color("#f9f9f9"))
-		else:
-			label.set("custom_colors/font_color", Color("#5b315b"))
+    for label in options:
+        if options[index] == label:
+            label.set("custom_colors/font_color", Color("#f9f9f9"))
+        else:
+            label.set("custom_colors/font_color", Color("#5b315b"))

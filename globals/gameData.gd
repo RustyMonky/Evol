@@ -5,8 +5,9 @@ var game_state = {
 }
 
 var player = {
-    battle_sprite = "res://Assets/Battle/baseBattleSprite.tex",
+    battle_sprite = "",
     current_hp = 15,
+    elemental_type = null,
     level = 1,
     max_hp = 15,
     moves = [
@@ -44,7 +45,7 @@ var xp_required_array = []
 
 func _ready():
     # Populate xp array
-	for n in range(1, 101):
+    for n in range(1, 101):
         var xp_req = (n * 10) * n
         xp_required_array.append(xp_req)
 
@@ -58,6 +59,7 @@ func get_random_number(limit):
     return (randi() % int(limit))
 
 # Level up function when can be called from anywhere
+# TODO - Replace this with player choice -- new move, item, or stat increase
 func level_up():
     player.level += 1
     player.current_hp += 2
@@ -95,4 +97,4 @@ func level_up():
             }
         })
     elif player.level == 5:
-        goto_scene("res://Battle/Evolution.tscn")
+        sceneManager.goto_scene("res://battle/evolution.tscn")

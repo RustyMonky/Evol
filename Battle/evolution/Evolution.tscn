@@ -1,208 +1,294 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Battle/evolution/Evolution.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Forms/defFront.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Forms/spdSide.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Forms/strFront.png" type="Texture" id=4]
-[ext_resource path="res://Assets/GUI/cursorup.tex" type="Texture" id=5]
-[ext_resource path="res://Fonts/SomepxLarge.fnt" type="BitmapFont" id=6]
-[ext_resource path="res://Fonts/Somepx.fnt" type="BitmapFont" id=7]
-[ext_resource path="res://Assets/GUI/panel.tex" type="Texture" id=8]
-[ext_resource path="res://Assets/GUI/cursor.tex" type="Texture" id=9]
+[ext_resource path="res://battle/evolution/evolution.gd" type="Script" id=1]
+[ext_resource path="res://assets/GUI/panel.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/titleOptions.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/sprites/forms/64x64/baseDef.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/forms/64x64/baseSpd.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/forms/64x64/baseStr.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/forms/64x64/baseFire.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/forms/64x64/baseWater.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/forms/64x64/baseGrass.png" type="Texture" id=9]
+[ext_resource path="res://assets/GUI/pointer.png" type="Texture" id=10]
 
+[node name="evolutionContainer" type="Container" index="0"]
 
-[node name="Evolution" type="Node2D"]
-
-
-[node name="EvoBackground" type="ColorFrame" parent="."]
-
-focus_ignore_mouse = false
-focus_stop_mouse = true
-size_flags_horizontal = 2
-size_flags_vertical = 2
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 320.0
-margin_bottom = 288.0
-color = Color( 1, 1, 1, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 script = ExtResource( 1 )
 
-[node name="EvoChoices" type="Node2D" parent="EvoBackground"]
+[node name="containerPatch" type="NinePatchRect" parent="." index="0"]
 
-
-[node name="DefenseSprite" type="Sprite" parent="EvoBackground/EvoChoices"]
-
-position = Vector2( 20, 20 )
+show_behind_parent = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 texture = ExtResource( 2 )
-centered = false
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+_sections_unfolded = [ "Patch Margin", "Visibility" ]
 
-[node name="SpeedSprite" type="Sprite" parent="EvoBackground/EvoChoices"]
+[node name="vBox" type="VBoxContainer" parent="." index="1"]
 
-position = Vector2( 120, 20 )
-texture = ExtResource( 3 )
-centered = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
 
-[node name="StrengthSprite" type="Sprite" parent="EvoBackground/EvoChoices"]
+[node name="evoLabel" type="Label" parent="vBox" index="0"]
 
-position = Vector2( 220, 20 )
-texture = ExtResource( 4 )
-centered = false
-
-[node name="Cursor" type="Sprite" parent="EvoBackground"]
-
-visible = false
-position = Vector2( 40, 100 )
-texture = ExtResource( 5 )
-centered = false
-
-[node name="ChoiceInfo" type="Control" parent="EvoBackground"]
-
-focus_ignore_mouse = false
-focus_stop_mouse = true
-size_flags_horizontal = 2
-size_flags_vertical = 2
-margin_left = 0.0
-margin_top = 130.0
-margin_right = 320.0
-margin_bottom = 200.0
-
-[node name="ChoiceName" type="Label" parent="EvoBackground/ChoiceInfo"]
-
-hint/tooltip = "Test"
-focus_ignore_mouse = true
-focus_stop_mouse = true
-size_flags_horizontal = 2
-size_flags_vertical = 0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 60.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 6 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 480.0
+margin_bottom = 78.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "Your growing power has caused a change in you. Your shape now takes on a new form of your choice."
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="ChoiceDesc" type="Label" parent="EvoBackground/ChoiceInfo"]
-
-hint/tooltip = "Test"
-focus_ignore_mouse = true
-focus_stop_mouse = true
-size_flags_horizontal = 2
-size_flags_vertical = 0
-margin_left = 140.0
-margin_top = 20.0
-margin_right = 300.0
-margin_bottom = 60.0
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+valign = 1
 autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Margin", "Rect", "custom_colors", "custom_fonts" ]
 
-[node name="EvoTextBox" type="NinePatchRect" parent="EvoBackground"]
+[node name="formsCenter" type="CenterContainer" parent="vBox" index="1"]
 
-focus_ignore_mouse = true
-focus_stop_mouse = true
-size_flags_horizontal = 2
-size_flags_vertical = 2
-margin_left = 1.5
-margin_top = 200.0
-margin_right = 326.5
-margin_bottom = 295.0
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 82.0
+margin_right = 480.0
+margin_bottom = 274.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+_sections_unfolded = [ "Margin" ]
+
+[node name="evolForms" type="GridContainer" parent="vBox/formsCenter" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 80.0
+margin_right = 400.0
+margin_bottom = 192.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/vseparation = 64
+custom_constants/hseparation = 64
+columns = 3
+_sections_unfolded = [ "Margin", "Rect", "Visibility", "custom_constants" ]
+
+[node name="defense" type="TextureRect" parent="vBox/formsCenter/evolForms" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 64.0
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="speed" type="TextureRect" parent="vBox/formsCenter/evolForms" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 128.0
+margin_right = 192.0
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 5 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="strength" type="TextureRect" parent="vBox/formsCenter/evolForms" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 256.0
+margin_right = 320.0
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 6 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="fire" type="TextureRect" parent="vBox/formsCenter/evolForms" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 128.0
+margin_right = 64.0
+margin_bottom = 192.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 7 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect", "Region" ]
+
+[node name="water" type="TextureRect" parent="vBox/formsCenter/evolForms" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 192.0
+margin_bottom = 192.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 texture = ExtResource( 8 )
-patch_margin_left = 12
-patch_margin_top = 12
-patch_margin_right = 12
-patch_margin_bottom = 12
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
 
-[node name="EvoText" type="RichTextLabel" parent="EvoBackground/EvoTextBox"]
+[node name="grass" type="TextureRect" parent="vBox/formsCenter/evolForms" index="5"]
 
-focus_ignore_mouse = false
-focus_stop_mouse = true
-size_flags_horizontal = 2
-size_flags_vertical = 2
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 310.0
-margin_bottom = 50.0
-custom_fonts/normal_font = ExtResource( 6 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-bbcode_enabled = true
-bbcode_text = ""
-visible_characters = -1
-percent_visible = 1.0
-
-[node name="EvoTextTimer" type="Timer" parent="EvoBackground/EvoTextBox"]
-
-process_mode = 1
-wait_time = 0.05
-one_shot = false
-autostart = true
-
-[node name="EvoConfirm" type="Label" parent="EvoBackground/EvoTextBox"]
-
-visible = false
-focus_ignore_mouse = false
-focus_stop_mouse = true
-size_flags_horizontal = 2
-size_flags_vertical = 2
-margin_left = 100.0
-margin_top = 50.0
-margin_right = 140.0
-margin_bottom = 80.0
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Yes"
-uppercase = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="EvoReject" type="Label" parent="EvoBackground/EvoTextBox"]
-
-visible = false
-focus_ignore_mouse = false
-focus_stop_mouse = true
-size_flags_horizontal = 2
-size_flags_vertical = 2
-margin_left = 160.0
-margin_top = 50.0
-margin_right = 200.0
-margin_bottom = 80.0
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "No"
-uppercase = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="TextCursor" type="Sprite" parent="EvoBackground/EvoTextBox"]
-
-visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 256.0
+margin_top = 128.0
+margin_right = 320.0
+margin_bottom = 192.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 texture = ExtResource( 9 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
 
-[node name="EvoCamera" type="Camera2D" parent="."]
+[node name="formName" type="Label" parent="vBox" index="2"]
 
-offset = Vector2( 160, 145 )
-anchor_mode = 1
-rotating = false
-current = true
-zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-drag_margin/h_enabled = true
-drag_margin/v_enabled = true
-smoothing_enabled = false
-smoothing_speed = 5.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 278.0
+margin_right = 480.0
+margin_bottom = 302.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[connection signal="timeout"  from="EvoBackground/EvoTextBox/EvoTextTimer"  to="EvoBackground" method="_on_EvoTextTimer_timeout" binds=[  ]]
+[node name="formDesc" type="Label" parent="vBox" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 306.0
+margin_right = 480.0
+margin_bottom = 330.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="pointer" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 10 )
+
+

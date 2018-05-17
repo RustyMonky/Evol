@@ -11,31 +11,31 @@ var grid = []
 enum ENTITY_TYPES {PLAYER, ENCOUNTER}
 
 func _ready():
-	# Create grid array
-	for x in range(grid_size.x):
-	    grid.append([])
+    # Create grid array
+    for x in range(grid_size.x):
+        grid.append([])
 
-	    for y in range(grid_size.y):
-	        grid[x].append(null)
+        for y in range(grid_size.y):
+            grid[x].append(null)
 
-	var encounter_positions = []
+    var encounter_positions = []
 
-	for n in range(int(grid_size.x / 5)):
-		randomize()
-		var grid_pos = Vector2(randi() % int(grid_size.x), randi() % int(grid_size.y))
+    for n in range(int(grid_size.x / 3)):
+        randomize()
+        var grid_pos = Vector2(randi() % int(grid_size.x), randi() % int(grid_size.y))
 
-		if not grid_pos in encounter_positions:
-			encounter_positions.append(grid_pos)
+        if not grid_pos in encounter_positions:
+            encounter_positions.append(grid_pos)
 
-	for pos in encounter_positions:
-	    grid[pos.x][pos.y] = ENCOUNTER
+    for pos in encounter_positions:
+        grid[pos.x][pos.y] = ENCOUNTER
 
-	# Finally, add an instance of the player
-	var player_instance = load("res://player/player.tscn").instance()
-	add_child(player_instance)
-	player_instance.position = map_to_world(gameData.player.pos)
+    # Finally, add an instance of the player
+    var player_instance = load("res://player/player.tscn").instance()
+    add_child(player_instance)
+    player_instance.position = map_to_world(gameData.player.pos)
 
-	print(encounter_positions)
+    print(encounter_positions)
 
 # ---------------
 # Class Functions
