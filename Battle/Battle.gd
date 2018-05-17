@@ -10,16 +10,12 @@ var mob_info
 var player_info
 var player_sprite
 
-var show_info
-
 const MOB_MOVE_SPEED = 200
 
 func _ready():
 	battle_menu = load("res://battle/menu/BattleMenu.tscn").instance()
 	$control/container.call_deferred("add_child", battle_menu)
 	battle_menu.set_position(Vector2(0, 352)) # Display height - menu frame height
-
-	show_info = false
 
 	mob_node = $BattleMob
 
@@ -57,7 +53,7 @@ func _ready():
 	mob_info.max_hp = mob_to_fight.maxHp
 	mob_info.current_hp = gameData.mob.current_hp
 	mob_info.set_position(Vector2(0, 0))
-	mob_info.hide()
+
 	battle_menu.mob_info = mob_info
 
 	# Add player info instance
@@ -66,8 +62,9 @@ func _ready():
 	player_info.type = "player"
 	player_info.max_hp = gameData.player.max_hp
 	player_info.current_hp = gameData.player.current_hp
-	player_info.set_position(Vector2(144, 160))
-	player_info.hide()
+	print(get_viewport_rect())
+	player_info.set_position(Vector2(332, 264))
+
 	battle_menu.player_info = player_info
 	
 	set_process(true)
@@ -75,10 +72,4 @@ func _ready():
 func _process(delta):
     if round(mob_node.position.x) < (480 - 64):
         mob_node.position.x += (MOB_MOVE_SPEED * delta)
-    elif not show_info:
-        show_info = true
-
-    if show_info:
-        mob_info.show()
-        player_info.show()
 

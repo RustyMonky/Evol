@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/gui/panel.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/somepx24.tres" type="DynamicFont" id=3]
 
-[node name="menu" type="Container" index="0"]
+[node name="menu" type="Container"]
 
 anchor_left = 0.0
 anchor_top = 0.0

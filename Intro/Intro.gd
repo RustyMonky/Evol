@@ -35,7 +35,7 @@ func _input(event):
 			start_new_game()
 
 # start_new_game
-# Overwrites the save file with a fresh start
+# Uses new values for new game - DOES NOT OVERWRITE SAVE
 func start_new_game():
 	gameData.player = {
 	    battle_sprite = "",
@@ -62,8 +62,6 @@ func start_new_game():
 	    total_mobs_killed = 0,
 	    xp = 0
 	}
-
-	save.save_game()
 
 	sceneManager.goto_scene("res://grid/grid.tscn")
 

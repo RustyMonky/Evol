@@ -18,12 +18,6 @@ func _ready():
     hp_bar.set_max(max_hp)
     hp_bar.set_value(current_hp)
 
-    # Hide upon encounter initialization
-    # This will be changed once the mob sprite is in place
-    $infoBox/name.hide()
-    $infoBox/lvl.hide()
-    hp_bar.hide()
-
     set_process(true)
 
 func _process(delta):
