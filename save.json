@@ -1,1 +1,0 @@
-{"player":{"battle_sprite":"","current_hp":15,"level":1,"max_hp":15,"moves":[{"damage":3,"desc":"Charge at an enemy","name":"Rush"}],"pos":{"x":1,"y":1},"sprite_frame":0,"sprite_path":"res://assets/sprites/forms/typeSheet.png","stats":{"defense":5,"speed":5,"strength":5},"stats_sprite":"res://assets/sprites/forms/typeSheet.png","total_mobs_killed":0,"xp":0}}
