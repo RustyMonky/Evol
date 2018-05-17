@@ -12,7 +12,7 @@ func _ready():
 	has_saved_game = save.load_game()
 
 	if !has_saved_game:
-		options[0].visible = false
+		options[0].hide()
 
 	set_process_input(true)
 
@@ -29,7 +29,7 @@ func _input(event):
 
 		if current_option == 0:
 			save.load_game()
-			sceneManager.goto_scene("res://Grid/Grid.tscn")
+			sceneManager.goto_scene("res://grid/grid.tscn")
 
 		elif current_option == 1:
 			start_new_game()
@@ -38,7 +38,7 @@ func _input(event):
 # Overwrites the save file with a fresh start
 func start_new_game():
 	gameData.player = {
-	    battle_sprite = "res://Assets/Battle/baseBattleSprite.tex",
+	    battle_sprite = "",
 	    current_hp = 15,
 	    level = 1,
 	    max_hp = 15,
@@ -56,16 +56,16 @@ func start_new_game():
 	        speed = 0,
 	        strength = 0
 	    },
-	    stats_sprite = "res://Assets/sprites/forms/typeSheet.png",
+	    stats_sprite = "res://assets/sprites/forms/typeSheet.png",
 	    sprite_frame = 0,
-	    sprite_path = "res://Assets/sprites/forms/typeSheet.png",
+	    sprite_path = "res://assets/sprites/forms/typeSheet.png",
 	    total_mobs_killed = 0,
 	    xp = 0
 	}
 
 	save.save_game()
 
-	sceneManager.goto_scene("res://Grid/Grid.tscn")
+	sceneManager.goto_scene("res://grid/grid.tscn")
 
 # update_label_colors
 # int index

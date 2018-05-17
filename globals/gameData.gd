@@ -1,7 +1,6 @@
 extends Node
 
 var game_state = {
-    is_battling = false,
     is_saving = false
 }
 
@@ -96,5 +95,4 @@ func level_up():
             }
         })
     elif player.level == 5:
-        game_state.is_battling = false;
         goto_scene("res://Battle/Evolution.tscn")

@@ -1,18 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/stats/Stats.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/forms/typeSheet.png" type="Texture" id=2]
 [ext_resource path="res://Assets/fonts/pauseOptions.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Assets/fonts/titleOptions.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/GUI/panel.png" type="Texture" id=5]
 
-[node name="stats" type="Control"]
+[node name="stats" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 320.0
-margin_bottom = 290.0
+margin_right = 480.0
+margin_bottom = 432.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -20,6 +21,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 script = ExtResource( 1 )
+_sections_unfolded = [ "Rect" ]
 
 [node name="playerSprite" type="Sprite" parent="." index="0"]
 
@@ -36,7 +38,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
+margin_left = 32.0
 margin_top = 160.0
 margin_right = 100.0
 margin_bottom = 180.0
@@ -47,11 +49,12 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "Known Moves"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Margin", "custom_colors" ]
 
 [node name="lvlLabel" type="Label" parent="." index="2"]
 
@@ -59,10 +62,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
+margin_left = 32.0
 margin_top = 120.0
-margin_right = 50.0
-margin_bottom = 134.0
+margin_right = 96.0
+margin_bottom = 152.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -74,16 +77,17 @@ custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+_sections_unfolded = [ "Margin", "Rect", "custom_colors", "custom_fonts" ]
 
 [node name="statsContainer" type="MarginContainer" parent="." index="3"]
 
+editor/display_folded = true
 anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 0.0
-margin_left = -80.0
-margin_right = 160.0
+margin_left = -240.0
+margin_top = 16.0
 margin_bottom = 240.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -91,7 +95,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Rect", "custom_constants" ]
+_sections_unfolded = [ "Margin", "Rect", "custom_constants" ]
 
 [node name="statHBox" type="HBoxContainer" parent="statsContainer" index="0"]
 
@@ -101,7 +105,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
 margin_right = 240.0
-margin_bottom = 240.0
+margin_bottom = 224.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -251,7 +255,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 118.0
-margin_right = 118.0
+margin_right = 128.0
 margin_bottom = 136.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -268,6 +272,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+margin_right = 10.0
 margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -277,6 +282,7 @@ size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "5"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -289,6 +295,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 28.0
+margin_right = 10.0
 margin_bottom = 52.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -297,7 +304,8 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "5"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -309,6 +317,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 56.0
+margin_right = 10.0
 margin_bottom = 80.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -317,7 +326,8 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "5"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -329,6 +339,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 84.0
+margin_right = 10.0
 margin_bottom = 108.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -337,7 +348,8 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "5"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -349,6 +361,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 112.0
+margin_right = 10.0
 margin_bottom = 136.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -357,18 +370,19 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "5"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
 [node name="movesContainer" type="MarginContainer" parent="." index="4"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+margin_left = 32.0
 margin_top = 240.0
 margin_right = 480.0
 margin_bottom = 432.0
@@ -378,7 +392,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Margin", "Rect" ]
 
 [node name="knownMoves" type="VBoxContainer" parent="movesContainer" index="0"]
 
@@ -476,5 +490,25 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." index="5"]
+
+show_behind_parent = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 5 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+_sections_unfolded = [ "Patch Margin", "Visibility" ]
 
 

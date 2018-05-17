@@ -8,8 +8,6 @@ var half_tile_size = tile_size / 2
 var grid_size = Vector2(10, 5)
 var grid = []
 
-#onready var Encounter = preload("res://Test/TestEncounter.tscn")
-
 enum ENTITY_TYPES {PLAYER, ENCOUNTER}
 
 func _ready():
@@ -30,15 +28,10 @@ func _ready():
 			encounter_positions.append(grid_pos)
 
 	for pos in encounter_positions:
-	    #var new_encounter = Encounter.instance()
-
-	    #new_encounter.position = (map_to_world(pos) + half_tile_size)
 	    grid[pos.x][pos.y] = ENCOUNTER
 
-	    #add_child(new_encounter)
-
 	# Finally, add an instance of the player
-	var player_instance = load("res://Player/Player.tscn").instance()
+	var player_instance = load("res://player/player.tscn").instance()
 	add_child(player_instance)
 	player_instance.position = map_to_world(gameData.player.pos)
 
@@ -63,9 +56,8 @@ func is_cell_vacant(pos, direction):
             elif grid[grid_pos.x][grid_pos.y] == ENCOUNTER:
                 # Remove the encounter from the grid position to allow movement after the encounter
                 grid[grid_pos.x][grid_pos.y] = null
-                gameData.game_state.is_battling = true
-                sceneManager.goto_scene("res://Battle/Battle.tscn")
-                return false
+                gameData.player.pos = Vector2(grid_pos.x, grid_pos.y)
+                sceneManager.goto_scene("res://battle/battle.tscn")
 
     return false
 
@@ -81,5 +73,6 @@ func update_child_pos(child_node):
     grid[new_grid_pos.x][new_grid_pos.y] = child_node.type
 
     var target_pos = map_to_world(new_grid_pos) + half_tile_size
+    print("New position is " + String(world_to_map(target_pos)))
 
     return target_pos

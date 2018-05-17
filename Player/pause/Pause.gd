@@ -33,20 +33,20 @@ func _input(event):
 		update_label_colors()
 
 	# Accept the current option
-	elif event.is_action_pressed("ui_select"):
+	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_select"):
 
 		if current_option == 0:
-			sceneManager.goto_scene("res://Player/stats/Stats.tscn")
+			sceneManager.goto_scene("res://player/stats/Stats.tscn")
 	
 		elif current_option == 1:
 			save.save_game()
 	
 		elif current_option == 2:
-			sceneManager.goto_scene("res://Grid/Grid.tscn")
+			sceneManager.goto_scene("res://grid/grid.tscn")
 
 	# Just close
 	elif event.is_action_pressed("ui_cancel"):
-		sceneManager.goto_scene("res://Grid/Grid.tscn")
+		sceneManager.goto_scene("res://grid/grid.tscn")
 
 # update_label_colors
 # Updates menu label colors for selection
