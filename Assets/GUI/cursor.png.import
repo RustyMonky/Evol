@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cursor.png-f9ea305aa827488565e68b4e2a623527.stex"
+path="res://.import/cursor.png-a7f36a67f83f1bc0f3f7272d74dea9d0.stex"
 
 [deps]
 
-source_file="res://assets/GUI/cursor.png"
+source_file="res://assets/gui/cursor.png"
 source_md5="b36c6b0c8ce8673e202c8c96e31de063"
 
-dest_files=[ "res://.import/cursor.png-f9ea305aa827488565e68b4e2a623527.stex" ]
+dest_files=[ "res://.import/cursor.png-a7f36a67f83f1bc0f3f7272d74dea9d0.stex" ]
 dest_md5="360496d318ea97e7a4b8b71a81b7156f"
 
 [params]

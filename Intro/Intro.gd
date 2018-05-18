@@ -29,10 +29,11 @@ func _input(event):
 
         if current_option == 0:
             save.load_game()
-            sceneManager.goto_scene("res://grid/grid.tscn")
 
         elif current_option == 1:
             start_new_game()
+
+        sceneManager.goto_scene("res://grid/grid.tscn")
 
 # start_new_game
 # Uses new values for new game - DOES NOT OVERWRITE SAVE
@@ -64,8 +65,6 @@ func start_new_game():
         total_mobs_killed = 0,
         xp = 0
     }
-
-    sceneManager.goto_scene("res://grid/grid.tscn")
 
 # update_label_colors
 # int index
