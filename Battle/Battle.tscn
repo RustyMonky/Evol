@@ -3,7 +3,7 @@
 [ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
 [ext_resource path="res://Mobs/Mob.tscn" type="PackedScene" id=2]
 
-[node name="battle" type="Node2D"]
+[node name="battle" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -38,5 +38,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 
 [node name="BattleMob" parent="." index="1" instance=ExtResource( 2 )]
+
+_sections_unfolded = [ "Offset", "Transform" ]
 
 

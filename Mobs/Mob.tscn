@@ -2,4 +2,6 @@
 
 [node name="mob" type="Sprite"]
 
+_sections_unfolded = [ "Transform" ]
+
 

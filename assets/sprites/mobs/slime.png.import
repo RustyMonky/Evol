@@ -7,10 +7,10 @@ path="res://.import/slime.png-08ed1d6a87f1f21ddc6c9a88224a8d84.stex"
 [deps]
 
 source_file="res://assets/sprites/mobs/slime.png"
-source_md5="7c8a1c4e0f6e397f09a86cc0b0cabc0d"
+source_md5="414f21d112082921005bf0e29f0b5074"
 
 dest_files=[ "res://.import/slime.png-08ed1d6a87f1f21ddc6c9a88224a8d84.stex" ]
-dest_md5="b64b240de2c1f8d526281a23fed5c19a"
+dest_md5="719ecc630c3be58c864b33c4c3e1e4c9"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

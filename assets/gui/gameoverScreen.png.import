@@ -2,14 +2,14 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gameoverScreen.png-80fb9bc83398b0e04a340125f7763c3c.stex"
+path="res://.import/gameoverScreen.png-c4a71bc51047bb171c4dec25156db37f.stex"
 
 [deps]
 
-source_file="res://assets/gui/gameoverScreen.png"
+source_file="res://assets/GUI/gameoverScreen.png"
 source_md5="cc5b1ac713ebeb5d5fc2edd8608c4648"
 
-dest_files=[ "res://.import/gameoverScreen.png-80fb9bc83398b0e04a340125f7763c3c.stex" ]
+dest_files=[ "res://.import/gameoverScreen.png-c4a71bc51047bb171c4dec25156db37f.stex" ]
 dest_md5="d934f5840b7469fa007821b2fb74884d"
 
 [params]
