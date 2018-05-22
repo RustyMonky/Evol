@@ -70,6 +70,6 @@ func _ready():
     set_process(true)
 
 func _process(delta):
-    if round(mob_node.position.x) < (480 - 64):
+    if round(mob_node.position.x) < (480 - mob_node.get_texture().get_size().x):
         mob_node.position.x += (MOB_MOVE_SPEED * delta)
 

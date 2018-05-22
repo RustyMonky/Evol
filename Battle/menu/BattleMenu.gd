@@ -84,7 +84,7 @@ func _input(event):
 
                     # If the player learned a move, add that info to the text as well
                     if gameData.player.moves.size() > pre_level_up_moves_count:
-                        text_array.append("You learned " + String(gameData.player.moves[-1].name) + " !")
+                        text_array.append("You learned " + String(gameData.player.moves[-1].name) + "!")
 
                 set_prompt_text(text_array, 0)
                 must_leave = true
@@ -106,7 +106,8 @@ func _input(event):
                 hide_fight_controls(false)
 
         else:
-            set_prompt_text(prompt_text_batch, prompt_text_index)
+            if menu_prompt.get_visible_characters() >= menu_prompt.get_total_character_count():
+                set_prompt_text(prompt_text_batch, prompt_text_index)
     elif event.is_action_pressed("ui_accept") && must_leave:
             if is_text_done:
                 sceneManager.goto_scene("res://grid/grid.tscn")
