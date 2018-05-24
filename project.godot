@@ -21,6 +21,7 @@ name="Evol"
 gameData="*res://globals/gameData.gd"
 sceneManager="*res://globals/sceneManager.gd"
 save="*res://globals/save.gd"
+uiLogic="*res://globals/uiLogic.gd"
 
 [display]
 

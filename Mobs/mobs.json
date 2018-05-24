@@ -6,7 +6,8 @@
                 {
                     "name": "Rush",
                     "damage": 1,
-                    "desc": "Charge at an enemy"
+                    "desc": "Charge at an enemy for 1 base damage.",
+                    "elementalType": null
                 }
             ],
             "name": "Slime",
@@ -24,18 +25,21 @@
                 {
                     "name": "Rush",
                     "damage": 1,
-                    "desc": "Charge at an enemy"
+                    "desc": "Charge at an enemy for 1 base damage.",
+                    "elementalType": null
                 },
                 {
                     "name": "Space Out",
                     "damage": 0,
-                    "desc": "Does nothing...",
+                    "desc": "Space out in the middle of battle. Oops.",
+                    "elementalType": null,
                     "stat": {}
                 },
                 {
                     "name": "Beak Smash",
                     "damage": 3,
-                    "desc": "Slams with its beak"
+                    "desc": "Slam an enemy with your beak for 3 base damage.",
+                    "elementalType": null
                 }
             ],
             "name": "Dodocan",
@@ -53,16 +57,20 @@
                 {
                     "name": "Rush",
                     "damage": 1,
-                    "desc": "Charge at an enemy"
+                    "desc": "Charge at an enemy for 1 base damage",
+                    "elementalType": null
                 },
                 {
                     "name": "Bite Sting",
                     "damage": 3,
-                    "desc": "Bites with its fangs"
+                    "desc": "Bite an enemy with sharp fangs for 3 base damage.",
+                    "elementalType": null
                 },
                 {
-                    "name": "Buzz around",
+                    "name": "Buzz Around",
                     "damage": 0,
+                    "desc": "Zoom around the opponent, slightly gaining speed.",
+                    "elementalType": null,
                     "stat": {
                         "speed": 1
                     }

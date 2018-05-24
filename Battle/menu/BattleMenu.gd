@@ -5,10 +5,12 @@ var current_option = 0
 var current_move = 0
 var fight_back_btn
 
+var is_evolving = false
 var is_intro = true
 var is_player_dead = false # Boolean that dictates routing to gameover state
 var is_player_turn = false
 var is_text_done = false
+var level_up = false
 
 var menu_frame
 var menu_options = []
@@ -40,8 +42,8 @@ func _ready():
 
     show_moves = false
     set_process_input(true)
-    update_current_object(menu_options, 0)
-    update_current_object(moves, 0)
+    uiLogic.update_current_object(menu_options, 0)
+    uiLogic.update_current_object(moves, 0)
 
      # Begin the encounter introduction
     set_prompt_text(["A " + gameData.mob.name + " appeared!", "What will you do?"], 0)
@@ -57,6 +59,12 @@ func _input(event):
             elif gameData.player.current_hp <= 0 && not is_player_dead:
                 set_prompt_text(["You've lost all of your HP...", "You've been vanquished!"], 0)
                 is_player_dead = true
+
+            elif is_evolving:
+                sceneManager.goto_scene("res://battle/evolution/evolution.tscn")
+
+            elif level_up:
+                sceneManager.goto_scene("res://victory/victory.tscn")
 
             # If the mob died, prepare victory text
             elif gameData.mob.current_hp <= 0:
@@ -76,18 +84,14 @@ func _input(event):
                 gameData.mob.statsChanged = resetStats
 
                 if gameData.player.xp >= gameData.xp_required_array[gameData.player.level]:
-                    var pre_level_up_moves_count = gameData.player.moves.size()
-
                     gameData.level_up()
-
                     text_array.append("You reached level " + String(gameData.player.level) + "!")
+                    level_up = true
 
-                    # If the player learned a move, add that info to the text as well
-                    if gameData.player.moves.size() > pre_level_up_moves_count:
-                        text_array.append("You learned " + String(gameData.player.moves[-1].name) + "!")
+                if gameData.player.level == 5:
+                    is_evolving = true
 
                 set_prompt_text(text_array, 0)
-                must_leave = true
 
             # Intro concluded, start battle sequence
             elif is_intro:
@@ -116,11 +120,11 @@ func _input(event):
 
     # Move between "Fight" and "Run"
     elif event.is_action_pressed("ui_left") && not show_moves:
-        update_current_object(menu_options, 0)
+        uiLogic.update_current_object(menu_options, 0)
         current_option = 0
 
     elif event.is_action_pressed("ui_right") && not show_moves:
-        update_current_object(menu_options, 1)
+        uiLogic.update_current_object(menu_options, 1)
         current_option = 1
 
     # Exit fight menu
@@ -139,7 +143,7 @@ func _input(event):
                 current_move = gameData.player.moves.size() - 1
             else:
                 current_move -= 1
-            update_current_object(moves, current_move)
+            uiLogic.update_current_object(moves, current_move)
 
         elif event.is_action_pressed("ui_right"):
             if current_move + 1 > (moves.size() - 1):
@@ -148,7 +152,7 @@ func _input(event):
                 current_move = 4
             else:
                 current_move += 1
-            update_current_object(moves, current_move)
+            uiLogic.update_current_object(moves, current_move)
 
         # If the user selects an attack whose text is clearly visible...
         elif event.is_action_pressed("ui_accept") && moves[current_move].is_visible():
@@ -164,42 +168,56 @@ func _input(event):
 # Class Functions
 # ---------------
 func calculate_mob_damage(attack):
-    # If the ability deals damage...
-        if gameData.mob.moves[attack].damage > 0:
+    var damage = 0
 
-            var damage = floor(gameData.mob.moves[attack].damage * (gameData.mob.stats.strength + gameData.mob.statsChanged.strength) / (gameData.player.stats.defense + gameData.player.statsChanged.defense))
+    if gameData.mob.moves[attack].damage > 0:
 
-            # But if it's so weak it's floored to 0, bump to 1
-            if (damage == 0): damage = 1
-            return damage
+        damage = floor(gameData.mob.moves[attack].damage * (gameData.mob.stats.strength + gameData.mob.statsChanged.strength) / (gameData.player.stats.defense + gameData.player.statsChanged.defense))
 
-        # Otherwise, if it's stat based...
-        else:
-            if gameData.mob.moves[attack].stat.has('strength'):
-                gameData.mob.statsChanged.strength += gameData.mob.moves[attack].stat.strength
-            elif gameData.mob.moves[attack].stat.has('defense'):
-                gameData.mob.statsChanged.defense += gameData.mob.moves[attack].stat.defense
-            elif gameData.mob.moves[attack].stat.has('speed'):
-                gameData.mob.statsChanged.speed += gameData.mob.moves[attack].stat.speed
-            return 0
+        # But if it's so weak it's floored to 0, bump to 1
+        if (damage == 0): damage = 1
+
+    if gameData.mob.moves[attack].has('stat'):
+
+        if gameData.mob.moves[attack].stat.has('strength'):
+            gameData.mob.statsChanged.strength += gameData.mob.moves[attack].stat.strength
+
+        if gameData.mob.moves[attack].stat.has('defense'):
+            gameData.mob.statsChanged.defense += gameData.mob.moves[attack].stat.defense
+
+        if gameData.mob.moves[attack].stat.has('speed'):
+            gameData.mob.statsChanged.speed += gameData.mob.moves[attack].stat.speed
+
+        if gameData.mob.moves[attack].stat.has('hp'):
+            gameData.mob.current_hp += gameData.mob.moves[attack].stat.hp
+
+    return damage
 
 # calculate_player_damage
 func calculate_player_damage(attack):
+    var damage = 0
+
     if gameData.player.moves[attack].damage > 0:
 
-            var damage = floor(gameData.player.moves[attack].damage * (gameData.player.stats.strength + gameData.player.statsChanged.strength) / (gameData.mob.stats.defense + gameData.mob.statsChanged.defense))
+            damage = floor(gameData.player.moves[attack].damage * (gameData.player.stats.strength + gameData.player.statsChanged.strength) / (gameData.mob.stats.defense + gameData.mob.statsChanged.defense))
 
             if (damage == 0): damage = 1
-            return damage
 
-    else:
+    if gameData.player.moves[attack].has('stat'):
+
         if gameData.player.moves[attack].stat.has('strength'):
             gameData.player.statsChanged.strength += gameData.player.moves[attack].stat.strength
-        elif gameData.player.moves[attack].stat.has('defense'):
+
+        if gameData.player.moves[attack].stat.has('defense'):
             gameData.player.statsChanged.defense += gameData.player.moves[attack].stat.defense
-        elif gameData.player.moves[attack].stat.has('speed'):
+
+        if gameData.player.moves[attack].stat.has('speed'):
             gameData.player.statsChanged.speed += gameData.player.moves[attack].stat.speed
-        return 0
+
+        if gameData.player.moves[attack].stat.has('hp'):
+            gameData.player.current_hp += gameData.player.moves[attack].stat.hp
+
+    return damage
 
 # hide_fight_controls
 # Toggles visibility of various fight controls
@@ -282,15 +300,6 @@ func toggle_hidden(is_hidden):
             opt.hide()
         else:
             opt.show()
-
-# update_current_object
-# Updates the currently selected object in a collection via its font color
-func update_current_object(collection, index):
-    for obj in collection:
-        if collection[index] == obj:
-            obj.set("custom_colors/font_color", Color("#f9f9f9"))
-        else:
-            obj.set("custom_colors/font_color", Color("#5b315b"))
 
 # _on_menuPromptTimer_timeout
 # Dictates menu prompt text output

@@ -6,18 +6,18 @@ var options
 func _ready():
     options = $canvasLayer/container/options.get_children()
 
-    update_label_colors(current_option)
+    uiLogic.update_current_object(options, current_option)
 
     set_process_input(true)
 
 func _input(event):
     if event.is_action_pressed("ui_up"):
         current_option = 0
-        update_label_colors(current_option)
+        uiLogic.update_current_object(options, current_option)
     
     elif event.is_action_pressed("ui_down"):
         current_option = 1
-        update_label_colors(current_option)
+        uiLogic.update_current_object(options, current_option)
     
     if event.is_action_pressed("ui_accept"):
     
@@ -59,13 +59,3 @@ func start_new_game():
         total_mobs_killed = 0,
         xp = 0
     }
-
-# update_label_colors
-# int index
-# Updates menu label colors for selection
-func update_label_colors(index):
-    for label in options:
-        if options[index] == label:
-            label.set("custom_colors/font_color", Color("#f9f9f9"))
-        else:
-            label.set("custom_colors/font_color", Color("#5b315b"))

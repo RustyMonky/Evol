@@ -59,8 +59,8 @@ func get_random_number(limit):
 
     return (randi() % int(limit))
 
-# Level up function when can be called from anywhere
-# TODO - Replace this with player choice -- new move, item, or stat increase
+# level_up
+# Increases base stats -- roguelike choice-making in separate scene
 func level_up():
     player.level += 1
     player.current_hp += 2
@@ -68,34 +68,3 @@ func level_up():
     player.stats.defense += 1
     player.stats.speed += 1
     player.stats.strength += 1
-
-    # Learn moves
-    if player.level == 2:
-        player.moves.append({
-            name = "Buff Up",
-            damage = 0,
-            desc = "Increases STR",
-            stat = {
-                strength = 1
-            }
-        })
-    elif player.level == 3:
-        player.moves.append({
-            name = "Raise Guard",
-            damage = 0,
-            desc = "Increases DEF",
-            stat = {
-                defense = 1
-            }
-        })
-    elif player.level == 4:
-        player.moves.append({
-            name = "Speed Up",
-            damage = 0,
-            desc = "Increases SPD",
-            stat = {
-                speed = 1
-            }
-        })
-    elif player.level == 5:
-        sceneManager.goto_scene("res://battle/evolution/evolution.tscn")
