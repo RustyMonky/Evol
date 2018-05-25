@@ -67,7 +67,7 @@ func _input(event):
             pass
 
     elif event.is_action_pressed("ui_accept") && current_choice_state == MOVE:
-        gameData.player.moves.add(moves_options[current_option])
+        gameData.player.moves.append(moves_options[current_option])
         sceneManager.goto_scene("res://grid/grid.tscn")
 
 func add_move_option(index):

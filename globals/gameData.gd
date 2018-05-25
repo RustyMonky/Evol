@@ -12,7 +12,12 @@ var player = {
     level = 1,
     max_hp = 15,
     moves = [
-        { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
+        {
+            name = "Rush",
+            damage = 1,
+            desc = "Charge at an enemy for 1 base damage.",
+            elementalType = null
+        }
     ],
     pos = Vector2(1, 1),
     stats = {
