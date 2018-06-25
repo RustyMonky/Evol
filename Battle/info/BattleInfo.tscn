@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/GUI/hp/hpOver.png" type="Texture" id=4]
 [ext_resource path="res://Assets/GUI/hp/hpHigh.png" type="Texture" id=5]
 
-[node name="battleInfo" type="MarginContainer"]
+[node name="battleInfo" type="MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -112,5 +112,14 @@ radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Margin", "Rect", "Textures" ]
+
+[node name="hpTween" type="Tween" parent="." index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 

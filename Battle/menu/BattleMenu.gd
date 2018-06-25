@@ -1,6 +1,7 @@
 extends Control
 
 var change_turn = false
+var click_player
 var current_option = 0
 var current_move = 0
 var fight_back_btn
@@ -25,6 +26,7 @@ var prompt_text_index = 0
 var show_moves = false
 
 func _ready():
+    click_player = $clickPlayer
     fight_back_btn = $frame/fightOptions/back
     menu_frame = $frame
     menu_prompt = $frame/menuPrompt
@@ -50,6 +52,7 @@ func _ready():
 
 func _input(event):
     if event.is_action_pressed("ui_accept") && not must_leave && not show_moves:
+        click_player.play()
 
         if is_text_done:
             # Player is dead, queue gameover state
@@ -113,6 +116,7 @@ func _input(event):
             if menu_prompt.get_visible_characters() >= menu_prompt.get_total_character_count():
                 set_prompt_text(prompt_text_batch, prompt_text_index)
     elif event.is_action_pressed("ui_accept") && must_leave:
+            click_player.play()
             if is_text_done:
                 sceneManager.goto_scene("res://grid/grid.tscn")
             else:
@@ -156,6 +160,7 @@ func _input(event):
 
         # If the user selects an attack whose text is clearly visible...
         elif event.is_action_pressed("ui_accept") && moves[current_move].is_visible():
+            click_player.play()
 
             if current_move == 4:
                 hide_fight_controls(true)
