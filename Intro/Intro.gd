@@ -1,11 +1,19 @@
 extends Control
 
+var click_player
 var current_option = 1
+var fade_rect
+var fade_tween
 var has_saved_game = false
 var options
 
 func _ready():
+    click_player = $clickPlayer
+
     options = $canvasLayer/container/options.get_children()
+
+    fade_rect = $canvasLayer/fadeRect
+    fade_tween = $fadeTween
 
     uiLogic.update_current_object(options, current_option)
 
@@ -26,6 +34,7 @@ func _input(event):
         uiLogic.update_current_option(options, current_option)
 
     if event.is_action_pressed("ui_accept"):
+        click_player.play()
 
         if current_option == 0:
             save.load_game()
@@ -33,7 +42,8 @@ func _input(event):
         elif current_option == 1:
             start_new_game()
 
-        sceneManager.goto_scene("res://grid/grid.tscn")
+        fade_tween.interpolate_property(fade_rect, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+        fade_tween.start()
 
 # start_new_game
 # Uses new values for new game - DOES NOT OVERWRITE SAVE
@@ -65,3 +75,6 @@ func start_new_game():
         total_mobs_killed = 0,
         xp = 0
     }
+
+func _on_fadeTween_tween_completed(object, key):
+    sceneManager.goto_scene("res://grid/grid.tscn")
