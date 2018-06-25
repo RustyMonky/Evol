@@ -7,10 +7,7 @@ path="res://.import/baseWater.png-7762dba59a7c2279ae9910504e737440.stex"
 [deps]
 
 source_file="res://assets/sprites/forms/baseWater.png"
-source_md5="a9b6de8a5e5f305dc2e9ba65c6df7e0a"
-
 dest_files=[ "res://.import/baseWater.png-7762dba59a7c2279ae9910504e737440.stex" ]
-dest_md5="ad6c6078dab57781a72e47eebbecd76f"
 
 [params]
 

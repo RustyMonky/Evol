@@ -7,10 +7,7 @@ path="res://.import/dodocan.png-1c86f5d4b51ec2bb3888d1927048ff34.stex"
 [deps]
 
 source_file="res://assets/sprites/mobs/dodocan.png"
-source_md5="0f10476265c1ff780237165320fd3e25"
-
 dest_files=[ "res://.import/dodocan.png-1c86f5d4b51ec2bb3888d1927048ff34.stex" ]
-dest_md5="89ac3ba3dca6e90986b994028132c79a"
 
 [params]
 

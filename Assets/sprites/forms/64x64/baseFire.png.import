@@ -7,10 +7,7 @@ path="res://.import/baseFire.png-3a47f0f349af56f1ff25ce0c489410b6.stex"
 [deps]
 
 source_file="res://assets/sprites/forms/64x64/baseFire.png"
-source_md5="f46adf89d08cc0754b4b4d1fc6b60195"
-
 dest_files=[ "res://.import/baseFire.png-3a47f0f349af56f1ff25ce0c489410b6.stex" ]
-dest_md5="42ca8142f24ca247137410dbe08b611e"
 
 [params]
 

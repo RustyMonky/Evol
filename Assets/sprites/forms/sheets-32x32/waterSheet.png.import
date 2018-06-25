@@ -7,10 +7,7 @@ path="res://.import/waterSheet.png-e1976d9089610e540881b6a8f59ca2a3.stex"
 [deps]
 
 source_file="res://assets/sprites/forms/sheets-32x32/waterSheet.png"
-source_md5="28e151e869c852fd42b8584293acb1dc"
-
 dest_files=[ "res://.import/waterSheet.png-e1976d9089610e540881b6a8f59ca2a3.stex" ]
-dest_md5="b01ae2a5a6538ac5645108b46e0c7d47"
 
 [params]
 

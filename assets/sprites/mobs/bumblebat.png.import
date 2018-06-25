@@ -7,10 +7,7 @@ path="res://.import/bumblebat.png-21e04fa4bfc6c5ca3312380f0c2eee7c.stex"
 [deps]
 
 source_file="res://assets/sprites/mobs/bumblebat.png"
-source_md5="4dfb288ecceb9be6e641905553a46ddc"
-
 dest_files=[ "res://.import/bumblebat.png-21e04fa4bfc6c5ca3312380f0c2eee7c.stex" ]
-dest_md5="ac64f409a07d82d430d8f8d779824a2d"
 
 [params]
 

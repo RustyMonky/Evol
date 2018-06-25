@@ -7,10 +7,7 @@ path="res://.import/fireSheet.png-388be3c26336463dcb9a3af9e31c260c.stex"
 [deps]
 
 source_file="res://assets/sprites/forms/sheets-32x32/fireSheet.png"
-source_md5="57b011f9260716085d319445b891d941"
-
 dest_files=[ "res://.import/fireSheet.png-388be3c26336463dcb9a3af9e31c260c.stex" ]
-dest_md5="f03eb02ed7eb9c95e4b2defc515e3097"
 
 [params]
 

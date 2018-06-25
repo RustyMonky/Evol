@@ -7,10 +7,7 @@ path="res://.import/hpMid.png-492db9abbb423bf35c5e2807df54859d.stex"
 [deps]
 
 source_file="res://assets/GUI/hp/hpMid.png"
-source_md5="6aeba862959bb944fdfc444b0118075a"
-
 dest_files=[ "res://.import/hpMid.png-492db9abbb423bf35c5e2807df54859d.stex" ]
-dest_md5="e2f0a09e87da264a361c2a21c0c6cb20"
 
 [params]
 

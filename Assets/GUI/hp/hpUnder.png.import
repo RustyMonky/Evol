@@ -7,10 +7,7 @@ path="res://.import/hpUnder.png-05fe911d6adbd5824bd01bca676988e9.stex"
 [deps]
 
 source_file="res://assets/GUI/hp/hpUnder.png"
-source_md5="22c711bea2f1a76fa060bc8a1447e8c3"
-
 dest_files=[ "res://.import/hpUnder.png-05fe911d6adbd5824bd01bca676988e9.stex" ]
-dest_md5="af6f0e15bcbbfef07fac5b33329ca8ab"
 
 [params]
 

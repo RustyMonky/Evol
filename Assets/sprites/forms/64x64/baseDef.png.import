@@ -7,10 +7,7 @@ path="res://.import/baseDef.png-0d5ff2559df4880b597cd6646c4cc7f0.stex"
 [deps]
 
 source_file="res://assets/sprites/forms/64x64/baseDef.png"
-source_md5="34385386215ec64b308724e1abec147b"
-
 dest_files=[ "res://.import/baseDef.png-0d5ff2559df4880b597cd6646c4cc7f0.stex" ]
-dest_md5="2531a03e0bb3504ce8dec5d18a561234"
 
 [params]
 

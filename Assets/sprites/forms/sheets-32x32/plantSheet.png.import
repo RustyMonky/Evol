@@ -7,10 +7,7 @@ path="res://.import/plantSheet.png-ce465656dd67929da1969eb6dec6d61f.stex"
 [deps]
 
 source_file="res://assets/sprites/forms/sheets-32x32/plantSheet.png"
-source_md5="b55f51f976b21037d4e04d4fa8377e97"
-
 dest_files=[ "res://.import/plantSheet.png-ce465656dd67929da1969eb6dec6d61f.stex" ]
-dest_md5="0c513ee7593f7ab7a527a9237307f5cc"
 
 [params]
 

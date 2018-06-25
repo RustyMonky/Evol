@@ -7,10 +7,7 @@ path="res://.import/pointer.png-7043b7b154f09d46c4a252ae092b1a48.stex"
 [deps]
 
 source_file="res://assets/GUI/pointer.png"
-source_md5="63eaf981f5dad1dc17cf8b4badb0baa7"
-
 dest_files=[ "res://.import/pointer.png-7043b7b154f09d46c4a252ae092b1a48.stex" ]
-dest_md5="311a79e7f49668f64ad3e65c64511d03"
 
 [params]
 

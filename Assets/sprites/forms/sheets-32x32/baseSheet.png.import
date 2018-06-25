@@ -7,10 +7,7 @@ path="res://.import/baseSheet.png-0c101c71f7949c9a0fc46ef5dfc2c374.stex"
 [deps]
 
 source_file="res://assets/sprites/forms/sheets-32x32/baseSheet.png"
-source_md5="ed8d2c47afa2b2517377f0e8c532e3c9"
-
 dest_files=[ "res://.import/baseSheet.png-0c101c71f7949c9a0fc46ef5dfc2c374.stex" ]
-dest_md5="16885cba473f494a6a65c058fd4e7b7d"
 
 [params]
 

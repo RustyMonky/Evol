@@ -7,10 +7,7 @@ path="res://.import/baseSpd.png-9e1b9df7347d143603bcfbb6dfcc15ca.stex"
 [deps]
 
 source_file="res://assets/sprites/forms/64x64/baseSpd.png"
-source_md5="05bc1712a73a8228c91b2be8efe09f54"
-
 dest_files=[ "res://.import/baseSpd.png-9e1b9df7347d143603bcfbb6dfcc15ca.stex" ]
-dest_md5="077d7831f6da760ed573faf4dc93d038"
 
 [params]
 

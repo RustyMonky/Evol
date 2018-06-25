@@ -7,10 +7,7 @@ path="res://.import/baseGrass.png-46cb434e4afc2fc5232e8cab9f44dc93.stex"
 [deps]
 
 source_file="res://assets/sprites/forms/64x64/baseGrass.png"
-source_md5="3d408ef9a9908dfa6a2163f3dff7137c"
-
 dest_files=[ "res://.import/baseGrass.png-46cb434e4afc2fc5232e8cab9f44dc93.stex" ]
-dest_md5="2a9dcfad05342bfa3205f144c186c5d8"
 
 [params]
 

@@ -7,10 +7,7 @@ path="res://.import/hpOver.png-5e33bca6aa3f6c5798eaf400edc08fc6.stex"
 [deps]
 
 source_file="res://assets/GUI/hp/hpOver.png"
-source_md5="8fee80837b635e9a300572d650cb76a0"
-
 dest_files=[ "res://.import/hpOver.png-5e33bca6aa3f6c5798eaf400edc08fc6.stex" ]
-dest_md5="4df8495edd215eb0e54389be56599069"
 
 [params]
 

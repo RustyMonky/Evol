@@ -7,10 +7,7 @@ path="res://.import/grass.png-9dd2a5bc56e0a50fe8d460d3c5936650.stex"
 [deps]
 
 source_file="res://assets/sprites/tiles/field/grass.png"
-source_md5="e6d8ede7fb21bc82b8406b4dbf82b2ad"
-
 dest_files=[ "res://.import/grass.png-9dd2a5bc56e0a50fe8d460d3c5936650.stex" ]
-dest_md5="85b4628fb77c539a0c193e3daa8bb0b1"
 
 [params]
 
