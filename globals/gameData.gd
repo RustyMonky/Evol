@@ -43,6 +43,9 @@ var mob = {
     }
 }
 
+var mob_data
+var moves_data
+
 var xp_required_array = []
 
 func _ready():
@@ -50,6 +53,20 @@ func _ready():
     for n in range(1, 101):
         var xp_req = (n * 10) * n
         xp_required_array.append(xp_req)
+
+    # Retrieve all mob data
+    var mob_file = File.new()
+    mob_file.open("res://data/mobs.json", File.READ)
+    var mob_file_text = mob_file.get_as_text()
+    mob_data = parse_json(mob_file_text)
+    mob_file.close()
+
+    # Retrieve all move data
+    var moves_file = File.new()
+    moves_file.open("res://data/moves.json", File.READ)
+    var moves_file_text = moves_file.get_as_text()
+    moves_data = parse_json(moves_file_text)
+    moves_file.close()
 
 # Globally accessible function to generate a new random number
 func get_random_number(limit):

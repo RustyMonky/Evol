@@ -2,7 +2,6 @@ extends Node2D
 
 var battle_menu
 var container
-var mobs = {}
 var mob_to_fight
 var mob_node
 var mob_info
@@ -20,17 +19,10 @@ func _ready():
 
     mob_node = $mob
 
-    # Let's open our mob json and get the mob data
-    var file = File.new()
-    file.open("res://data/mobs.json", File.READ)
-    var file_text = file.get_as_text()
-    mobs = parse_json(file_text)
-    file.close()
-
     # Randomize mob selection
-    var mob_index = gameData.get_random_number(mobs.mobs.size())
+    var mob_index = gameData.get_random_number(gameData.mob_data.mobs.size())
 
-    mob_to_fight = mobs.mobs[mob_index]
+    mob_to_fight = gameData.mob_data.mobs[mob_index]
     mob_node.set_texture(load(mob_to_fight.sprite))
     mob_node.position = Vector2(0 - mob_node.get_texture().get_size().x, mob_node.get_texture().get_size().y / 2)
 

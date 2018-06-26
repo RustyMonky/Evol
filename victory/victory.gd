@@ -8,8 +8,6 @@ var desc
 
 var current_option = 0
 var options
-
-var moves_list = []
 var moves_options = []
 
 func _ready():
@@ -18,12 +16,6 @@ func _ready():
     options = $options.get_children()
     for label in options:
         uiLogic.update_current_object(options, current_option)
-
-    var moves_file = File.new()
-    moves_file.open("res://data/moves.json", File.READ)
-    var moves_file_text = moves_file.get_as_text()
-    moves_list = parse_json(moves_file_text)
-    moves_file.close()
 
     set_process_input(true)
 
@@ -71,8 +63,8 @@ func _input(event):
         sceneManager.goto_scene("res://grid/grid.tscn")
 
 func add_move_option(index):
-    var new_choice_index = gameData.get_random_number(moves_list.moves.size() - 1)
-    var new_choice = moves_list.moves[new_choice_index]
+    var new_choice_index = gameData.get_random_number(gameData.moves_data.moves.size() - 1)
+    var new_choice = gameData.moves_data.moves[new_choice_index]
 
     if moves_options.has(new_choice) || gameData.player.moves.has(new_choice):
         add_move_option(index)
