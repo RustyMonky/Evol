@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
-[ext_resource path="res://Mobs/Mob.tscn" type="PackedScene" id=2]
 
 [node name="battle" type="Node2D" index="0"]
 
@@ -37,7 +36,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="BattleMob" parent="." index="1" instance=ExtResource( 2 )]
+[node name="BattleMob" type="Sprite" parent="." index="1"]
 
 _sections_unfolded = [ "Offset", "Transform" ]
 

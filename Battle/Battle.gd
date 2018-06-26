@@ -21,7 +21,7 @@ func _ready():
 
     # Let's open our mob json and get the mob data
     var file = File.new()
-    file.open("res://Mobs/mobs.json", File.READ)
+    file.open("res://data/mobs.json", File.READ)
     var file_text = file.get_as_text()
     mobs = parse_json(file_text)
     file.close()

@@ -1,7 +1,0 @@
-[gd_scene format=2]
-
-[node name="mob" type="Sprite"]
-
-_sections_unfolded = [ "Transform" ]
-
-
