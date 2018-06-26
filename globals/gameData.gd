@@ -1,9 +1,5 @@
 extends Node
 
-var game_state = {
-    is_saving = false
-}
-
 var player = {
     battle_sprite = "",
     current_hp = 15,

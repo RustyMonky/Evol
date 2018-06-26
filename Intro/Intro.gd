@@ -27,11 +27,11 @@ func _ready():
 func _input(event):
     if event.is_action_pressed("ui_up") && has_saved_game:
         current_option = 0
-        uiLogic.update_current_option(options, current_option)
+        uiLogic.update_current_object(options, current_option)
 
     elif event.is_action_pressed("ui_down"):
         current_option = 1
-        uiLogic.update_current_option(options, current_option)
+        uiLogic.update_current_object(options, current_option)
 
     if event.is_action_pressed("ui_accept"):
         click_player.play()

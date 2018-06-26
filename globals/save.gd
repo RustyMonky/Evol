@@ -35,8 +35,6 @@ func save_game():
     save_file.store_line(to_json(save_dictionary))
     save_file.close()
 
-    gameData.game_state.is_saving = false
-
 func load_game():
     var save_file = File.new()
     var data

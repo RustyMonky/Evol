@@ -1,7 +1,7 @@
 extends Node2D
 
 var battle_menu
-
+var container
 var mobs = {}
 var mob_to_fight
 var mob_node
@@ -13,11 +13,12 @@ var player_sprite
 const MOB_MOVE_SPEED = 200
 
 func _ready():
+    container = $control/container
     battle_menu = load("res://battle/menu/BattleMenu.tscn").instance()
-    $control/container.call_deferred("add_child", battle_menu)
+    container.call_deferred("add_child", battle_menu)
     battle_menu.set_position(Vector2(0, 352)) # Display height - menu frame height
 
-    mob_node = $BattleMob
+    mob_node = $mob
 
     # Let's open our mob json and get the mob data
     var file = File.new()
@@ -48,7 +49,7 @@ func _ready():
 
     # Add mob info instance
     mob_info = load("res://Battle/info/BattleInfo.tscn").instance();
-    $control/container.call_deferred("add_child", mob_info)
+    container.call_deferred("add_child", mob_info)
     mob_info.type = "mob"
     mob_info.max_hp = mob_to_fight.maxHp
     mob_info.current_hp = gameData.mob.current_hp
@@ -58,7 +59,7 @@ func _ready():
 
     # Add player info instance
     player_info = load("res://Battle/info/BattleInfo.tscn").instance();
-    $control/container.call_deferred("add_child", player_info)
+    container.call_deferred("add_child", player_info)
     player_info.type = "player"
     player_info.max_hp = gameData.player.max_hp
     player_info.current_hp = gameData.player.current_hp
