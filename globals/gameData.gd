@@ -15,6 +15,7 @@ var player = {
             elementalType = null
         }
     ],
+    moves_known = [],
     pos = Vector2(1, 1),
     stats = {
         defense = 5,
@@ -67,6 +68,9 @@ func _ready():
     var moves_file_text = moves_file.get_as_text()
     moves_data = parse_json(moves_file_text)
     moves_file.close()
+
+    for move in self.player.moves:
+        self.player.moves_known.append(move.name)
 
 # Globally accessible function to generate a new random number
 func get_random_number(limit):

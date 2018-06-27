@@ -55,7 +55,6 @@ func _ready():
     player_info.type = "player"
     player_info.max_hp = gameData.player.max_hp
     player_info.current_hp = gameData.player.current_hp
-    print(get_viewport_rect())
     player_info.set_position(Vector2(332, 264))
 
     battle_menu.player_info = player_info

@@ -60,13 +60,14 @@ func _input(event):
 
     elif event.is_action_pressed("ui_accept") && current_choice_state == MOVE:
         gameData.player.moves.append(moves_options[current_option])
+        gameData.player.moves_known.append(moves_options[current_option].name)
         sceneManager.goto_scene("res://grid/grid.tscn")
 
 func add_move_option(index):
     var new_choice_index = gameData.get_random_number(gameData.moves_data.moves.size() - 1)
     var new_choice = gameData.moves_data.moves[new_choice_index]
 
-    if moves_options.has(new_choice) || gameData.player.moves.has(new_choice):
+    if moves_options.has(new_choice) || gameData.player.moves_known.has(new_choice.name):
         add_move_option(index)
         return
     elif new_choice.elementalType == null || new_choice.elementalType == gameData.player.elemental_type:

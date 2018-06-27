@@ -58,6 +58,7 @@ func start_new_game():
         moves = [
             { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
         ],
+        moves_known = ["Rush"],
         pos = Vector2(1, 1),
         stats = {
             defense = 5,

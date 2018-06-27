@@ -16,6 +16,7 @@ func save_game():
             level = gameData.player.level,
             max_hp = gameData.player.max_hp,
             moves = gameData.player.moves,
+            moves_known = gameData.player.moves_known,
             pos = {
                 x = gameData.player.pos.x,
                 y = gameData.player.pos.y
@@ -55,6 +56,7 @@ func load_game():
     gameData.player.level = data["player"]["level"]
     gameData.player.max_hp = data["player"]["max_hp"]
     gameData.player.moves = data["player"]["moves"]
+    gameData.player.moves_known = data["player"]["moves_known"]
     gameData.player.pos = Vector2(data["player"]["pos"]["x"], data["player"]["pos"]["y"])
     gameData.player.sprite_path = data["player"]["sprite_path"]
     gameData.player.sprite_frame = data["player"]["sprite_frame"]
