@@ -2,8 +2,12 @@ extends Control
 
 var change_turn = false
 var click_player
-var current_option = 0
+var current_effects = {
+    mob = [],
+    player = []
+}
 var current_move = 0
+var current_option = 0
 var fight_back_btn
 
 var is_evolving = false
@@ -172,55 +176,47 @@ func _input(event):
 # ---------------
 # Class Functions
 # ---------------
-func calculate_mob_damage(attack):
+func calculate_damage(attack, entity):
     var damage = 0
+    var current_enemy
+    var current_entity = gameData[entity]
+    var selected_attack = gameData[entity].moves[attack]
 
-    if gameData.mob.moves[attack].damage > 0:
+    if entity == "player":
+        current_enemy = gameData.mob
+    else:
+        current_enemy = gameData.player
 
-        damage = floor(gameData.mob.moves[attack].damage * (gameData.mob.stats.strength + gameData.mob.statsChanged.strength) / (gameData.player.stats.defense + gameData.player.statsChanged.defense))
+    if selected_attack.damage > 0:
+
+        damage = floor(selected_attack.damage * (current_entity.stats.strength + current_entity.statsChanged.strength) / (current_enemy.stats.defense + current_enemy.statsChanged.defense))
 
         # But if it's so weak it's floored to 0, bump to 1
         if (damage == 0): damage = 1
 
-    if gameData.mob.moves[attack].has('stat'):
+    if selected_attack.has('stat'):
 
-        if gameData.mob.moves[attack].stat.has('strength'):
-            gameData.mob.statsChanged.strength += gameData.mob.moves[attack].stat.strength
+        if selected_attack.stat.has('strength'):
+            current_entity.statsChanged.strength += selected_attack.stat.strength
 
-        if gameData.mob.moves[attack].stat.has('defense'):
-            gameData.mob.statsChanged.defense += gameData.mob.moves[attack].stat.defense
+        if selected_attack.stat.has('defense'):
+            current_entity.statsChanged.defense += selected_attack.stat.defense
 
-        if gameData.mob.moves[attack].stat.has('speed'):
-            gameData.mob.statsChanged.speed += gameData.mob.moves[attack].stat.speed
+        if selected_attack.stat.has('speed'):
+            current_entity.statsChanged.speed += selected_attack.stat.speed
 
-        if gameData.mob.moves[attack].stat.has('hp'):
-            gameData.mob.current_hp += gameData.mob.moves[attack].stat.hp
+        if selected_attack.stat.has('hp'):
+            current_entity.current_hp += selected_attack.stat.hp
 
-    return damage
+    if selected_attack.has('effect'):
+        if selected_attack.effect.has('burn') and not current_effects[current_enemy].has('burn'):
+            current_effects[current_enemy].append('burn')
 
-# calculate_player_damage
-func calculate_player_damage(attack):
-    var damage = 0
+        if selected_attack.effect.has('slow') and not current_effects[current_enemy].has('slow'):
+            current_effects[current_enemy].append('slow')
 
-    if gameData.player.moves[attack].damage > 0:
-
-            damage = floor(gameData.player.moves[attack].damage * (gameData.player.stats.strength + gameData.player.statsChanged.strength) / (gameData.mob.stats.defense + gameData.mob.statsChanged.defense))
-
-            if (damage == 0): damage = 1
-
-    if gameData.player.moves[attack].has('stat'):
-
-        if gameData.player.moves[attack].stat.has('strength'):
-            gameData.player.statsChanged.strength += gameData.player.moves[attack].stat.strength
-
-        if gameData.player.moves[attack].stat.has('defense'):
-            gameData.player.statsChanged.defense += gameData.player.moves[attack].stat.defense
-
-        if gameData.player.moves[attack].stat.has('speed'):
-            gameData.player.statsChanged.speed += gameData.player.moves[attack].stat.speed
-
-        if gameData.player.moves[attack].stat.has('hp'):
-            gameData.player.current_hp += gameData.player.moves[attack].stat.hp
+        if selected_attack.effect.has('poison') and not current_effects[current_enemy].has('poison'):
+            current_effects[current_enemy].append('poison')
 
     return damage
 
@@ -266,7 +262,7 @@ func process_turn():
 
         if turn == "player":
             process_text_array.append("You used " + gameData.player.moves[current_move].name + "!")
-            var player_damage = calculate_player_damage(current_move)
+            var player_damage = calculate_damage(current_move, "player")
             process_text_array.append(gameData.mob.name + " took " + String(player_damage) + " damage!")
             gameData.mob.current_hp -= player_damage
             mob_info.current_hp = gameData.mob.current_hp
@@ -276,7 +272,7 @@ func process_turn():
 
         else:
             process_text_array.append(gameData.mob.name + " used " + gameData.mob.moves[mob_attack].name + "!")
-            var mob_damage = calculate_mob_damage(mob_attack)
+            var mob_damage = calculate_damage(mob_attack, "mob")
             process_text_array.append("You took " + String(mob_damage) + " damage!")
             gameData.player.current_hp -= mob_damage
             player_info.current_hp = gameData.player.current_hp
