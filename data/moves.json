@@ -63,27 +63,21 @@
             "damage": 3,
             "desc": "Spew flames for 3 base damage, and inflict burn.",
             "elementalType": "fire",
-            "effect": {
-                "burn": 2
-            }
+            "effect": ["burn"]
         },
         {
             "name": "Aqua Jet",
             "damage": 3,
             "desc": "Blast the foe with pressurized water for 3 base damage, and inflict slow.",
             "elementalType": "water",
-            "effect": {
-                "slow": 2
-            }
+            "effect": ["slow"]
         },
         {
             "name": "Toxic Spores",
             "damage": 0,
             "desc": "Spread toxic spores throughout the air, inflicting poison.",
             "elementalType": "plant",
-            "effect": {
-                "poison": 3
-            }
+            "effect": ["poison"]
         }
     ]
 }

@@ -1,6 +1,5 @@
 extends Control
 
-var change_turn = false
 var click_player
 var current_effects = {
     mob = [],
@@ -13,7 +12,6 @@ var fight_back_btn
 var is_evolving = false
 var is_intro = true
 var is_player_dead = false # Boolean that dictates routing to gameover state
-var is_player_turn = false
 var is_text_done = false
 var level_up = false
 
@@ -184,7 +182,7 @@ func calculate_damage(attack, entity):
 
     if entity == "player":
         current_enemy = gameData.mob
-    else:
+    elif entity == "mob":
         current_enemy = gameData.player
 
     if selected_attack.damage > 0:
@@ -209,16 +207,27 @@ func calculate_damage(attack, entity):
             current_entity.current_hp += selected_attack.stat.hp
 
     if selected_attack.has('effect'):
-        if selected_attack.effect.has('burn') and not current_effects[current_enemy].has('burn'):
+        if selected_attack.effect.has('burn') and current_effects[current_enemy].size() == 0:
             current_effects[current_enemy].append('burn')
 
-        if selected_attack.effect.has('slow') and not current_effects[current_enemy].has('slow'):
+        if selected_attack.effect.has('slow') and current_effects[current_enemy].size() == 0:
             current_effects[current_enemy].append('slow')
 
-        if selected_attack.effect.has('poison') and not current_effects[current_enemy].has('poison'):
+        if selected_attack.effect.has('poison') and current_effects[current_enemy].size() == 0:
             current_effects[current_enemy].append('poison')
 
     return damage
+
+func calculate_effect(entity, effect):
+    if effect == 'burn':
+        gameData[entity].current_hp -= 2
+        gameData[entity].statsChanged.defense -= 1
+    elif effect == 'slow':
+        gameData[entity].statsChanged.speed -= 1
+        gameData[entity].statsChanged.strength -= 1
+    elif effect == 'poison':
+        gameData[entity].current_hp -= 3
+
 
 # hide_fight_controls
 # Toggles visibility of various fight controls
@@ -259,26 +268,38 @@ func process_turn():
 
     # Now, to process the turn, loop thru the array and based on the string, calculate for that entity
     for turn in process_turns_array:
+        var turn_owner
 
         if turn == "player":
-            process_text_array.append("You used " + gameData.player.moves[current_move].name + "!")
-            var player_damage = calculate_damage(current_move, "player")
-            process_text_array.append(gameData.mob.name + " took " + String(player_damage) + " damage!")
-            gameData.mob.current_hp -= player_damage
+            turn_owner = "You"
+        elif turn == "mob":
+            turn_owner = gameData.mob.name
+
+        process_text_array.append(turn_owner + " used " + gameData[turn].moves[current_move].name + "!")
+
+        var damage_dealt = calculate_damage(current_move, turn)
+
+        if turn == "player":
+            process_text_array.append(gameData.mob.name + " took " + String(damage_dealt) + " damage!")
+            gameData.mob.current_hp -= damage_dealt
             mob_info.current_hp = gameData.mob.current_hp
-
-            if mob_info.current_hp <= 0:
-                break
-
-        else:
-            process_text_array.append(gameData.mob.name + " used " + gameData.mob.moves[mob_attack].name + "!")
-            var mob_damage = calculate_damage(mob_attack, "mob")
-            process_text_array.append("You took " + String(mob_damage) + " damage!")
-            gameData.player.current_hp -= mob_damage
+        elif turn == "mob":
+            process_text_array.append("You took " + String(damage_dealt) + " damage!")
+            gameData.player.current_hp -= damage_dealt
             player_info.current_hp = gameData.player.current_hp
 
-            if player_info.current_hp <= 0:
-                break
+        if current_effects[turn].size() > 0:
+            for effect in current_effects[turn]:
+                calculate_effect(turn, effect)
+                if effect == 'burn':
+                    process_text_array.append(turn_owner + " took 2 damage from your burn!")
+                elif effect == 'slow':
+                    process_text_array.append(turn_owner + " remained slowed.")
+                elif effect == 'poison':
+                    process_text_array.append(turn_owner + " took 3 damage from the poison!")
+
+        if mob_info.current_hp <= 0 || player_info.current_hp <= 0:
+            break
 
     set_prompt_text(process_text_array, 0)
                 
