@@ -271,13 +271,16 @@ func process_turn():
     # Now, to process the turn, loop thru the array and based on the string, calculate for that entity
     for turn in process_turns_array:
         var turn_owner
+        var move
 
         if turn == "player":
             turn_owner = "You"
+            move = current_move
         elif turn == "mob":
             turn_owner = gameData.mob.name
+            move = mob_attack
 
-        process_text_array.append(turn_owner + " used " + gameData[turn].moves[current_move].name + "!")
+        process_text_array.append(turn_owner + " used " + gameData[turn].moves[move].name + "!")
 
         var damage_dealt = calculate_damage(current_move, turn)
 

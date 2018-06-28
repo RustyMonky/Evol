@@ -6,7 +6,6 @@ func _ready():
     load_game()
 
 func save_game():
-
     var save_dictionary = {
         player = {
             battle_sprite = gameData.player.battle_sprite,
@@ -22,7 +21,12 @@ func save_game():
                 y = gameData.player.pos.y
             },
             sprite_path = gameData.player.sprite_path,
-            sprite_frame = gameData.player.sprite_frame,
+            sprite_frame = {
+                x = gameData.player.sprite_frame.position.x,
+                y = gameData.player.sprite_frame.position.y,
+                w = gameData.player.sprite_frame.size.x,
+                h = gameData.player.sprite_frame.size.y
+            },
             stats = gameData.player.stats,
             stats_sprite = gameData.player.stats_sprite,
             total_mobs_killed = gameData.player.total_mobs_killed,
@@ -49,20 +53,22 @@ func load_game():
     if data == null:
         return false
 
-    gameData.player.battle_sprite = data["player"]["battle_sprite"]
-    gameData.player.current_hp = data["player"]["current_hp"]
-    gameData.player.elemental_type = data["player"]["elemental_type"]
-    gameData.player.form = data["player"]["form"]
-    gameData.player.level = data["player"]["level"]
-    gameData.player.max_hp = data["player"]["max_hp"]
-    gameData.player.moves = data["player"]["moves"]
-    gameData.player.moves_known = data["player"]["moves_known"]
-    gameData.player.pos = Vector2(data["player"]["pos"]["x"], data["player"]["pos"]["y"])
-    gameData.player.sprite_path = data["player"]["sprite_path"]
-    gameData.player.sprite_frame = data["player"]["sprite_frame"]
-    gameData.player.stats = data["player"]["stats"]
-    gameData.player.stats_sprite = data["player"]["stats_sprite"]
-    gameData.player.total_mobs_killed = data["player"]["total_mobs_killed"]
-    gameData.player.xp = data["player"]["xp"]
+    var saved = data["player"]
+
+    gameData.player.battle_sprite = saved["battle_sprite"]
+    gameData.player.current_hp = saved["current_hp"]
+    gameData.player.elemental_type = saved["elemental_type"]
+    gameData.player.form = saved["form"]
+    gameData.player.level = saved["level"]
+    gameData.player.max_hp = saved["max_hp"]
+    gameData.player.moves = saved["moves"]
+    gameData.player.moves_known = saved["moves_known"]
+    gameData.player.pos = Vector2(saved["pos"]["x"], saved["pos"]["y"])
+    gameData.player.sprite_path = saved["sprite_path"]
+    gameData.player.sprite_frame = Rect2(saved["sprite_frame"]["x"], saved["sprite_frame"]["y"], saved["sprite_frame"]["w"], saved["sprite_frame"]["h"])
+    gameData.player.stats = saved["stats"]
+    gameData.player.stats_sprite = saved["stats_sprite"]
+    gameData.player.total_mobs_killed = saved["total_mobs_killed"]
+    gameData.player.xp = saved["xp"]
 
     return true
