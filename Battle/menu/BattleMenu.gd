@@ -218,6 +218,8 @@ func calculate_damage(attack, entity):
 
     return damage
 
+# calculate_effect
+# Implements effect of the provided status change
 func calculate_effect(entity, effect):
     if effect == 'burn':
         gameData[entity].current_hp -= 2

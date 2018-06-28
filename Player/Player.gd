@@ -43,25 +43,25 @@ func _physics_process(delta):
 
     if Input.is_action_pressed("player_up") or Input.is_action_pressed("ui_up"):
         direction = TOP
-        var top_rect = Rect2(32, 0, 32, 32)
+        var top_rect = Rect2(48, 0, 48, 48)
         player_sprite.set_region_rect(top_rect)
         gameData.player.sprite_frame = top_rect
 
     elif Input.is_action_pressed("player_down") or Input.is_action_pressed("ui_down"):
         direction = DOWN
-        var down_rect = Rect2(0, 0, 32, 32)
+        var down_rect = Rect2(0, 0, 48, 48)
         player_sprite.set_region_rect(down_rect)
         gameData.player.sprite_frame = down_rect
 
     elif Input.is_action_pressed("player_left") or Input.is_action_pressed("ui_left"):
         direction = LEFT
-        var left_rect = Rect2(96, 0, 32, 32)
+        var left_rect = Rect2(144, 0, 48, 48)
         player_sprite.set_region_rect(left_rect)
         gameData.player.sprite_frame = left_rect
 
     elif Input.is_action_pressed("player_right") or Input.is_action_pressed("ui_right"):
         direction = RIGHT
-        var right_rect = Rect2(64, 0, 32, 32)
+        var right_rect = Rect2(96, 0, 48, 48)
         player_sprite.set_region_rect(right_rect)
         gameData.player.sprite_frame = right_rect
 
