@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hpOver.png-fb9ce6af8911693c874ac61f673dd284.stex"
+path="res://.import/baseGrassBack.png-0c11afa22c464f5b8e18e5a84fd4f94b.stex"
 
 [deps]
 
-source_file="res://assets/gui/hp/hpOver.png"
-dest_files=[ "res://.import/hpOver.png-fb9ce6af8911693c874ac61f673dd284.stex" ]
+source_file="res://assets/sprites/forms/backs/baseGrassBack.png"
+dest_files=[ "res://.import/baseGrassBack.png-0c11afa22c464f5b8e18e5a84fd4f94b.stex" ]
 
 [params]
 

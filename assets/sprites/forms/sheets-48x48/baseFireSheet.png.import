@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hpOver.png-fb9ce6af8911693c874ac61f673dd284.stex"
+path="res://.import/baseFireSheet.png-d4388632f0e3870b8635a7bae1987e69.stex"
 
 [deps]
 
-source_file="res://assets/gui/hp/hpOver.png"
-dest_files=[ "res://.import/hpOver.png-fb9ce6af8911693c874ac61f673dd284.stex" ]
+source_file="res://assets/sprites/forms/sheets-48x48/baseFireSheet.png"
+dest_files=[ "res://.import/baseFireSheet.png-d4388632f0e3870b8635a7bae1987e69.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

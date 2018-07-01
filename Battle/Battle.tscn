@@ -41,4 +41,10 @@ size_flags_vertical = 1
 
 _sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
+[node name="playerBack" type="Sprite" parent="." index="2"]
+
+position = Vector2( 92, 288 )
+scale = Vector2( 3, 3 )
+_sections_unfolded = [ "Transform" ]
+
 

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hpOver.png-fb9ce6af8911693c874ac61f673dd284.stex"
+path="res://.import/baseDefSheet.png-50cd4da4c96d4202c79075d924a28752.stex"
 
 [deps]
 
-source_file="res://assets/gui/hp/hpOver.png"
-dest_files=[ "res://.import/hpOver.png-fb9ce6af8911693c874ac61f673dd284.stex" ]
+source_file="res://assets/sprites/forms/sheets-32x32/baseDefSheet.png"
+dest_files=[ "res://.import/baseDefSheet.png-50cd4da4c96d4202c79075d924a28752.stex" ]
 
 [params]
 
