@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/baseDefSheet.png-50cd4da4c96d4202c79075d924a28752.stex"
+path="res://.import/baseSpdSheet.png-d9df712e54e982ffa17a29caea6a4502.stex"
 
 [deps]
 
-source_file="res://assets/sprites/forms/sheets-32x32/baseDefSheet.png"
-dest_files=[ "res://.import/baseDefSheet.png-50cd4da4c96d4202c79075d924a28752.stex" ]
+source_file="res://assets/sprites/forms/sheets-48x48/baseSpdSheet.png"
+dest_files=[ "res://.import/baseSpdSheet.png-d9df712e54e982ffa17a29caea6a4502.stex" ]
 
 [params]
 

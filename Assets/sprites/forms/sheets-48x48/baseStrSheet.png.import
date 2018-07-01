@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/baseStr.png-876f8044c5acbb58c38d92457b382d7e.stex"
+path="res://.import/baseStrSheet.png-c7dbd448c530cdaff86930416eddf9b2.stex"
 
 [deps]
 
-source_file="res://assets/sprites/forms/64x64/baseStr.png"
-dest_files=[ "res://.import/baseStr.png-876f8044c5acbb58c38d92457b382d7e.stex" ]
+source_file="res://assets/sprites/forms/sheets-48x48/baseStrSheet.png"
+dest_files=[ "res://.import/baseStrSheet.png-c7dbd448c530cdaff86930416eddf9b2.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fireSheet.png-388be3c26336463dcb9a3af9e31c260c.stex"
+path="res://.import/baseStrBack.png-b1108e365ea8c1bfc7b5b3d3a3893d75.stex"
 
 [deps]
 
-source_file="res://assets/sprites/forms/sheets-32x32/fireSheet.png"
-dest_files=[ "res://.import/fireSheet.png-388be3c26336463dcb9a3af9e31c260c.stex" ]
+source_file="res://assets/sprites/forms/backs/baseStrBack.png"
+dest_files=[ "res://.import/baseStrBack.png-b1108e365ea8c1bfc7b5b3d3a3893d75.stex" ]
 
 [params]
 

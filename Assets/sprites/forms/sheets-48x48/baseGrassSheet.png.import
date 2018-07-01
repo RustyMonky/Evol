@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/plantSheet.png-ce465656dd67929da1969eb6dec6d61f.stex"
+path="res://.import/baseGrassSheet.png-f90fd2b835044dd1a5511696fafac6b0.stex"
 
 [deps]
 
-source_file="res://assets/sprites/forms/sheets-32x32/plantSheet.png"
-dest_files=[ "res://.import/plantSheet.png-ce465656dd67929da1969eb6dec6d61f.stex" ]
+source_file="res://assets/sprites/forms/sheets-48x48/baseGrassSheet.png"
+dest_files=[ "res://.import/baseGrassSheet.png-f90fd2b835044dd1a5511696fafac6b0.stex" ]
 
 [params]
 

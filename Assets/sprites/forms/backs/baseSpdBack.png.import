@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/baseFire.png-3a47f0f349af56f1ff25ce0c489410b6.stex"
+path="res://.import/baseSpdBack.png-3d66f394dc40257c4a16491dda19bf05.stex"
 
 [deps]
 
-source_file="res://assets/sprites/forms/64x64/baseFire.png"
-dest_files=[ "res://.import/baseFire.png-3a47f0f349af56f1ff25ce0c489410b6.stex" ]
+source_file="res://assets/sprites/forms/backs/baseSpdBack.png"
+dest_files=[ "res://.import/baseSpdBack.png-3d66f394dc40257c4a16491dda19bf05.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
