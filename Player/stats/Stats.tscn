@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/stats/Stats.gd" type="Script" id=1]
-[ext_resource path="res://Assets/sprites/forms/typeSheet.png" type="Texture" id=2]
-[ext_resource path="res://Assets/fonts/pauseOptions.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Assets/fonts/titleOptions.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/fonts/pauseOptions.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/fonts/titleOptions.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/fonts/SomepxNew.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/GUI/panel.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 24
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [node name="stats" type="Control" index="0"]
 
@@ -26,10 +34,9 @@ _sections_unfolded = [ "Rect" ]
 [node name="playerSprite" type="Sprite" parent="." index="0"]
 
 position = Vector2( 60, 60 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 2 )
+scale = Vector2( 2, 2 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 32, 32 )
+region_rect = Rect2( 0, 0, 48, 48 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
 [node name="knownMovesTitle" type="Label" parent="." index="1"]
@@ -48,7 +55,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "Known Moves"
 percent_visible = 1.0
@@ -72,7 +79,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 percent_visible = 1.0
 lines_skipped = 0
@@ -147,7 +154,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "HP"
 uppercase = true
@@ -171,7 +178,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "DEF"
 uppercase = true
@@ -194,7 +201,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "SPD"
 uppercase = true
@@ -217,7 +224,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "STR"
 uppercase = true
@@ -240,7 +247,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "XP"
 uppercase = true
@@ -280,7 +287,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "5"
 percent_visible = 1.0
@@ -303,7 +310,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "5"
 percent_visible = 1.0
@@ -325,7 +332,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "5"
 percent_visible = 1.0
@@ -347,7 +354,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "5"
 percent_visible = 1.0
@@ -369,7 +376,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "5"
 percent_visible = 1.0
@@ -384,8 +391,9 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 32.0
 margin_top = 240.0
-margin_right = 480.0
-margin_bottom = 432.0
+margin_right = 440.0
+margin_bottom = 420.0
+rect_min_size = Vector2( 400, 180 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -401,8 +409,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
-margin_right = 8.0
+margin_right = 408.0
 margin_bottom = 108.0
+rect_min_size = Vector2( 400, 100 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -410,6 +419,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 alignment = 0
+_sections_unfolded = [ "Rect" ]
 
 [node name="move1" type="Label" parent="movesContainer/knownMoves" index="0"]
 
@@ -417,15 +427,18 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+margin_right = 400.0
 margin_bottom = 24.0
+rect_min_size = Vector2( 400, 24 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -437,15 +450,18 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 28.0
+margin_right = 400.0
 margin_bottom = 52.0
+rect_min_size = Vector2( 400, 24 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -457,15 +473,18 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 56.0
+margin_right = 400.0
 margin_bottom = 80.0
+rect_min_size = Vector2( 400, 24 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -477,15 +496,18 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 84.0
+margin_right = 400.0
 margin_bottom = 108.0
+rect_min_size = Vector2( 400, 24 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
