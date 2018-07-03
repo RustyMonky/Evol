@@ -310,7 +310,6 @@ func process_turn():
 			break
 
 	set_prompt_text(process_text_array, 0)
-				
 
 # set_prompt_text
 # Sets the next batch of prompt text and reset its visibility to 0

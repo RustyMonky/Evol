@@ -9,6 +9,16 @@ var desc
 var current_option = 0
 var options
 var moves_options = []
+var stat_options = [{
+	name = "defense",
+	desc = "Increase your defense by 2"
+}, {
+	name = "speed",
+	desc = "Increase your speed by 2"
+}, {
+	name = "strength",
+	desc = "Increase your strength by 2"
+}]
 
 func _ready():
 	desc = $optionDesc
@@ -29,6 +39,8 @@ func _input(event):
 
 		if current_choice_state == MOVE:
 			desc.set_text(moves_options[current_option].desc)
+		elif current_choice_state == STAT:
+			desc.set_text(stat_options[current_option].desc)
 
 	elif event.is_action_pressed("ui_right"):
 		if current_option >= (options.size() - 1):
@@ -39,6 +51,8 @@ func _input(event):
 
 		if current_choice_state == MOVE:
 			desc.set_text(moves_options[current_option].desc)
+		elif current_choice_state == STAT:
+			desc.set_text(stat_options[current_option].desc)
 
 	elif event.is_action_pressed("ui_accept") && current_choice_state == null:
 		if current_option == 0:
@@ -51,18 +65,30 @@ func _input(event):
 			for i in range(3):
 				add_move_option(i)
 
-			uiLogic.update_current_object(options, current_option)
 			desc.set_text(moves_options[current_option].desc)
 
 		elif current_option == 2:
-			# Stat
-			pass
+			current_choice_state = STAT
+			current_option = 0
 
-	elif event.is_action_pressed("ui_accept") && current_choice_state == MOVE:
-		gameData.player.moves.append(moves_options[current_option])
-		gameData.player.moves_known.append(moves_options[current_option].name)
+			for i in range(3):
+				add_stat_option(i)
+
+			desc.set_text(stat_options[current_option].desc)
+
+		uiLogic.update_current_object(options, current_option)
+
+	elif event.is_action_pressed("ui_accept"):
+		if current_choice_state == MOVE:
+			gameData.player.moves.append(moves_options[current_option])
+			gameData.player.moves_known.append(moves_options[current_option].name)
+		elif current_choice_state == STAT:
+			var chosen_stat = stat_options[current_option].name
+			gameData.player.stats[chosen_stat] += 2
 		sceneManager.goto_scene("res://grid/grid.tscn")
 
+# add_move_option
+# Prepares labels with move data
 func add_move_option(index):
 	var new_choice_index = gameData.get_random_number(gameData.moves_data.moves.size() - 1)
 	var new_choice = gameData.moves_data.moves[new_choice_index]
@@ -76,3 +102,8 @@ func add_move_option(index):
 	else:
 		add_move_option(index)
 		return
+
+# add_stat_option
+# Prepares labels with stats data
+func add_stat_option(index):
+	options[index].set_text(stat_options[index].name)
