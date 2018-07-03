@@ -22,7 +22,7 @@ func goto_scene(path):
 func _deferred_goto_scene(path):
 	# Immediately free the current scene,
 	# there is no risk here.
-	current_scene.free()
+	current_scene.queue_free()
 
 	# Load new scene
 	var s = ResourceLoader.load(path)

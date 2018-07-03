@@ -7,7 +7,8 @@ var current_effects = {
 }
 var current_move = 0
 var current_option = 0
-var fight_back_btn
+
+var fight_options
 
 var is_evolving = false
 var is_intro = true
@@ -20,6 +21,8 @@ var menu_options = []
 var menu_prompt
 var mob_info
 var moves = []
+var moves_font
+var moves_grid
 var must_leave = false
 var player_info
 var prompt_text = ""
@@ -29,20 +32,26 @@ var show_moves = false
 
 func _ready():
 	click_player = $clickPlayer
-	fight_back_btn = $frame/fightOptions/back
 	menu_frame = $frame
 	menu_prompt = $frame/menuPrompt
-	moves = $frame/fightOptions.get_children()
+	moves_font = load("res://assets/fonts/somepx24.tres")
+	moves_grid = $frame/fightOptions/movesScroll/movesGrid
 
-	for move in moves:
-		var index = moves.find(move)
+	for move in gameData.player.moves:
+		var label = Label.new()
+		moves_grid.add_child(label)
+		label.set("custom_fonts/font", moves_font)
+		label.set("custom_colors/color", Color("#f9f9f9"))
+		label.set_text(move.name)
 
-		if gameData.player.moves.size() > index:
-			move.set_text(gameData.player.moves[index].name)
+	fight_options = $frame/fightOptions
+	fight_options.hide()
 
 	menu_options = $frame/menuOptions.get_children()
 	for op in menu_options:
 		op.hide()
+
+	moves = moves_grid.get_children()
 
 	show_moves = false
 	set_process_input(true)
@@ -93,7 +102,7 @@ func _input(event):
 					text_array.append("You reached level " + String(gameData.player.level) + "!")
 					level_up = true
 
-				if gameData.player.level == 5:
+				if gameData.player.level == 5 && gameData.player.form == null && gameData.player.elemental_type == null:
 					is_evolving = true
 
 				set_prompt_text(text_array, 0)
@@ -163,12 +172,7 @@ func _input(event):
 		# If the user selects an attack whose text is clearly visible...
 		elif event.is_action_pressed("ui_accept") && moves[current_move].is_visible():
 			click_player.play()
-
-			if current_move == 4:
-				hide_fight_controls(true)
-
-			else:
-				process_turn()
+			process_turn()
 
 
 # ---------------
@@ -178,12 +182,15 @@ func calculate_damage(attack, entity):
 	var damage = 0
 	var current_enemy
 	var current_entity = gameData[entity]
+	var other_entity
 	var selected_attack = gameData[entity].moves[attack]
 
 	if entity == "player":
 		current_enemy = gameData.mob
+		other_entity = "mob"
 	elif entity == "mob":
 		current_enemy = gameData.player
+		other_entity = "player"
 
 	if selected_attack.damage > 0:
 
@@ -207,14 +214,14 @@ func calculate_damage(attack, entity):
 			current_entity.current_hp += selected_attack.stat.hp
 
 	if selected_attack.has('effect'):
-		if selected_attack.effect.has('burn') and current_effects[current_enemy].size() == 0:
-			current_effects[current_enemy].append('burn')
+		if selected_attack.effect.has('burn') and current_effects[other_entity].size() == 0:
+			current_effects[other_entity].append('burn')
 
-		if selected_attack.effect.has('slow') and current_effects[current_enemy].size() == 0:
-			current_effects[current_enemy].append('slow')
+		if selected_attack.effect.has('slow') and current_effects[other_entity].size() == 0:
+			current_effects[other_entity].append('slow')
 
-		if selected_attack.effect.has('poison') and current_effects[current_enemy].size() == 0:
-			current_effects[current_enemy].append('poison')
+		if selected_attack.effect.has('poison') and current_effects[other_entity].size() == 0:
+			current_effects[other_entity].append('poison')
 
 	return damage
 
@@ -236,21 +243,17 @@ func calculate_effect(entity, effect):
 func hide_fight_controls(hide):
 	if hide:
 		show_moves = false
-		fight_back_btn.hide()
 		toggle_hidden(false)
 		menu_prompt.show()
 
-		for move in moves:
-			move.hide()
+		fight_options.hide()
 
 	else:
 		show_moves = true
-		fight_back_btn.show()
 		toggle_hidden(true)
 		menu_prompt.hide()
 
-		for move in moves:
-			move.show()
+		fight_options.show()
 
 func process_turn():
 	var process_text_array = []

@@ -17,6 +17,11 @@
                 "speed": 1,
                 "strength": 1
             },
+            "statsChanged": {
+                "defense": 0,
+                "speed": 0,
+                "strength": 0
+            },
             "xp": 20
         },
         {
@@ -48,6 +53,11 @@
                 "defense": 1,
                 "speed": 1,
                 "strength": 3
+            },
+            "statsChanged": {
+                "defense": 0,
+                "speed": 0,
+                "strength": 0
             },
             "xp": 30
         },
@@ -82,6 +92,11 @@
                 "defense": 1,
                 "speed": 3,
                 "strength": 2
+            },
+            "statsChanged": {
+                "defense": 0,
+                "speed": 0,
+                "strength": 0
             },
             "xp": 40
         }
