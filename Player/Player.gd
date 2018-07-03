@@ -78,7 +78,6 @@ func _physics_process(delta):
         move_and_collide(velocity)
 
         var distance_to_target = Vector2(abs(target_pos.x - self.position.x), abs(target_pos.y - self.position.y))
-        gameData.player.pos = self.position
 
         if abs(velocity.x) > distance_to_target.x:
             velocity.x = distance_to_target.x * target_direction.x

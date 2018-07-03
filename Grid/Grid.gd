@@ -51,6 +51,7 @@ func is_cell_vacant(pos, direction):
         if abs(grid_pos.y) < grid_size.y and grid_pos.y >= 0:
 
             if grid[grid_pos.x][grid_pos.y] == null:
+                gameData.player.pos = Vector2(grid_pos.x, grid_pos.y)
                 return true
 
             elif grid[grid_pos.x][grid_pos.y] == ENCOUNTER:
