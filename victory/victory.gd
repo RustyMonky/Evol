@@ -8,6 +8,7 @@ var desc
 
 var current_option = 0
 var options
+var item_options = []
 var moves_options = []
 var stat_options = [{
 	name = "defense",
@@ -53,11 +54,18 @@ func _input(event):
 			desc.set_text(moves_options[current_option].desc)
 		elif current_choice_state == STAT:
 			desc.set_text(stat_options[current_option].desc)
+		elif current_choice_state == ITEM:
+			desc.set_text(item_options[current_option].desc)
 
 	elif event.is_action_pressed("ui_accept") && current_choice_state == null:
 		if current_option == 0:
-			# Item
-			pass
+			current_choice_state = ITEM
+			current_option = 0
+
+			for i in range(3):
+				add_item_option(i)
+
+			desc.set_text(item_options[current_option].desc)
 		elif current_option == 1:
 			current_choice_state = MOVE
 			current_option = 0
@@ -85,7 +93,17 @@ func _input(event):
 		elif current_choice_state == STAT:
 			var chosen_stat = stat_options[current_option].name
 			gameData.player.stats[chosen_stat] += 2
+		elif current_choice_state == ITEM:
+			gameData.player.items.append(item_options[current_option])
 		sceneManager.goto_scene("res://grid/grid.tscn")
+
+# add_item_option
+# Prepares labels with item data
+func add_item_option(index):
+	var new_choice_index = gameData.get_random_number(gameData.items_data.items.size() - 1)
+	var new_choice = gameData.items_data.items[new_choice_index]
+	item_options.append(new_choice)
+	options[index].set_text(new_choice.name)
 
 # add_move_option
 # Prepares labels with move data

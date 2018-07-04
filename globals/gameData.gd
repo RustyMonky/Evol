@@ -5,6 +5,7 @@ var player = {
 	current_hp = 15,
 	elemental_type = null,
 	form = null,
+	items = [],
 	level = 1,
 	max_hp = 15,
 	moves = [
@@ -44,6 +45,7 @@ var mob = {
 	}
 }
 
+var items_data
 var mob_data
 var moves_data
 
@@ -72,6 +74,13 @@ func _ready():
 	for move in self.player.moves:
 		self.player.moves_known.append(move.name)
 
+	# Retrieve all item data
+	var items_file = File.new()
+	items_file.open("res://data/items.json", File.READ)
+	var items_file_text = items_file.get_as_text()
+	items_data = parse_json(items_file_text)
+	items_file.close()
+
 # Globally accessible function to generate a new random number
 func get_random_number(limit):
 	randomize()
@@ -97,6 +106,7 @@ func start_new_game():
 		current_hp = 15,
 		elemental_type = null,
 		form = null,
+		items = [],
 		level = 1,
 		max_hp = 15,
 		moves = [

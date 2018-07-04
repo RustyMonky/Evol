@@ -1,0 +1,42 @@
+{
+    "items": [
+        {
+            "name": "HP Seed",
+            "desc": "Recovers 10 HP",
+            "effects": {
+                "hp": 10
+            }
+        },
+        {
+            "name": "Steroid Seed",
+            "desc": "Provides 5 STR",
+            "effects": {
+                "strength": 5
+            }
+        },
+        {
+            "name": "Guard Seed",
+            "desc": "Provides 5 DEF",
+            "effects": {
+                "defense": 5
+            }
+        },
+        {
+            "name": "Haste Seed",
+            "desc": "Provides 5 SPD",
+            "effects": {
+                "speed": 5
+            }
+        },
+        {
+            "name": "Soul Seed",
+            "desc": "Boosts all stats at the cost of 10% HP",
+            "effects": {
+                "hp": 0.1,
+                "defense": 3,
+                "strength": 3,
+                "speed": 3
+            }
+        }
+    ]
+}
