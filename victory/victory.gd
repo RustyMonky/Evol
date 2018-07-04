@@ -1,5 +1,6 @@
 extends Container
 
+enum victory_phase {CHOOSING, DONE}
 enum CHOICE_TYPES {ITEM, MOVE, STAT}
 
 var current_choice_state = null
@@ -20,6 +21,8 @@ var stat_options = [{
 	name = "strength",
 	desc = "Increase your strength by 2"
 }]
+
+var victory_phase = CHOOSING
 
 func _ready():
 	desc = $optionDesc
@@ -87,15 +90,22 @@ func _input(event):
 		uiLogic.update_current_object(options, current_option)
 
 	elif event.is_action_pressed("ui_accept"):
-		if current_choice_state == MOVE:
-			gameData.player.moves.append(moves_options[current_option])
-			gameData.player.moves_known.append(moves_options[current_option].name)
-		elif current_choice_state == STAT:
-			var chosen_stat = stat_options[current_option].name
-			gameData.player.stats[chosen_stat] += 2
-		elif current_choice_state == ITEM:
-			gameData.player.items.append(item_options[current_option])
-		sceneManager.goto_scene("res://grid/grid.tscn")
+		if victory_phase == CHOOSING:
+			if current_choice_state == MOVE:
+				gameData.player.moves.append(moves_options[current_option])
+				gameData.player.moves_known.append(moves_options[current_option].name)
+				desc.set_text("You learned " + moves_options[current_option].name + "!")
+			elif current_choice_state == STAT:
+				var chosen_stat = stat_options[current_option].name
+				gameData.player.stats[chosen_stat] += 2
+				desc.set_text("You inscreased your " + stat_options[current_option].name + " by two!")
+			elif current_choice_state == ITEM:
+				gameData.player.items.append(item_options[current_option])
+				desc.set_text("You gained a " + item_options[current_option].name + "!")
+			victory_phase = DONE
+
+		elif victory_phase == DONE:
+			sceneManager.goto_scene("res://grid/grid.tscn")
 
 # add_item_option
 # Prepares labels with item data
