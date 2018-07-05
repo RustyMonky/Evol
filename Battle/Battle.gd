@@ -5,6 +5,7 @@ var container
 var mob_to_fight
 var mob_node
 var mob_info
+var mob_tween
 
 var player_info
 var player_sprite
@@ -18,6 +19,7 @@ func _ready():
 	battle_menu.set_position(Vector2(0, 352)) # Display height - menu frame height
 
 	mob_node = $mob
+	mob_tween = $mobTween
 
 	# Randomize mob selection
 	var mob_index = gameData.get_random_number(gameData.mob_data.mobs.size())
@@ -62,9 +64,6 @@ func _ready():
 	var player_sprite_texture = load(gameData.player.battle_sprite)
 	player_sprite.set_texture(player_sprite_texture)
 
-	set_process(true)
-
-func _process(delta):
-	if round(mob_node.position.x) < (480 - mob_node.get_texture().get_size().x):
-		mob_node.position.x += (MOB_MOVE_SPEED * delta)
+	mob_tween.interpolate_property(mob_node, "position", mob_node.position, Vector2(480 - mob_node.get_texture().get_size().x, mob_node.position.y), 1.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+	mob_tween.start()
 
