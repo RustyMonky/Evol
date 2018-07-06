@@ -183,14 +183,18 @@ func calculate_damage(attack, entity):
 	var current_enemy
 	var current_entity = gameData[entity]
 	var other_entity
+	var pre_text = ""
+	var process_text_array = []
 	var selected_attack = gameData[entity].moves[attack]
 
 	if entity == "player":
 		current_enemy = gameData.mob
 		other_entity = "mob"
+		pre_text = "You"
 	elif entity == "mob":
 		current_enemy = gameData.player
 		other_entity = "player"
+		pre_text = gameData.mob.name
 
 	if selected_attack.damage > 0:
 
@@ -203,27 +207,39 @@ func calculate_damage(attack, entity):
 
 		if selected_attack.stat.has('strength'):
 			current_entity.statsChanged.strength += selected_attack.stat.strength
+			process_text_array.append(pre_text + " increased in strength!")
 
 		if selected_attack.stat.has('defense'):
 			current_entity.statsChanged.defense += selected_attack.stat.defense
+			process_text_array.append(pre_text + " increased defenses!")
 
 		if selected_attack.stat.has('speed'):
 			current_entity.statsChanged.speed += selected_attack.stat.speed
+			process_text_array.append(pre_text + " picked up speed!")
 
 		if selected_attack.stat.has('hp'):
 			current_entity.current_hp += selected_attack.stat.hp
+			process_text_array.append(pre_text + " recovered " + String(selected_attack.stat.hp)) + " HP!"
 
 	if selected_attack.has('effect'):
 		if selected_attack.effect.has('burn') and current_effects[other_entity].size() == 0:
 			current_effects[other_entity].append('burn')
+			process_text_array.append(pre_text + " received a burn!")
 
 		if selected_attack.effect.has('slow') and current_effects[other_entity].size() == 0:
 			current_effects[other_entity].append('slow')
+			process_text_array.append(pre_text + " became slowed!")
 
 		if selected_attack.effect.has('poison') and current_effects[other_entity].size() == 0:
 			current_effects[other_entity].append('poison')
+			process_text_array.append(pre_text + " became poisoned!")
 
-	return damage
+	if process_text_array.size() > 0:
+		set_prompt_text(process_text_array, 0)
+	return {
+		"damage": damage,
+		"text": process_text_array
+	}
 
 # calculate_effect
 # Implements effect of the provided status change
@@ -285,7 +301,11 @@ func process_turn():
 
 		process_text_array.append(turn_owner + " used " + gameData[turn].moves[move].name + "!")
 
-		var damage_dealt = calculate_damage(move, turn)
+		var turn_result = calculate_damage(move, turn)
+		var damage_dealt = turn_result.damage
+		if turn_result.text.size() > 0:
+			for text in turn_result.text:
+				process_text_array.append(text)
 
 		if turn == "player":
 			process_text_array.append(gameData.mob.name + " took " + String(damage_dealt) + " damage!")

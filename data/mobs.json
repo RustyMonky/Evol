@@ -37,8 +37,7 @@
                     "name": "Space Out",
                     "damage": 0,
                     "desc": "Space out in the middle of battle. Oops.",
-                    "elementalType": null,
-                    "stat": {}
+                    "elementalType": null
                 },
                 {
                     "name": "Beak Smash",
