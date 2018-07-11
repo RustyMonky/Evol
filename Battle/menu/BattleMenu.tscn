@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/fonts/somepx32.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/sounds/click.wav" type="AudioStream" id=4]
 
-[node name="menu" type="Container" index="0"]
+[node name="menu" type="Container"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -72,23 +72,22 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode", "Margin", "Rect", "custom_colors", "custom_fonts" ]
 
-[node name="menuOptions" type="HBoxContainer" parent="frame" index="1"]
+[node name="menuOptions" type="GridContainer" parent="frame" index="1"]
 
-editor/display_folded = true
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = -16.0
-margin_bottom = 36.0
+margin_top = -30.0
+margin_bottom = 22.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-alignment = 1
+columns = 2
 _sections_unfolded = [ "Margin", "Rect" ]
 
 [node name="fight" type="Label" parent="frame/menuOptions" index="0"]
@@ -133,6 +132,31 @@ size_flags_vertical = 2
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 text = "Run"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="item" type="Label" parent="frame/menuOptions" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 30.0
+margin_right = 34.0
+margin_bottom = 54.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "Item"
 align = 1
 valign = 1
 percent_visible = 1.0

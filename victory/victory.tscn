@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/GUI/panel.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/titleOptions.tres" type="DynamicFont" id=3]
 
-[node name="container" type="Container" index="0"]
+[node name="container" type="Container"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -65,6 +65,7 @@ _sections_unfolded = [ "Margin", "Rect", "custom_colors", "custom_fonts" ]
 
 [node name="options" type="Control" parent="." index="2"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.5
 anchor_right = 1.0

@@ -28,6 +28,7 @@ var player_info
 var prompt_text = ""
 var prompt_text_batch = []
 var prompt_text_index = 0
+var show_items = false
 var show_moves = false
 
 func _ready():
@@ -62,7 +63,7 @@ func _ready():
 	set_prompt_text(["A " + gameData.mob.name + " appeared!", "What will you do?"], 0)
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") && not must_leave && not show_moves:
+	if event.is_action_pressed("ui_accept") && not must_leave && not show_moves && not show_items:
 		click_player.play()
 
 		if is_text_done:
@@ -123,6 +124,12 @@ func _input(event):
 			elif current_option == 0 && not is_intro:
 				hide_fight_controls(false)
 
+			elif current_option == 2:
+				if (gameData.player.items.size() == 0):
+					set_prompt_text(["You currently have no items!"], 0)
+				else:
+					show_items = true
+
 		else:
 			if menu_prompt.get_visible_characters() >= menu_prompt.get_total_character_count():
 				set_prompt_text(prompt_text_batch, prompt_text_index)
@@ -133,14 +140,18 @@ func _input(event):
 			else:
 				set_prompt_text(prompt_text_batch, prompt_text_index)
 
-	# Move between "Fight" and "Run"
-	elif event.is_action_pressed("ui_left") && not show_moves:
-		uiLogic.update_current_object(menu_options, 0)
-		current_option = 0
+	# Move among "Fight", "Run", and "Item"
+	elif event.is_action_pressed("ui_left") && not show_moves && not show_items:
+		if (current_option <= 0):
+			return
+		current_option -= 1
+		uiLogic.update_current_object(menu_options, current_option)
 
-	elif event.is_action_pressed("ui_right") && not show_moves:
-		uiLogic.update_current_object(menu_options, 1)
-		current_option = 1
+	elif event.is_action_pressed("ui_right") && not show_moves && not show_items:
+		if (current_option >= 2):
+			return
+		current_option += 1
+		uiLogic.update_current_object(menu_options, current_option)
 
 	# Exit fight menu
 	elif show_moves:

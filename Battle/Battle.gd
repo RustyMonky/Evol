@@ -2,6 +2,9 @@ extends Node2D
 
 var battle_menu
 var container
+
+var items_grid
+
 var mob_to_fight
 var mob_node
 var mob_info
@@ -67,3 +70,15 @@ func _ready():
 	mob_tween.interpolate_property(mob_node, "position", mob_node.position, Vector2(480 - mob_node.get_texture().get_size().x, mob_node.position.y), 1.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 	mob_tween.start()
 
+	items_grid = load("res://items/items.tscn").instance()
+
+	set_process_input(true)
+
+func _input(event):
+	if event.is_action_pressed("ui_accept") && battle_menu.show_items:
+		self.add_child(items_grid)
+
+	elif event.is_action_pressed("ui_cancel") && battle_menu.show_items:
+		self.remove_child(items_grid)
+		items_grid.queue_free()
+		battle_menu.show_items = false
