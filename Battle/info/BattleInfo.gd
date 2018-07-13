@@ -11,8 +11,8 @@ func _ready():
 	hp_tween = $hpTween
 
 	if type == "mob":
-		$infoBox/name.set_text(gameData.mob.name)
-		$infoBox/lvl.set_text("Lvl. " + String(gameData.mob.level))
+		$infoBox/name.set_text(battleData.mob.name)
+		$infoBox/lvl.set_text("Lvl. " + String(battleData.mob.level))
 	elif type == "player":
 		$infoBox/name.set_text("You")
 		$infoBox/lvl.set_text("Lvl. " + String(gameData.player.level))

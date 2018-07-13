@@ -4,6 +4,7 @@ var battle_menu
 var container
 
 var items_grid
+var items_shown = false
 
 var mob_to_fight
 var mob_node
@@ -31,25 +32,25 @@ func _ready():
 	mob_node.set_texture(load(mob_to_fight.sprite))
 	mob_node.position = Vector2(0 - mob_node.get_texture().get_size().x, mob_node.get_texture().get_size().y / 2)
 
-	gameData.mob = mob_to_fight
-	gameData.mob.current_hp = mob_to_fight.maxHp
-	gameData.mob.level = (gameData.get_random_number(gameData.player.level) + 1)
-	gameData.mob.stats.defense += gameData.mob.level
-	gameData.mob.stats.speed += gameData.mob.level
-	gameData.mob.stats.strength += gameData.mob.level
-	gameData.mob.statsChanged = {
+	battleData.mob = mob_to_fight
+	battleData.mob.current_hp = mob_to_fight.maxHp
+	battleData.mob.level = (gameData.get_random_number(gameData.player.level) + 1)
+	battleData.mob.stats.defense += battleData.mob.level
+	battleData.mob.stats.speed += battleData.mob.level
+	battleData.mob.stats.strength += battleData.mob.level
+	battleData.mob.statsChanged = {
 		defense = 0,
 		speed = 0,
 		strength = 0
 	}
-	gameData.mob.xp = mob_to_fight.xp * gameData.mob.level
+	battleData.mob.xp = mob_to_fight.xp * battleData.mob.level
 
 	# Add mob info instance
 	mob_info = load("res://Battle/info/BattleInfo.tscn").instance();
 	container.call_deferred("add_child", mob_info)
 	mob_info.type = "mob"
 	mob_info.max_hp = mob_to_fight.maxHp
-	mob_info.current_hp = gameData.mob.current_hp
+	mob_info.current_hp = battleData.mob.current_hp
 	mob_info.set_position(Vector2(0, 0))
 
 	battle_menu.mob_info = mob_info
@@ -70,15 +71,22 @@ func _ready():
 	mob_tween.interpolate_property(mob_node, "position", mob_node.position, Vector2(480 - mob_node.get_texture().get_size().x, mob_node.position.y), 1.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 	mob_tween.start()
 
-	items_grid = load("res://items/items.tscn").instance()
-
 	set_process_input(true)
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") && battle_menu.show_items:
-		self.add_child(items_grid)
+	if event.is_action_pressed("ui_accept"):
 
-	elif event.is_action_pressed("ui_cancel") && battle_menu.show_items:
-		self.remove_child(items_grid)
-		items_grid.queue_free()
-		battle_menu.show_items = false
+		if battle_menu.current_state == battle_menu.battle_state.ITEMS:
+			if not items_shown:
+				items_grid = load("res://items/items.tscn").instance()
+				self.add_child(items_grid)
+				items_shown = true
+			else:
+				items_shown = false
+				self.remove_child(items_grid)
+				battle_menu.process_turn_with_item()
+
+	elif event.is_action_pressed("ui_cancel"):
+		if items_shown:
+			items_shown = false
+			self.remove_child(items_grid)

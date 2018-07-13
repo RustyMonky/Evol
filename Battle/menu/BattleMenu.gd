@@ -1,5 +1,7 @@
 extends Control
 
+enum battle_state { EVOLVING, GAMEOVER, INTRO, ITEMS, MENU, MOVES, LEVEL_UP, RUN, TURN, VICTORY }
+
 var click_player
 var current_effects = {
 	mob = [],
@@ -7,12 +9,12 @@ var current_effects = {
 }
 var current_move = 0
 var current_option = 0
+var current_state = battle_state.INTRO
 
 var fight_options
 
 var is_evolving = false
 var is_intro = true
-var is_player_dead = false # Boolean that dictates routing to gameover state
 var is_text_done = false
 var level_up = false
 
@@ -54,38 +56,43 @@ func _ready():
 
 	moves = moves_grid.get_children()
 
-	show_moves = false
 	set_process_input(true)
 	uiLogic.update_current_object(menu_options, 0)
 	uiLogic.update_current_object(moves, 0)
 
 	 # Begin the encounter introduction
-	set_prompt_text(["A " + gameData.mob.name + " appeared!", "What will you do?"], 0)
+	set_prompt_text(["A " + battleData.mob.name + " appeared!", "What will you do?"], 0)
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") && not must_leave && not show_moves && not show_items:
+	if event.is_action_pressed("ui_accept"):
+		print(current_state)
 		click_player.play()
 
 		if is_text_done:
 			# Player is dead, queue gameover state
-			if is_player_dead:
+			if current_state == battle_state.GAMEOVER:
 				sceneManager.goto_scene("res://gameover/gameover.tscn")
 
-			elif gameData.player.current_hp <= 0 && not is_player_dead:
-				set_prompt_text(["You've lost all of your HP...", "You've been vanquished!"], 0)
-				is_player_dead = true
+			elif current_state == battle_state.TURN:
+				current_state = battle_state.MENU
+				hide_fight_controls(true)
 
-			elif is_evolving:
+			elif gameData.player.current_hp <= 0:
+				set_prompt_text(["You've lost all of your HP...", "You've been vanquished!"], 0)
+				current_state = battle_state.GAMEOVER
+
+			elif current_state == battle_state.EVOLVING:
 				sceneManager.goto_scene("res://battle/evolution/evolution.tscn")
 
-			elif level_up:
+			elif current_state == battle_state.LEVEL_UP:
 				sceneManager.goto_scene("res://victory/victory.tscn")
 
 			# If the mob died, prepare victory text
-			elif gameData.mob.current_hp <= 0:
-				var text_array = ["You consumed " + gameData.mob.name + "!", "You gained " + String(gameData.mob.xp) + " experience points."]
+			elif battleData.mob.current_hp <= 0:
+				current_state = battle_state.VICTORY
+				var text_array = ["You consumed " + battleData.mob.name + "!", "You gained " + String(battleData.mob.xp) + " experience points."]
 
-				gameData.player.xp += gameData.mob.xp
+				gameData.player.xp += battleData.mob.xp
 				gameData.player.total_mobs_killed += 1
 
 				# Check if the player can level up
@@ -95,74 +102,60 @@ func _input(event):
 					speed = 0,
 					strength = 0
 				}
-				gameData.player.statsChanged = resetStats
-				gameData.mob.statsChanged = resetStats
+				battleData.player.statsChanged = resetStats
+				battleData.mob.statsChanged = resetStats
 
 				if gameData.player.xp >= gameData.xp_required_array[gameData.player.level]:
+					current_state = battle_state.LEVEL_UP
 					gameData.level_up()
 					text_array.append("You reached level " + String(gameData.player.level) + "!")
-					level_up = true
 
 				if gameData.player.level == 5 && gameData.player.form == null && gameData.player.elemental_type == null:
-					is_evolving = true
+					current_state = battle_state.EVOLVING
 
 				set_prompt_text(text_array, 0)
 
 			# Intro concluded, start battle sequence
-			elif is_intro:
-				is_intro = false
+			elif current_state == battle_state.INTRO:
+				current_state = battle_state.MENU
+
 				for op in menu_options:
 					op.show()
 
-			# If the user clicks to continue on the Run option, display text before allowing them to leave
-			elif current_option == 1:
-				must_leave = true
-				set_prompt_text(["You ran away!"], 0)
+			elif current_state == battle_state.MENU:
 
-			# Otherwise, if the user clicks to continue and the intro is completed, they'll be choosing fight by default
-			# Tl,dr: start the battle
-			elif current_option == 0 && not is_intro:
-				hide_fight_controls(false)
+				if current_option == 0:
+					hide_fight_controls(false)
 
-			elif current_option == 2:
-				if (gameData.player.items.size() == 0):
-					set_prompt_text(["You currently have no items!"], 0)
-				else:
-					show_items = true
+				elif current_option == 1:
+					current_state = battle_state.RUN
+					set_prompt_text(["You ran away!"], 0)
+
+				elif current_option == 2:
+					if (gameData.player.items.size() == 0):
+						set_prompt_text(["You currently have no items!"], 0)
+					else:
+						current_state = battle_state.ITEMS
+
+			# If the user selects an attack whose text is clearly visible...
+			elif current_state == battle_state.MOVES && moves[current_move].is_visible():
+				process_turn_with_move()
+
+			elif current_state == battle_state.RUN:
+				sceneManager.goto_scene("res://grid/grid.tscn")
 
 		else:
 			if menu_prompt.get_visible_characters() >= menu_prompt.get_total_character_count():
 				set_prompt_text(prompt_text_batch, prompt_text_index)
-	elif event.is_action_pressed("ui_accept") && must_leave:
-			click_player.play()
-			if is_text_done:
-				sceneManager.goto_scene("res://grid/grid.tscn")
-			else:
-				set_prompt_text(prompt_text_batch, prompt_text_index)
 
-	# Move among "Fight", "Run", and "Item"
-	elif event.is_action_pressed("ui_left") && not show_moves && not show_items:
-		if (current_option <= 0):
-			return
-		current_option -= 1
-		uiLogic.update_current_object(menu_options, current_option)
+	elif event.is_action_pressed("ui_left"):
+		if current_state == battle_state.MENU:
+			if (current_option <= 0):
+				return
+			current_option -= 1
+			uiLogic.update_current_object(menu_options, current_option)
 
-	elif event.is_action_pressed("ui_right") && not show_moves && not show_items:
-		if (current_option >= 2):
-			return
-		current_option += 1
-		uiLogic.update_current_object(menu_options, current_option)
-
-	# Exit fight menu
-	elif show_moves:
-		# Cancel "Fight"
-		if event.is_action_pressed("ui_cancel"):
-
-			hide_fight_controls(true)
-			show_moves = false
-
-		# Movement Options
-		elif event.is_action_pressed("ui_left"):
+		elif current_state == battle_state.MOVES:
 			if current_move - 1 < 0:
 				current_move = 4
 			elif (current_move - 1) > gameData.player.moves.size():
@@ -171,7 +164,14 @@ func _input(event):
 				current_move -= 1
 			uiLogic.update_current_object(moves, current_move)
 
-		elif event.is_action_pressed("ui_right"):
+	elif event.is_action_pressed("ui_right"):
+		if current_state == battle_state.MENU:
+			if (current_option >= 2):
+				return
+			current_option += 1
+			uiLogic.update_current_object(menu_options, current_option)
+
+		elif current_state == battle_state.MOVES:
 			if current_move + 1 > (moves.size() - 1):
 				current_move = 0
 			elif current_move + 1 > (gameData.player.moves.size() - 1):
@@ -180,10 +180,13 @@ func _input(event):
 				current_move += 1
 			uiLogic.update_current_object(moves, current_move)
 
-		# If the user selects an attack whose text is clearly visible...
-		elif event.is_action_pressed("ui_accept") && moves[current_move].is_visible():
-			click_player.play()
-			process_turn()
+	elif event.is_action_pressed("ui_cancel"):
+		if current_state == battle_state.MOVES:
+			hide_fight_controls(true)
+			current_state = battle_state.MENU
+
+		elif current_state == battle_state.ITEMS:
+			current_state = battle_state.MENU
 
 
 # ---------------
@@ -192,20 +195,20 @@ func _input(event):
 func calculate_damage(attack, entity):
 	var damage = 0
 	var current_enemy
-	var current_entity = gameData[entity]
+	var current_entity = battleData[entity]
 	var other_entity
 	var pre_text = ""
 	var process_text_array = []
-	var selected_attack = gameData[entity].moves[attack]
+	var selected_attack = battleData[entity].moves[attack]
 
 	if entity == "player":
-		current_enemy = gameData.mob
+		current_enemy = battleData.mob
 		other_entity = "mob"
 		pre_text = "You"
 	elif entity == "mob":
-		current_enemy = gameData.player
+		current_enemy = battleData.player
 		other_entity = "player"
-		pre_text = gameData.mob.name
+		pre_text = battleData.mob.name
 
 	if selected_attack.damage > 0:
 
@@ -257,10 +260,10 @@ func calculate_damage(attack, entity):
 func calculate_effect(entity, effect):
 	if effect == 'burn':
 		gameData[entity].current_hp -= 2
-		gameData[entity].statsChanged.defense -= 1
+		battleData[entity].statsChanged.defense -= 1
 	elif effect == 'slow':
-		gameData[entity].statsChanged.speed -= 1
-		gameData[entity].statsChanged.strength -= 1
+		battleData[entity].statsChanged.speed -= 1
+		battleData[entity].statsChanged.strength -= 1
 	elif effect == 'poison':
 		gameData[entity].current_hp -= 3
 
@@ -269,20 +272,20 @@ func calculate_effect(entity, effect):
 # Toggles visibility of various fight controls
 func hide_fight_controls(hide):
 	if hide:
-		show_moves = false
 		toggle_hidden(false)
 		menu_prompt.show()
 
 		fight_options.hide()
 
 	else:
-		show_moves = true
+		current_state = battle_state.MOVES
 		toggle_hidden(true)
 		menu_prompt.hide()
 
 		fight_options.show()
 
-func process_turn():
+func process_turn_with_item():
+	current_state = battle_state.TURN
 	var process_text_array = []
 	var process_turns_array = []
 
@@ -290,10 +293,106 @@ func process_turn():
 	toggle_hidden(true)
 
 	# First, get the mob's move selection as well
-	var mob_attack = floor(rand_range(0, gameData.mob.moves.size()))
+	var mob_attack = floor(rand_range(0, battleData.mob.moves.size()))
 
 	# Then, create our turn order
-	if gameData.player.stats.speed >= gameData.mob.stats.speed:
+	if gameData.player.stats.speed >= battleData.mob.stats.speed:
+		process_turns_array = ["player", "mob"]
+	else:
+		process_turns_array = ["mob", "player"]
+
+	for turn in process_turns_array:
+		var turn_owner
+
+		if turn == "player":
+			turn_owner = "You"
+		elif turn == "mob":
+			turn_owner = battleData.mob.name
+
+		if turn == "player":
+			process_text_array.append("You used " + battleData.item_used.name + "!")
+
+			if battleData.item_used.effects.has("hp"):
+				var hp_amount = battleData.item_used.effects.hp
+				if hp_amount >= 1:
+					gameData.player.current_hp += hp_amount
+					process_text_array.append("You recovered " + String(hp_amount) + " HP!")
+				else:
+					var hp_lost = gameData.player.max_hp * hp_amount
+					gameData.player.current_hp -= hp_lost
+					process_text_array.append("You lost " + String(hp_lost) + " HP!")
+
+			elif battleData.item_used.effects.has("defense"):
+				var def_amount = battleData.item_used.effects.defense
+				if def_amount >= 0:
+					battleData.player.statsChanged.defense += def_amount
+					process_text_array.append("You gained " + String(def_amount) + " defense!")
+				else:
+					battleData.player.statsChanged.defense -= def_amount
+					process_text_array.append("You lost " + String(def_amount) + " defense!")
+
+			elif battleData.item_used.effects.has("speed"):
+				var spd_amount = battleData.item_used.effects.speed
+				if spd_amount >= 0:
+					battleData.player.statsChanged.speed += spd_amount
+					process_text_array.append("You gained " + String(spd_amount) + " speed!")
+				else:
+					battleData.player.statsChanged.speed -= spd_amount
+					process_text_array.append("You lost " + String(spd_amount) + " speed!")
+
+			elif battleData.item_used.effects.has("strength"):
+				var str_amount = battleData.item_used.effects.strength
+				if str_amount >= 0:
+					battleData.player.statsChanged.strength += str_amount
+					process_text_array.append("You gained " + String(str_amount) + " strength!")
+				else:
+					battleData.player.statsChanged.strength -= str_amount
+					process_text_array.append("You lost " + String(str_amount) + " strength!")
+
+			# After item usage, clear gameData of it
+			battleData.item_used = null
+
+		elif turn == "mob":
+			process_text_array.append(battleData.mob.name + " used " + battleData.mob.moves[mob_attack].name + "!")
+
+			var turn_result = calculate_damage(mob_attack, "mob")
+			var damage_dealt = turn_result.damage
+			if turn_result.text.size() > 0:
+				for text in turn_result.text:
+					process_text_array.append(text)
+
+			process_text_array.append("You took " + String(damage_dealt) + " damage!")
+			gameData.player.current_hp -= damage_dealt
+			player_info.current_hp = gameData.player.current_hp
+
+		if current_effects[turn].size() > 0:
+			for effect in current_effects[turn]:
+				calculate_effect(turn, effect)
+				if effect == 'burn':
+					process_text_array.append(turn_owner + " took 2 damage from the burn!")
+				elif effect == 'slow':
+					process_text_array.append(turn_owner + " remained slowed.")
+				elif effect == 'poison':
+					process_text_array.append(turn_owner + " took 3 damage from the poison!")
+
+		if mob_info.current_hp <= 0 || player_info.current_hp <= 0:
+			break
+
+	set_prompt_text(process_text_array, 0)
+
+func process_turn_with_move():
+	current_state = battle_state.TURN
+	var process_text_array = []
+	var process_turns_array = []
+
+	hide_fight_controls(true)
+	toggle_hidden(true)
+
+	# First, get the mob's move selection as well
+	var mob_attack = floor(rand_range(0, battleData.mob.moves.size()))
+
+	# Then, create our turn order
+	if gameData.player.stats.speed >= battleData.mob.stats.speed:
 		process_turns_array = ["player", "mob"]
 	else:
 		process_turns_array = ["mob", "player"]
@@ -307,10 +406,10 @@ func process_turn():
 			turn_owner = "You"
 			move = current_move
 		elif turn == "mob":
-			turn_owner = gameData.mob.name
+			turn_owner = battleData.mob.name
 			move = mob_attack
 
-		process_text_array.append(turn_owner + " used " + gameData[turn].moves[move].name + "!")
+		process_text_array.append(turn_owner + " used " + battleData[turn].moves[move].name + "!")
 
 		var turn_result = calculate_damage(move, turn)
 		var damage_dealt = turn_result.damage
@@ -319,9 +418,9 @@ func process_turn():
 				process_text_array.append(text)
 
 		if turn == "player":
-			process_text_array.append(gameData.mob.name + " took " + String(damage_dealt) + " damage!")
-			gameData.mob.current_hp -= damage_dealt
-			mob_info.current_hp = gameData.mob.current_hp
+			process_text_array.append(battleData.mob.name + " took " + String(damage_dealt) + " damage!")
+			battleData.mob.current_hp -= damage_dealt
+			mob_info.current_hp = battleData.mob.current_hp
 		elif turn == "mob":
 			process_text_array.append("You took " + String(damage_dealt) + " damage!")
 			gameData.player.current_hp -= damage_dealt

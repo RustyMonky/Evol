@@ -23,26 +23,11 @@ var player = {
 		speed = 5,
 		strength = 5
 	},
-	statsChanged = {
-		defense = 0,
-		speed = 0,
-		strength = 0
-	},
 	stats_sprite = "res://assets/sprites/forms/sheets-48x48/baseSheet.png",
 	sprite_frame = Rect2(0, 0, 48, 48),
 	sprite_path = "res://assets/sprites/forms/sheets-48x48/baseSheet.png",
 	total_mobs_killed = 0,
 	xp = 0
-}
-
-var mob = {
-	current_hp = 10,
-	stats = {},
-	statsChanged = {
-		defense = 0,
-		speed = 0,
-		strength = 0
-	}
 }
 
 var items_data
@@ -118,11 +103,6 @@ func start_new_game():
 			defense = 5,
 			speed = 5,
 			strength = 5
-		},
-		statsChanged = {
-			defense = 0,
-			speed = 0,
-			strength = 0
 		},
 		stats_sprite = "res://assets/sprites/forms/sheets-48x48/baseSheet.png",
 		sprite_frame = Rect2(0, 0, 48, 48),
