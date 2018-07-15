@@ -59,24 +59,17 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		print(current_state)
 		click_player.play()
 
 		if is_text_done:
-			# Player is dead, queue gameover state
-			if current_state == battle_state.GAMEOVER:
+
+			if not current_state == battle_state.GAMEOVER && player_info.current_hp <= 0:
 				set_prompt_text(["You've lost all of your HP...", "You've been vanquished!"], 0)
-				sceneManager.goto_scene("res://gameover/gameover.tscn")
+				current_state = battle_state.GAMEOVER
 
 			elif current_state == battle_state.TURN:
 				current_state = battle_state.MENU
 				hide_fight_controls(true)
-
-			elif current_state == battle_state.EVOLVING:
-				sceneManager.goto_scene("res://battle/evolution/evolution.tscn")
-
-			elif current_state == battle_state.LEVEL_UP:
-				sceneManager.goto_scene("res://victory/victory.tscn")
 
 			elif current_state == battle_state.VICTORY:
 				var text_array = ["You consumed " + battleData.mob.name + "!", "You gained " + String(battleData.mob.xp) + " experience points."]
@@ -430,6 +423,7 @@ func process_turn_with_move():
 			break
 		elif player_info.current_hp <= 0:
 			current_state = battle_state.GAMEOVER
+			set_prompt_text(["You've lost all of your HP...", "You've been vanquished!"], 0)
 			break
 
 	set_prompt_text(process_text_array, 0)
@@ -467,3 +461,12 @@ func _on_menuPromptTimer_timeout():
 		# Otherwise, process text batch completion
 		else:
 			is_text_done = true
+
+func _on_clickPlayer_finished():
+	if is_text_done:
+		if current_state == battle_state.GAMEOVER:
+			sceneManager.goto_scene("res://gameover/gameover.tscn")
+		elif current_state == battle_state.EVOLVING:
+			sceneManager.goto_scene("res://battle/evolution/evolution.tscn")
+		elif current_state == battle_state.LEVEL_UP:
+			sceneManager.goto_scene("res://victory/victory.tscn")
