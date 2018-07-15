@@ -116,6 +116,11 @@ func _input(event):
 func add_item_option(index):
 	var new_choice_index = gameData.get_random_number(gameData.items_data.items.size() - 1)
 	var new_choice = gameData.items_data.items[new_choice_index]
+
+	if item_options.has(new_choice):
+		add_item_option(index)
+		return
+
 	item_options.append(new_choice)
 	options[index].set_text(new_choice.name)
 
