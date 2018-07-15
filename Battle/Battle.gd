@@ -87,6 +87,14 @@ func _input(event):
 				self.remove_child(items_grid)
 				battle_menu.process_turn_with_item()
 
+		elif battle_menu.current_state == battle_menu.battle_state.VICTORY && mob_node.get_modulate() == Color(1,1,1,1):
+			mob_tween.interpolate_property(mob_node, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			mob_tween.start()
+
+		elif battle_menu.current_state == battle_menu.battle_state.GAMEOVER && player_sprite.get_modulate() == Color(1,1,1,1):
+			mob_tween.interpolate_property(player_sprite, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			mob_tween.start()
+
 	elif event.is_action_pressed("ui_cancel"):
 		if items_shown:
 			items_shown = false
