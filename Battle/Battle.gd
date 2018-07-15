@@ -61,7 +61,7 @@ func _ready():
 	player_info.type = "player"
 	player_info.max_hp = gameData.player.max_hp
 	player_info.current_hp = gameData.player.current_hp
-	player_info.set_position(Vector2(332, 264))
+	player_info.set_position(Vector2(332, 240))
 
 	battle_menu.player_info = player_info
 	player_sprite = $playerBack

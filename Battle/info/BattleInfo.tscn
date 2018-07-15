@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Battle/info/BattleInfo.gd" type="Script" id=1]
+[ext_resource path="res://battle/info/BattleInfo.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/titleOptions.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Assets/GUI/hp/hpUnder.png" type="Texture" id=3]
 [ext_resource path="res://Assets/GUI/hp/hpOver.png" type="Texture" id=4]
@@ -29,7 +29,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
 margin_right = 136.0
-margin_bottom = 72.0
+margin_bottom = 100.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -81,7 +81,7 @@ text = "Lvl. 1"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_fonts" ]
+_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
 
 [node name="hp" type="TextureProgress" parent="infoBox" index="2"]
 
@@ -112,6 +112,30 @@ radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
 _sections_unfolded = [ "Margin", "Rect", "Textures" ]
+
+[node name="hpText" type="Label" parent="infoBox" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 76.0
+margin_right = 128.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "x / x"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="hpTween" type="Tween" parent="." index="1"]
 
