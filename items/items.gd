@@ -41,6 +41,6 @@ func _input(event):
 		# Store the currently selected item in memory for battle usage,
 		# Then remove it from the player's inventory
 		battleData.item_used = gameData.player.items[selected_item]
-		gameData.player.items.erase(selected_item)
+		gameData.player.items.remove(selected_item)
 
 		self.queue_free()

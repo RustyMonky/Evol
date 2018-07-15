@@ -13,10 +13,7 @@ var current_state = battle_state.INTRO
 
 var fight_options
 
-var is_evolving = false
-var is_intro = true
 var is_text_done = false
-var level_up = false
 
 var menu_frame
 var menu_options = []
@@ -25,13 +22,10 @@ var mob_info
 var moves = []
 var moves_font
 var moves_grid
-var must_leave = false
 var player_info
 var prompt_text = ""
 var prompt_text_batch = []
 var prompt_text_index = 0
-var show_items = false
-var show_moves = false
 
 func _ready():
 	click_player = $clickPlayer
@@ -71,15 +65,12 @@ func _input(event):
 		if is_text_done:
 			# Player is dead, queue gameover state
 			if current_state == battle_state.GAMEOVER:
+				set_prompt_text(["You've lost all of your HP...", "You've been vanquished!"], 0)
 				sceneManager.goto_scene("res://gameover/gameover.tscn")
 
 			elif current_state == battle_state.TURN:
 				current_state = battle_state.MENU
 				hide_fight_controls(true)
-
-			elif gameData.player.current_hp <= 0:
-				set_prompt_text(["You've lost all of your HP...", "You've been vanquished!"], 0)
-				current_state = battle_state.GAMEOVER
 
 			elif current_state == battle_state.EVOLVING:
 				sceneManager.goto_scene("res://battle/evolution/evolution.tscn")
@@ -87,9 +78,7 @@ func _input(event):
 			elif current_state == battle_state.LEVEL_UP:
 				sceneManager.goto_scene("res://victory/victory.tscn")
 
-			# If the mob died, prepare victory text
-			elif battleData.mob.current_hp <= 0:
-				current_state = battle_state.VICTORY
+			elif current_state == battle_state.VICTORY:
 				var text_array = ["You consumed " + battleData.mob.name + "!", "You gained " + String(battleData.mob.xp) + " experience points."]
 
 				gameData.player.xp += battleData.mob.xp
@@ -436,7 +425,11 @@ func process_turn_with_move():
 				elif effect == 'poison':
 					process_text_array.append(turn_owner + " took 3 damage from the poison!")
 
-		if mob_info.current_hp <= 0 || player_info.current_hp <= 0:
+		if mob_info.current_hp <= 0:
+			current_state = battle_state.VICTORY
+			break
+		elif player_info.current_hp <= 0:
+			current_state = battle_state.GAMEOVER
 			break
 
 	set_prompt_text(process_text_array, 0)
