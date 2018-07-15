@@ -107,6 +107,10 @@ func _input(event):
 		elif victory_phase == DONE:
 			sceneManager.goto_scene("res://grid/grid.tscn")
 
+	elif event.is_action_pressed("ui_cancel"):
+		current_choice_state = null
+		reset_options()
+
 # add_item_option
 # Prepares labels with item data
 func add_item_option(index):
@@ -135,3 +139,11 @@ func add_move_option(index):
 # Prepares labels with stats data
 func add_stat_option(index):
 	options[index].set_text(stat_options[index].name)
+
+# reset_options
+# Returns to first choice menu
+func reset_options():
+	options[0].set_text("Item")
+	options[1].set_text("Move")
+	options[2].set_text("Stat")
+	desc.set_text("")
