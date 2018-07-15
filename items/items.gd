@@ -12,11 +12,13 @@ func _ready():
 	item_grid = $scroll/grid
 
 	for item in gameData.player.items:
-		var item_label = Label.new()
+		var item_opt = load("res://items/item.tscn").instance()
+		var item_label = item_opt.get_node("label")
 		item_label.set_text(item.name)
 		item_label.set("custom_fonts/font", item_font)
 		item_label.set("custom_colors/color", Color("#f9f9f9"))
-		item_grid.add_child(item_label)
+		item_opt.get_node("sprite").set_texture(load(item.sprite))
+		item_grid.add_child(item_opt)
 
 	item_opts = item_grid.get_children()
 

@@ -122,6 +122,7 @@ func _input(event):
 # Prepares labels with item data
 func add_item_option(index):
 	if item_options.size() == 3:
+		options[index].set_text(item_options[index].name)
 		return
 
 	var new_choice_index = gameData.get_random_number(gameData.items_data.items.size() - 1)
