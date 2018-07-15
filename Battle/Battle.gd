@@ -80,6 +80,7 @@ func _input(event):
 			if not items_shown:
 				items_grid = load("res://items/items.tscn").instance()
 				self.add_child(items_grid)
+				items_grid.set_position(Vector2(60, 30))
 				items_shown = true
 			else:
 				items_shown = false

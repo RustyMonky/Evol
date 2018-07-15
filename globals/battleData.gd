@@ -16,6 +16,7 @@ var player
 
 func _ready():
 	player = {
+		current_hp = gameData.player.current_hp,
 		moves = gameData.player.moves,
 		stats = gameData.player.stats,
 		statsChanged = {

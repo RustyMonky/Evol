@@ -222,7 +222,7 @@ func calculate_damage(attack, entity):
 
 		if selected_attack.stat.has('hp'):
 			current_entity.current_hp += selected_attack.stat.hp
-			process_text_array.append(pre_text + " recovered " + String(selected_attack.stat.hp)) + " HP!"
+			process_text_array.append(pre_text + " recovered " + String(selected_attack.stat.hp) + " HP!")
 
 	if selected_attack.has('effect'):
 		if selected_attack.effect.has('burn') and current_effects[other_entity].size() == 0:
