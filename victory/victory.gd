@@ -6,6 +6,7 @@ enum CHOICE_TYPES {ITEM, MOVE, STAT}
 var current_choice_state = null
 
 var desc
+var sprites_grid
 
 var current_option = 0
 var options
@@ -27,6 +28,8 @@ var victory_phase = CHOOSING
 func _ready():
 	desc = $optionDesc
 
+	sprites_grid = $sprites
+
 	options = $options.get_children()
 	for label in options:
 		uiLogic.update_current_object(options, current_option)
@@ -45,6 +48,8 @@ func _input(event):
 			desc.set_text(moves_options[current_option].desc)
 		elif current_choice_state == STAT:
 			desc.set_text(stat_options[current_option].desc)
+		elif current_choice_state == ITEM:
+			desc.set_text(item_options[current_option].desc)
 
 	elif event.is_action_pressed("ui_right"):
 		if current_option >= (options.size() - 1):
@@ -64,6 +69,8 @@ func _input(event):
 		if current_option == 0:
 			current_choice_state = ITEM
 			current_option = 0
+
+			sprites_grid.show()
 
 			for i in range(3):
 				add_item_option(i)
@@ -114,6 +121,9 @@ func _input(event):
 # add_item_option
 # Prepares labels with item data
 func add_item_option(index):
+	if item_options.size() == 3:
+		return
+
 	var new_choice_index = gameData.get_random_number(gameData.items_data.items.size() - 1)
 	var new_choice = gameData.items_data.items[new_choice_index]
 
@@ -123,6 +133,8 @@ func add_item_option(index):
 
 	item_options.append(new_choice)
 	options[index].set_text(new_choice.name)
+
+	sprites_grid.get_children()[index].set_texture(load(new_choice.sprite))
 
 # add_move_option
 # Prepares labels with move data
@@ -148,7 +160,10 @@ func add_stat_option(index):
 # reset_options
 # Returns to first choice menu
 func reset_options():
+	sprites_grid.hide()
+
 	options[0].set_text("Item")
 	options[1].set_text("Move")
 	options[2].set_text("Stat")
+
 	desc.set_text("")

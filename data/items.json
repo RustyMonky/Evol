@@ -5,28 +5,32 @@
             "desc": "Recovers 10 HP",
             "effects": {
                 "hp": 10
-            }
+            },
+            "sprite": "res://assets/sprites/items/hpSeed.png"
         },
         {
             "name": "Steroid Seed",
             "desc": "Provides 5 STR",
             "effects": {
                 "strength": 5
-            }
+            },
+            "sprite": "res://assets/sprites/items/strSeed.png"
         },
         {
             "name": "Guard Seed",
             "desc": "Provides 5 DEF",
             "effects": {
                 "defense": 5
-            }
+            },
+            "sprite": "res://assets/sprites/items/defSeed.png"
         },
         {
             "name": "Haste Seed",
             "desc": "Provides 5 SPD",
             "effects": {
                 "speed": 5
-            }
+            },
+            "sprite": "res://assets/sprites/items/spdSeed.png"
         },
         {
             "name": "Soul Seed",
@@ -36,7 +40,8 @@
                 "defense": 3,
                 "strength": 3,
                 "speed": 3
-            }
+            },
+            "sprite": "res://assets/sprites/items/soulSeed.png"
         }
     ]
 }
