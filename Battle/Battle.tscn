@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
+[ext_resource path="res://assets/sounds/battleLoop.wav" type="AudioStream" id=2]
 
 [node name="battle" type="Node2D" index="0"]
 
@@ -55,5 +56,14 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="battleMusic" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 2 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 
