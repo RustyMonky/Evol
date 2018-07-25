@@ -30,7 +30,7 @@ func _ready():
 
 	mob_to_fight = gameData.mob_data.mobs[mob_index]
 	mob_node.set_texture(load(mob_to_fight.sprite))
-	mob_node.position = Vector2(0 - mob_node.get_texture().get_size().x, mob_node.get_texture().get_size().y / 2)
+	mob_node.position = Vector2(0 - mob_node.get_texture().get_size().x, mob_node.get_texture().get_size().y)
 
 	battleData.mob = mob_to_fight
 	battleData.mob.current_hp = mob_to_fight.maxHp

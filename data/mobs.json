@@ -47,7 +47,7 @@
                 }
             ],
             "name": "Dodocan",
-            "sprite": "res://assets/sprites/mobs/dodocan.png",
+            "sprite": "res://assets/sprites/mobs/dodocanv2.png",
             "stats": {
                 "defense": 1,
                 "speed": 1,

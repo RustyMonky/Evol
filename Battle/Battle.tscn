@@ -40,6 +40,7 @@ size_flags_vertical = 1
 
 [node name="mob" type="Sprite" parent="." index="1"]
 
+scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
 [node name="playerBack" type="Sprite" parent="." index="2"]
