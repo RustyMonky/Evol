@@ -34,4 +34,4 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		sceneManager.goto_scene("res://Grid/Grid.tscn")
+		sceneManager.goto_scene("res://player/pause/PauseMenu.tscn")

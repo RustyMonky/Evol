@@ -8,11 +8,9 @@
 
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 300, 300 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 480, 430 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -24,15 +22,16 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="scroll" type="ScrollContainer" parent="." index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 292.0
-margin_bottom = 210.0
-rect_min_size = Vector2( 280, 200 )
+margin_right = 470.0
+margin_bottom = 420.0
+rect_min_size = Vector2( 460, 400 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0

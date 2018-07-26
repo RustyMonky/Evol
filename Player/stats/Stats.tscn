@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/fonts/titleOptions.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/GUI/panel.png" type="Texture" id=4]
 
-[node name="stats" type="Control" index="0"]
+[node name="stats" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -416,7 +416,7 @@ scroll_vertical = 0
 scroll_deadzone = 0
 _sections_unfolded = [ "Rect", "Scroll" ]
 
-[node name="movesList" type="VBoxContainer" parent="movesContainer/knownMoves" index="2"]
+[node name="movesList" type="VBoxContainer" parent="movesContainer/knownMoves" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
