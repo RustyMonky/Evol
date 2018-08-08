@@ -2,7 +2,7 @@
 
 [ext_resource path="res://battle/evolution/evolution.gd" type="Script" id=1]
 [ext_resource path="res://assets/GUI/panel.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/titleOptions.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/fonts/standardFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/sprites/forms/baseDef.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/forms/baseSpd.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/forms/baseStr.png" type="Texture" id=6]

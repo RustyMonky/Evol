@@ -11,10 +11,10 @@ config_version=3
 [application]
 
 config/name="Evol"
-run/main_scene="res://Intro/Intro.tscn"
+run/main_scene="res://intro/intro.tscn"
 icon="res://icon.png"
-main_scene="res://Intro/Intro.tscn"
 name="Evol"
+main_scene="res://intro/intro.tscn"
 
 [autoload]
 
@@ -64,3 +64,9 @@ common/fixed_fps=60
 [physics_2d]
 
 motion_fix_enabled=true
+
+[rendering]
+
+quality/intended_usage/framebuffer_allocation=0
+quality/2d/use_pixel_snap=true
+quality/dynamic_fonts/use_oversampling=true

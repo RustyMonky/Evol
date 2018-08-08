@@ -31,7 +31,7 @@ func _ready():
 	click_player = $clickPlayer
 	menu_frame = $frame
 	menu_prompt = $frame/menuPrompt
-	moves_font = load("res://assets/fonts/somepx24.tres")
+	moves_font = load("res://assets/fonts/standardFont.tres")
 	moves_grid = $frame/fightOptions/movesScroll/movesGrid
 
 	for move in gameData.player.moves:

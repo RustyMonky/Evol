@@ -36,6 +36,6 @@ func _process(delta):
 		hp_text.set_text(String(current_hp) + " / " + String(max_hp))
 
 	if current_hp > (max_hp / 4) && current_hp <= (max_hp / 2):
-		hp_bar.set_progress_texture(load("res://Assets/GUI/hp/hpMid.png"))
+		hp_bar.set_progress_texture(load("res://assets/GUI/hp/hpMid.png"))
 	elif current_hp <= (max_hp / 4):
-		hp_bar.set_progress_texture(load("res://Assets/GUI/hp/hpLow.png"))
+		hp_bar.set_progress_texture(load("res://assets/GUI/hp/hpLow.png"))

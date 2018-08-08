@@ -17,7 +17,7 @@ func _ready():
 	$statsContainer/statHBox/values/strength.set_text(String(gameData.player.stats.strength))
 	$statsContainer/statHBox/values/xp.set_text(String(gameData.player.xp))
 
-	stat_font = load("res://assets/fonts/somepx24.tres")
+	stat_font = load("res://assets/fonts/standardFont.tres")
 
 	for move in gameData.player.moves:
 		var move_label = Label.new()
@@ -34,4 +34,4 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		sceneManager.goto_scene("res://player/pause/PauseMenu.tscn")
+		sceneManager.goto_scene("res://player/pause/pauseMenu.tscn")

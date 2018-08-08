@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
+[ext_resource path="res://battle/battle.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/battleLoop.wav" type="AudioStream" id=2]
 
-[node name="battle" type="Node2D" index="0"]
+[node name="battle" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]

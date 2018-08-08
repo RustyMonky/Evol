@@ -40,7 +40,7 @@ func _input(event):
 	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_select"):
 
 		if current_option == 0:
-			sceneManager.goto_scene("res://player/stats/Stats.tscn")
+			sceneManager.goto_scene("res://player/stats/stats.tscn")
 
 		elif current_option == 1:
 			var item_child_scene = load("res://items/items.tscn").instance()

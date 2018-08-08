@@ -8,7 +8,7 @@ var item_grid
 var item_opts
 
 func _ready():
-	item_font = load("res://assets/fonts/somepx24.tres")
+	item_font = load("res://assets/fonts/standardFont.tres")
 	item_grid = $scroll/grid
 
 	for item in gameData.player.items:

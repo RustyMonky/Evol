@@ -1,12 +1,13 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://battle/info/BattleInfo.gd" type="Script" id=1]
-[ext_resource path="res://assets/fonts/titleOptions.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Assets/GUI/hp/hpUnder.png" type="Texture" id=3]
-[ext_resource path="res://Assets/GUI/hp/hpOver.png" type="Texture" id=4]
-[ext_resource path="res://Assets/GUI/hp/hpHigh.png" type="Texture" id=5]
+[ext_resource path="res://battle/info/battleInfo.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/standardFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/GUI/hp/hpUnder.png" type="Texture" id=3]
+[ext_resource path="res://assets/GUI/hp/hpOver.png" type="Texture" id=4]
+[ext_resource path="res://assets/GUI/hp/hpHigh.png" type="Texture" id=5]
 
-[node name="battleInfo" type="MarginContainer"]
+
+[node name="battleInfo" type="MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

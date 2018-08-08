@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/titleScreen.png-dda0d70a68301fabc5e3e2ec739621b5.stex"
+path="res://.import/titleScreen.png-4a010df5d7f5b0606790ca95aa73e19a.stex"
 
 [deps]
 
-source_file="res://assets/gui/titleScreen.png"
-dest_files=[ "res://.import/titleScreen.png-dda0d70a68301fabc5e3e2ec739621b5.stex" ]
+source_file="res://assets/GUI/titleScreen.png"
+dest_files=[ "res://.import/titleScreen.png-4a010df5d7f5b0606790ca95aa73e19a.stex" ]
 
 [params]
 

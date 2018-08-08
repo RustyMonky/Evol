@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hpMid.png-a5bf74f01b36e7905bef999033fa5045.stex"
+path="res://.import/hpMid.png-492db9abbb423bf35c5e2807df54859d.stex"
 
 [deps]
 
-source_file="res://assets/gui/hp/hpMid.png"
-dest_files=[ "res://.import/hpMid.png-a5bf74f01b36e7905bef999033fa5045.stex" ]
+source_file="res://assets/GUI/hp/hpMid.png"
+dest_files=[ "res://.import/hpMid.png-492db9abbb423bf35c5e2807df54859d.stex" ]
 
 [params]
 

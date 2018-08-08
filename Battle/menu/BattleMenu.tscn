@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Battle/menu/BattleMenu.gd" type="Script" id=1]
-[ext_resource path="res://assets/gui/panel.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/somepx32.tres" type="DynamicFont" id=3]
+[ext_resource path="res://battle/menu/battleMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/GUI/panel.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/standardFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/sounds/click.wav" type="AudioStream" id=4]
 
 [node name="menu" type="Container" index="0"]
@@ -59,6 +59,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 0.976471, 0.976471, 0.976471, 1 )
 bbcode_enabled = true
 bbcode_text = ""
 visible_characters = -1
@@ -113,6 +114,7 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 [node name="run" type="Label" parent="frame/menuOptions" index="1"]
 

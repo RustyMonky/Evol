@@ -18,7 +18,7 @@ const MOB_MOVE_SPEED = 200
 
 func _ready():
 	container = $control/container
-	battle_menu = load("res://battle/menu/BattleMenu.tscn").instance()
+	battle_menu = load("res://battle/menu/battleMenu.tscn").instance()
 	container.call_deferred("add_child", battle_menu)
 	battle_menu.set_position(Vector2(0, 352)) # Display height - menu frame height
 
@@ -46,7 +46,7 @@ func _ready():
 	battleData.mob.xp = mob_to_fight.xp * battleData.mob.level
 
 	# Add mob info instance
-	mob_info = load("res://Battle/info/BattleInfo.tscn").instance();
+	mob_info = load("res://battle/info/battleInfo.tscn").instance();
 	container.call_deferred("add_child", mob_info)
 	mob_info.type = "mob"
 	mob_info.max_hp = mob_to_fight.maxHp
@@ -56,7 +56,7 @@ func _ready():
 	battle_menu.mob_info = mob_info
 
 	# Add player info instance
-	player_info = load("res://Battle/info/BattleInfo.tscn").instance();
+	player_info = load("res://battle/info/battleInfo.tscn").instance();
 	container.call_deferred("add_child", player_info)
 	player_info.type = "player"
 	player_info.max_hp = gameData.player.max_hp

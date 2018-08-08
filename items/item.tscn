@@ -1,6 +1,8 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="item" type="Control"]
+[ext_resource path="res://assets/fonts/standardFont.tres" type="DynamicFont" id=1]
+
+[node name="item" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -41,6 +43,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 1 )
 align = 1
 valign = 1
 autowrap = true
