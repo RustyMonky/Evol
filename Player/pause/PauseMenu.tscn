@@ -13,7 +13,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -480.0
 margin_right = -480.0
-margin_bottom = 216.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -47,7 +46,6 @@ _sections_unfolded = [ "Patch Margin", "Rect" ]
 
 [node name="menuOptions" type="VBoxContainer" parent="frame" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -63,13 +61,14 @@ _sections_unfolded = [ "Margin", "Rect" ]
 
 [node name="stats" type="CenterContainer" parent="frame/menuOptions" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 107.0
+margin_top = 70.0
 margin_right = 480.0
-margin_bottom = 177.0
+margin_bottom = 140.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -103,15 +102,58 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
 
-[node name="save" type="CenterContainer" parent="frame/menuOptions" index="1"]
+[node name="items" type="CenterContainer" parent="frame/menuOptions" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 181.0
+margin_top = 144.0
 margin_right = 480.0
-margin_bottom = 251.0
+margin_bottom = 214.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+
+[node name="label" type="Label" parent="frame/menuOptions/items" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 174.0
+margin_right = 306.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "Items"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
+
+[node name="save" type="CenterContainer" parent="frame/menuOptions" index="2"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 218.0
+margin_right = 480.0
+margin_bottom = 288.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -145,15 +187,16 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors", "custom_fonts", "custom_styles" ]
 
-[node name="exit" type="CenterContainer" parent="frame/menuOptions" index="2"]
+[node name="exit" type="CenterContainer" parent="frame/menuOptions" index="3"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 255.0
+margin_top = 292.0
 margin_right = 480.0
-margin_bottom = 325.0
+margin_bottom = 362.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0

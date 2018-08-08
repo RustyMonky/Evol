@@ -42,10 +42,14 @@ func _input(event):
 		if current_option == 0:
 			sceneManager.goto_scene("res://player/stats/Stats.tscn")
 
-		elif current_option == 2 || has_saved:
+		elif current_option == 1:
+			var item_child_scene = load("res://items/items.tscn").instance()
+			self.get_parent().add_child(item_child_scene)
+
+		elif current_option == 3 || has_saved:
 			sceneManager.goto_scene("res://grid/grid.tscn")
 
-		elif current_option == 1 && !is_saving:
+		elif current_option == 2 && !is_saving:
 			save.save_game()
 			is_saving = true
 			$menuOptions.hide()
