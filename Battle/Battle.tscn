@@ -1,66 +1,83 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
-[ext_resource path="res://Battle/BattleMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Mobs/Mob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sounds/battleLoop.wav" type="AudioStream" id=2]
 
-[node name="Battle" type="Node2D"]
+[node name="battle" type="Node2D" index="0"]
 
-script/script = ExtResource( 1 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="BattleControl" type="Control" parent="."]
+[node name="control" type="Control" parent="." index="0"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 320.0
-margin/bottom = 288.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 416.0
+margin_bottom = 368.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+_sections_unfolded = [ "Rect" ]
 
-[node name="BattleCamera" type="Camera2D" parent="BattleControl"]
+[node name="container" type="Container" parent="control" index="0"]
 
-offset = Vector2( 160, 145 )
-anchor_mode = 1
-rotating = false
-current = true
-zoom = Vector2( 1, 1 )
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-drag_margin/h_enabled = true
-drag_margin/v_enabled = true
-smoothing/enable = false
-smoothing/speed = 5.0
-drag_margin/left = 0.2
-drag_margin/top = 0.2
-drag_margin/right = 0.2
-drag_margin/bottom = 0.2
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 
-[node name="BattleBackground" type="ColorFrame" parent="BattleControl"]
+[node name="backgroundColor" type="ColorRect" parent="control/container" index="0"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 320.0
-margin/bottom = 288.0
-color = Color( 1, 1, 1, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.819608, 0.819608, 0.819608, 1 )
 
-[node name="BattlePlayerSprite" type="Sprite" parent="BattleControl/BattleBackground"]
+[node name="mob" type="Sprite" parent="." index="1"]
 
-transform/pos = Vector2( 72, 184 )
-transform/scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 2, 2 )
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
-[node name="BattleMenu" parent="BattleControl" instance=ExtResource( 2 )]
+[node name="playerBack" type="Sprite" parent="." index="2"]
 
-margin/top = 218.0
-margin/bottom = 258.0
+position = Vector2( 92, 288 )
+scale = Vector2( 3, 3 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="BattleMob" parent="." instance=ExtResource( 3 )]
+[node name="mobTween" type="Tween" parent="." index="3"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="battleMusic" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 2 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 

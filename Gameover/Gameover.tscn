@@ -1,123 +1,111 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/GUI/panel.tex" type="Texture" id=1]
-[ext_resource path="res://Fonts/Somepx.fnt" type="BitmapFont" id=2]
-[ext_resource path="res://Gameover/Gameover.gd" type="Script" id=3]
+[ext_resource path="res://gameover/Gameover.gd" type="Script" id=1]
+[ext_resource path="res://assets/gui/gameoverScreen.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/titleOptions.tres" type="DynamicFont" id=3]
 
-[node name="Gameover" type="Control"]
+[node name="gameover" type="Control" index="0"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 1 )
 
-[node name="GameoverBackground" type="ColorFrame" parent="."]
+[node name="gameoverSplash" type="Sprite" parent="." index="0"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 320.0
-margin/bottom = 288.0
-color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset" ]
 
-[node name="GameoverTextBox" type="Patch9Frame" parent="GameoverBackground"]
+[node name="canvasLayer" type="CanvasLayer" parent="." index="1"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 216.0
-margin/right = 330.0
-margin/bottom = 296.0
-texture = ExtResource( 1 )
-patch_margin/left = 12
-patch_margin/top = 12
-patch_margin/right = 12
-patch_margin/bottom = 12
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="GameoverText" type="RichTextLabel" parent="GameoverBackground/GameoverTextBox"]
+[node name="container" type="Container" parent="canvasLayer" index="0"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 16.0
-margin/top = 8.0
-margin/right = 304.0
-margin/bottom = 48.0
-custom_fonts/normal_font = ExtResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-bbcode/enabled = true
-bbcode/bbcode = "Would you like to continue from your last save point?"
-visible_characters = -1
-percent_visible = 1.0
-script/script = ExtResource( 3 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 
-[node name="GameoverTimer" type="Timer" parent="GameoverBackground/GameoverTextBox"]
+[node name="options" type="Control" parent="canvasLayer/container" index="0"]
 
-process_mode = 1
-wait_time = 0.03
-one_shot = false
-autostart = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 
-[node name="GameoverChoiceText" type="RichTextLabel" parent="GameoverBackground/GameoverTextBox"]
+[node name="loadSave" type="Label" parent="canvasLayer/container/options" index="0"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 160.0
-margin/top = 32.0
-margin/right = 320.0
-margin/bottom = 64.0
-custom_fonts/normal_font = ExtResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-bbcode/enabled = true
-bbcode/bbcode = ""
-visible_characters = -1
-percent_visible = 1.0
-
-[node name="MobsKilledLabel" type="Label" parent="GameoverBackground"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 16.0
-margin/top = 32.0
-margin/right = 138.0
-margin/bottom = 48.0
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Total Mobs Killed"
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 190.0
+margin_top = 312.0
+margin_right = 230.0
+margin_bottom = 336.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "Load Save"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
-[node name="MobsKilledValue" type="Label" parent="GameoverBackground"]
+[node name="new" type="Label" parent="canvasLayer/container/options" index="1"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 170.0
-margin/top = 32.0
-margin/right = 210.0
-margin/bottom = 48.0
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 190.0
+margin_top = 352.0
+margin_right = 278.0
+margin_bottom = 376.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.976471, 0.976471, 0.976471, 1 )
+text = "Start New"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-
-[connection signal="timeout" from="GameoverBackground/GameoverTextBox/GameoverTimer" to="GameoverBackground/GameoverTextBox/GameoverText" method="_on_GameoverTimer_timeout"]
+_sections_unfolded = [ "Rect" ]
 
 

@@ -1,0 +1,82 @@
+{
+    "moves": [
+        {
+            "name": "Rush",
+            "damage": 1,
+            "desc": "Charge at an enemy for 1 base damage.",
+            "elementalType": null
+        },
+        {
+            "name": "Space Out",
+            "damage": 0,
+            "desc": "Space out in the middle of battle. Oops.",
+            "elementalType": null
+        },
+        {
+            "name": "Buff Up",
+            "damage": 0,
+            "desc": "Enlargen your muscles to slightly raise strength.",
+            "elementalType": null,
+            "stat": {
+                "strength": 1
+            }
+        },
+        {
+            "name": "Brace Self",
+            "damage": 0,
+            "desc": "Brace for incoming damage, slightly raising defense.",
+            "elementalType": null,
+            "stat": {
+                "defense": 1
+            }
+        },
+        {
+            "name": "Hasten",
+            "damage": 0,
+            "desc": "Quicken your movements and slightly increase speed.",
+            "elementalType": null,
+            "stat": {
+                "speed": 1
+            }
+        },
+        {
+            "name": "Vampiric Chomp",
+            "damage": 2,
+            "desc": "Bite the foe for 2 base damage and drain 2 of their health.",
+            "elementalType": null,
+            "stat": {
+                "hp": 2
+            }
+        },
+        {
+            "name": "Reckless Charge",
+            "damage": 4,
+            "desc": "Charge the foe for 4 base damage, but sacrifice defense slightly.",
+            "elementalType": null,
+            "stat": {
+                "defense": -1
+            }
+        },
+        {
+            "name": "Flame Breath",
+            "damage": 3,
+            "desc": "Spew flames for 3 base damage, and inflict burn.",
+            "elementalType": "fire",
+            "effect": ["burn"]
+        },
+        {
+            "name": "Aqua Jet",
+            "damage": 3,
+            "desc": "Blast the foe with pressurized water for 3 base damage, and inflict slow.",
+            "elementalType": "water",
+            "effect": ["slow"]
+        },
+        {
+            "name": "Toxic Spores",
+            "damage": 0,
+            "desc": "Spread toxic spores throughout the air, inflicting poison.",
+            "elementalType": "plant",
+            "effect": ["poison"]
+        }
+    ]
+}

@@ -1,65 +1,49 @@
 extends Control
 
+var click_player
 var current_option = 1
-var cursor
+var fade_rect
+var fade_tween
+var has_saved_game = false
 var options
 
 func _ready():
-	cursor = get_node("Cursor")
+	click_player = $clickPlayer
 
-	options = get_node("Options").get_children()
+	options = $canvasLayer/container/options.get_children()
+
+	fade_rect = $canvasLayer/fadeRect
+	fade_tween = $fadeTween
+
+	uiLogic.update_current_object(options, current_option)
+
+	has_saved_game = save.load_game()
+
+	if !has_saved_game:
+		options[0].hide()
 
 	set_process_input(true)
 
 func _input(event):
-	if event.is_action_pressed("ui_up"):
+	if event.is_action_pressed("ui_up") && has_saved_game:
 		current_option = 0
+		uiLogic.update_current_object(options, current_option)
+
 	elif event.is_action_pressed("ui_down"):
 		current_option = 1
-	update_cursor_pos()
+		uiLogic.update_current_object(options, current_option)
 
 	if event.is_action_pressed("ui_accept"):
+		click_player.play()
+
 		if current_option == 0:
 			save.load_game()
-			get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
+
 		elif current_option == 1:
-			start_new_game()
+			gameData.start_new_game()
 
-# start_new_game
-# Overwrites the save file with a fresh start
-func start_new_game():
-	global.player = {
-	    battle_sprite = "res://Assets/Battle/baseBattleSprite.tex",
-	    current_hp = 15,
-	    level = 1,
-	    max_hp = 15,
-	    moves = [
-	        { name = 'Rush', damage = 3, desc = "Charge at an enemy" }
-	    ],
-	    # The below value may change and is currently hardset to work with the test grid
-	    pos = Vector2(200, 200),
-	    stats = {
-	        defense = 5,
-	        speed = 5,
-	        strength = 5
-	    },
-	    statsChanged = {
-	        defense = 0,
-	        speed = 0,
-	        strength = 0
-	    },
-	    stats_sprite = "res://Assets/GUI/statsBaseSprite.png",
-	    sprite_frame = 0,
-	    sprite_path = "res://Player/baseEvolSheet.tex",
-	    total_mobs_killed = 0,
-	    xp = 0
-	}
+		fade_tween.interpolate_property(fade_rect, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+		fade_tween.start()
 
-	save.save_game()
-
-	get_node("/root/global").goto_scene("res://Grid/Grid.tscn")
-
-# update_cursor_pos
-# Updates the cursor position
-func update_cursor_pos():
-	cursor.set_global_pos(Vector2(110, options[current_option].get_global_pos().y))	
+func _on_fadeTween_tween_completed(object, key):
+	sceneManager.goto_scene("res://grid/grid.tscn")

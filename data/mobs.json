@@ -1,0 +1,103 @@
+{
+    "mobs": [
+        {
+            "maxHp": 10,
+            "moves": [
+                {
+                    "name": "Rush",
+                    "damage": 1,
+                    "desc": "Charge at an enemy for 1 base damage.",
+                    "elementalType": null
+                }
+            ],
+            "name": "Slime",
+            "sprite": "res://assets/sprites/mobs/slime.png",
+            "stats": {
+                "defense": 1,
+                "speed": 1,
+                "strength": 1
+            },
+            "statsChanged": {
+                "defense": 0,
+                "speed": 0,
+                "strength": 0
+            },
+            "xp": 20
+        },
+        {
+            "maxHp": 20,
+            "moves": [
+                {
+                    "name": "Rush",
+                    "damage": 1,
+                    "desc": "Charge at an enemy for 1 base damage.",
+                    "elementalType": null
+                },
+                {
+                    "name": "Space Out",
+                    "damage": 0,
+                    "desc": "Space out in the middle of battle. Oops.",
+                    "elementalType": null
+                },
+                {
+                    "name": "Beak Smash",
+                    "damage": 3,
+                    "desc": "Slam an enemy with your beak for 3 base damage.",
+                    "elementalType": null
+                }
+            ],
+            "name": "Dodocan",
+            "sprite": "res://assets/sprites/mobs/dodocanv2.png",
+            "stats": {
+                "defense": 1,
+                "speed": 1,
+                "strength": 3
+            },
+            "statsChanged": {
+                "defense": 0,
+                "speed": 0,
+                "strength": 0
+            },
+            "xp": 30
+        },
+        {
+            "maxHp": 15,
+            "moves": [
+                {
+                    "name": "Rush",
+                    "damage": 1,
+                    "desc": "Charge at an enemy for 1 base damage",
+                    "elementalType": null
+                },
+                {
+                    "name": "Bite Sting",
+                    "damage": 3,
+                    "desc": "Bite an enemy with sharp fangs for 3 base damage.",
+                    "elementalType": null
+                },
+                {
+                    "name": "Buzz Around",
+                    "damage": 0,
+                    "desc": "Zoom around the opponent, slightly gaining speed.",
+                    "elementalType": null,
+                    "stat": {
+                        "speed": 1
+                    }
+                }
+            ],
+            "name": "Bumblebat",
+            "sprite": "res://assets/sprites/mobs/bumblebat.png",
+            "stats": {
+                "defense": 1,
+                "speed": 3,
+                "strength": 2
+            },
+            "statsChanged": {
+                "defense": 0,
+                "speed": 0,
+                "strength": 0
+            },
+            "xp": 40
+        }
+    ]
+}
