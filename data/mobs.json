@@ -5,7 +5,7 @@
             "moves": [
                 {
                     "name": "Rush",
-                    "damage": 1,
+                    "damage": 3,
                     "desc": "Charge at an enemy for 1 base damage.",
                     "elementalType": null
                 }
@@ -29,7 +29,7 @@
             "moves": [
                 {
                     "name": "Rush",
-                    "damage": 1,
+                    "damage": 3,
                     "desc": "Charge at an enemy for 1 base damage.",
                     "elementalType": null
                 },
@@ -41,7 +41,7 @@
                 },
                 {
                     "name": "Beak Smash",
-                    "damage": 3,
+                    "damage": 5,
                     "desc": "Slam an enemy with your beak for 3 base damage.",
                     "elementalType": null
                 }
@@ -65,13 +65,13 @@
             "moves": [
                 {
                     "name": "Rush",
-                    "damage": 1,
+                    "damage": 3,
                     "desc": "Charge at an enemy for 1 base damage",
                     "elementalType": null
                 },
                 {
                     "name": "Bite Sting",
-                    "damage": 3,
+                    "damage": 5,
                     "desc": "Bite an enemy with sharp fangs for 3 base damage.",
                     "elementalType": null
                 },

@@ -2,7 +2,7 @@
     "moves": [
         {
             "name": "Rush",
-            "damage": 1,
+            "damage": 3,
             "desc": "Charge at an enemy for 1 base damage.",
             "elementalType": null
         },
