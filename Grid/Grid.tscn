@@ -31,7 +31,7 @@ _sections_unfolded = [ "Cell", "Transform" ]
 [node name="bkgdMusic" type="AudioStreamPlayer" parent="." index="1"]
 
 stream = ExtResource( 3 )
-volume_db = 0.0
+volume_db = -10.0
 pitch_scale = 1.0
 autoplay = true
 mix_target = 0

@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/fonts/standardFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/GUI/panel.png" type="Texture" id=4]
 
-
 [node name="stats" type="Control" index="0"]
 
 anchor_left = 0.0
